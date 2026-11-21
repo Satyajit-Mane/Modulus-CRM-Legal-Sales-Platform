@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal Sales CRM - Interaction & Follow-up System</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #F7F8FA; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+  </style>
+</head>
+<body class="bg-[#F7F8FA] text-[#202938] antialiased m-0 p-0 flex h-screen overflow-hidden">
+
+  <!-- ========================================================================= -->
+  <!-- SIDEBAR NAVIGATION (240px Fixed)                                          -->
+  <!-- ========================================================================= -->
+  <aside class="w-[240px] bg-[#FFFFFF] border-r border-[#E5E7EB] flex flex-col flex-shrink-0 select-none z-20">
+    <div class="h-16 flex items-center justify-between px-5 border-b border-[#E5E7EB]">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-[#2563EB] flex items-center justify-center text-white font-bold text-base shadow-sm">
+          ⚖️
+        </div>
+        <div>
+          <span class="font-bold text-[15px] tracking-tight text-[#202938]">LexisCRM</span>
+          <span class="block text-[10px] text-[#667085] font-medium leading-none">Legal Tech Sales</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Prospect Context Card in Sidebar -->
+    <div class="p-3 border-b border-[#E5E7EB] bg-[#F8FAFC]">
+      <div class="text-[10px] font-semibold text-[#667085] uppercase tracking-wider mb-1">Active Deal Record</div>
+      <div class="font-bold text-[13px] text-[#202938] leading-tight">Apex Legal Partners</div>
+      <div class="text-[11px] text-[#667085]">Adv. Rajesh Sharma • Delhi HC</div>
+      <div class="mt-2 flex items-center justify-between text-[11px]">
+        <span class="text-[#7C3AED] font-semibold bg-[#F5F3FF] px-2 py-0.5 rounded border border-[#DDD6FE]">Demo Completed</span>
+        <span class="text-[#2563EB] font-bold">₹18,000/mo</span>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex-1 overflow-y-auto px-3 py-3 space-y-4 text-[13px]">
+      <div>
+        <div class="px-2 text-[10px] font-semibold text-[#667085] uppercase tracking-wider mb-1.5">Record Sections</div>
+        <a href="#timeline-section" class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-md bg-[#EFF6FF] text-[#2563EB] font-medium transition-colors border-r-2 border-[#2563EB]">
+          <svg class="w-4 h-4 text-[#2563EB]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>Activity Timeline</span>
+        </a>
+        <a href="#followup-section" class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938]">
+          <div class="flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+            <span>Follow-up Tasks</span>
+          </div>
+          <span class="px-1.5 py-0.2 rounded text-[10px] font-bold bg-[#FEF2F2] text-[#DC2626]">1 Due</span>
+        </a>
+        <a href="#comments-section" class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938]">
+          <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+          <span>Internal Comments</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Rep Profile -->
+    <div class="p-3 border-t border-[#E5E7EB] bg-[#FFFFFF]">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-bold text-xs">
+          SJ
+        </div>
+        <div>
+          <div class="text-[12.5px] font-semibold text-[#202938] leading-tight">Sarah Jenkins</div>
+          <div class="text-[11px] text-[#667085]">Senior Sales Exec</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN WORKSPACE                                                            -->
+  <!-- ========================================================================= -->
+  <div class="flex-1 flex flex-col h-screen overflow-hidden bg-[#F7F8FA]">
+
+    <!-- ======================================================================= -->
+    <!-- TOP ACTION HEADER BAR                                                   -->
+    <!-- ======================================================================= -->
+    <header class="h-16 bg-[#FFFFFF] border-b border-[#E5E7EB] px-6 flex items-center justify-between flex-shrink-0 z-10">
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 text-[13px] text-[#667085]">
+          <span>Prospects</span>
+          <span>/</span>
+          <span class="text-[#202938] font-bold text-[15px]">Apex Legal Partners</span>
+        </div>
+        <span id="headerStageBadge" class="text-[11.5px] font-semibold bg-[#F5F3FF] text-[#7C3AED] border border-[#DDD6FE] px-2.5 py-0.5 rounded-full flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#7C3AED]"></span> Demo Completed
+        </span>
+      </div>
+
+      <!-- Quick Action Buttons: Log Activity, Schedule Follow-up, Internal Comment -->
+      <div class="flex items-center gap-2.5">
+        <!-- 1. Add Activity Trigger -->
+        <button onclick="openActivityModal()" class="flex items-center gap-1.5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white px-3.5 py-1.5 rounded-md text-[13px] font-semibold shadow-xs transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          <span>Log Activity</span>
+        </button>
+
+        <!-- 3. Follow-up Scheduling Trigger -->
+        <button onclick="openScheduleModal()" class="flex items-center gap-1.5 bg-[#FFFFFF] border border-[#E5E7EB] hover:bg-[#F7F8FA] px-3.5 py-1.5 rounded-md text-[13px] font-medium text-[#202938] shadow-xs transition-colors">
+          <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <span>Schedule Follow-up</span>
+        </button>
+
+        <!-- Convert CTA -->
+        <button onclick="triggerToast('Opening zero-loss conversion wizard...', 'Convert')" class="flex items-center gap-1.5 bg-[#16A36A] hover:bg-[#15803D] text-white px-3.5 py-1.5 rounded-md text-[13px] font-semibold shadow-xs transition-colors">
+          <span>Convert to Client ➔</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ======================================================================= -->
+    <!-- SCROLLABLE INTERACTION WORKSPACE                                        -->
+    <!-- ======================================================================= -->
+    <main class="flex-1 overflow-y-auto p-6 space-y-6">
+
+      <!-- ===================================================================== -->
+      <!-- TOP STATUS STRIP: PENDING FOLLOW-UPS REQUIRING RESOLUTION             -->
+      <!-- ===================================================================== -->
+      <section id="followup-section" class="bg-[#FFFFFF] p-4 rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <h2 class="text-[14.5px] font-bold text-[#202938]">Scheduled Follow-up Commitments</h2>
+            <span id="pendingCountBadge" class="bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA] px-2 py-0.2 rounded-full text-[11px] font-bold">1 Due Today</span>
+          </div>
+          <button onclick="openScheduleModal()" class="text-[12.5px] text-[#2563EB] font-semibold hover:underline">+ New Task</button>
+        </div>
+
+        <div id="followupTaskList" class="space-y-2.5">
+          
+          <!-- Follow-up Card 1 (Active) -->
+          <div id="taskCard1" class="p-3.5 rounded-md border border-[#FED7AA] bg-[#FFF7ED]/30 flex items-start justify-between transition-all">
+            <div class="flex items-start gap-3">
+              <!-- Checkbox that triggers Follow-up Completion Modal -->
+              <input type="checkbox" onchange="promptCompleteFollowup('taskCard1', 'Send Chamber Pro Proposal & GST Invoice Draft')" 
+                     class="mt-1 w-4 h-4 rounded border-[#CBD5E1] text-[#2563EB] cursor-pointer" title="Click to complete follow-up">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-bold bg-[#EA580C] text-white px-1.5 py-0.2 rounded uppercase">URGENT</span>
+                  <span class="text-[12px] font-semibold text-[#EA580C]">Today, 2:30 PM (Due Now)</span>
+                  <span class="text-[11px] text-[#667085]">• ✉️ Proposal Review</span>
+                </div>
+                <div class="text-[13.5px] font-bold text-[#202938] mt-0.5">Send Chamber Pro Proposal & GST Invoice Draft</div>
+                <p class="text-[12px] text-[#667085] mt-0.5">
+                  Follow up with Managing Partner Adv. Rajesh Sharma on 12-seat annual commitment.
+                </p>
+                <div class="flex items-center gap-3 mt-1.5 text-[11px] text-[#667085]">
+                  <span>👤 Assigned: <strong>Sarah Jenkins</strong></span>
+                  <span>🔔 Reminder: 15 mins before</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 1-Click Action Buttons -->
+            <div class="flex items-center gap-1.5 flex-shrink-0">
+              <button onclick="promptCompleteFollowup('taskCard1', 'Send Chamber Pro Proposal & GST Invoice Draft')" class="px-3 py-1.5 bg-[#16A36A] hover:bg-[#15803D] text-white text-[12px] font-semibold rounded shadow-xs">
+                Mark Complete ✓
+              </button>
+              <button onclick="openScheduleModal('Reschedule: Send Proposal')" class="p-1.5 text-[#667085] hover:text-[#202938] rounded border border-[#E5E7EB] hover:bg-[#F7F8FA]" title="Reschedule">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- TWO-COLUMN WORKSPACE: TIMELINE (7 COLS) & INTERNAL NOTES (5 COLS)     -->
+      <!-- ===================================================================== -->
+      <div class="grid grid-cols-12 gap-6 items-start">
+        
+        <!-- =================================================================== -->
+        <!-- 5. CHRONOLOGICAL ACTIVITY TIMELINE (7 COLS)                         -->
+        <!-- =================================================================== -->
+        <div id="timeline-section" class="col-span-7 bg-[#FFFFFF] p-5 rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)] space-y-4">
+          
+          <!-- Timeline Header & Channel Filters -->
+          <div class="flex items-center justify-between pb-3 border-b border-[#E5E7EB] flex-wrap gap-2">
+            <div>
+              <h3 class="text-[15px] font-bold text-[#202938]">Activity Timeline</h3>
+              <p class="text-[12px] text-[#667085]">Chronological stream (Newest interactions first)</p>
+            </div>
+
+            <!-- Channel Filter Chips -->
+            <div class="flex items-center gap-1 bg-[#F7F8FA] border border-[#E5E7EB] p-1 rounded-md text-[11.5px]">
+              <button onclick="filterTimeline('all')" id="tlFilterAll" class="px-2 py-0.5 rounded bg-white shadow-xs font-semibold text-[#202938]">All (14)</button>
+              <button onclick="filterTimeline('call')" id="tlFilterCall" class="px-2 py-0.5 rounded text-[#667085] hover:text-[#202938]">Calls</button>
+              <button onclick="filterTimeline('demo')" id="tlFilterDemo" class="px-2 py-0.5 rounded text-[#667085] hover:text-[#202938]">Demos</button>
+              <button onclick="filterTimeline('stage')" id="tlFilterStage" class="px-2 py-0.5 rounded text-[#667085] hover:text-[#202938]">Stages</button>
+            </div>
+          </div>
+
+          <!-- Chronological Stream (Newest First) -->
+          <div id="timelineStream" class="relative pl-6 space-y-5 before:content-[''] before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-[#E5E7EB]">
+            
+            <!-- Event 1: Product Demo Completed (Newest) -->
+            <div class="timeline-item relative group" data-type="demo">
+              <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#F5F3FF] border-2 border-white flex items-center justify-center text-[10px] text-[#7C3AED] shadow-xs">
+                🎥
+              </div>
+              <div class="flex items-center justify-between text-[11.5px] text-[#667085]">
+                <span>Today, 11:30 AM • Conducted by <strong class="text-[#202938]">Sarah Jenkins</strong></span>
+                <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-[#7C3AED] bg-[#F5F3FF] px-2 py-0.2 rounded border border-[#DDD6FE]">
+                  Demo Conducted
+                </span>
+              </div>
+              <div class="text-[13.5px] font-bold text-[#202938] mt-0.5">Product Demonstration (45m Zoom Session)</div>
+              <p class="text-[12.5px] text-[#202938] mt-1 bg-[#F7F8FA] p-3 rounded-md border border-[#E5E7EB]">
+                Demonstrated Delhi High Court cause-list synchronization and Judgment Citation Headnotes. Managing Partner Adv. Rajesh Sharma and 3 associates attended. Partner confirmed 12 litigators in their chamber; requested quotation for Chamber Pro tier.
+              </p>
+              <div class="flex items-center gap-3 mt-1.5 text-[11px] text-[#667085]">
+                <span class="text-[#2563EB] font-medium flex items-center gap-1 cursor-pointer hover:underline">
+                  🔗 Recording: zoom.us/rec/legal-apex-992
+                </span>
+                <span>•</span>
+                <span>Interest: <strong class="text-[#16A36A]">High Intent (80%)</strong></span>
+              </div>
+            </div>
+
+            <!-- Event 2: Stage Advanced -->
+            <div class="timeline-item relative group" data-type="stage">
+              <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#EFF6FF] border-2 border-white flex items-center justify-center text-[10px] text-[#2563EB] shadow-xs">
+                ➔
+              </div>
+              <div class="text-[11.5px] text-[#667085]">Nov 18, 2026, 4:15 PM • System Workflow</div>
+              <div class="text-[13px] font-semibold text-[#2563EB] mt-0.5">Stage Advanced: Demo Scheduled ➔ Demo Completed</div>
+              <div class="text-[12px] text-[#667085]">Deal win probability upgraded from 50% to 80%. Target Value: ₹2,16,000 / yr.</div>
+            </div>
+
+            <!-- Event 3: Outbound Phone Call -->
+            <div class="timeline-item relative group" data-type="call">
+              <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#EFF6FF] border-2 border-white flex items-center justify-center text-[10px] text-[#2563EB] shadow-xs">
+                📞
+              </div>
+              <div class="flex items-center justify-between text-[11.5px] text-[#667085]">
+                <span>Nov 16, 2026, 3:00 PM • Logged by <strong class="text-[#202938]">Sarah Jenkins</strong></span>
+                <span class="text-[11px] font-medium bg-[#ECFDF5] text-[#16A36A] px-2 py-0.2 rounded border border-[#A7F3D0]">Connected - Positive</span>
+              </div>
+              <div class="text-[13px] font-bold text-[#202938] mt-0.5">Outbound Phone Discussion (14 mins)</div>
+              <p class="text-[12px] text-[#667085] mt-1 bg-[#F7F8FA] p-2.5 rounded border border-[#E5E7EB]">
+                Reached Adv. Rajesh Sharma directly on WhatsApp call. Discussed pain point regarding junior associates taking 3+ hours daily checking evening court cause-lists. Agreed for team video demo.
+              </p>
+            </div>
+
+            <!-- Event 4: WhatsApp Exchange -->
+            <div class="timeline-item relative group" data-type="call">
+              <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#ECFDF5] border-2 border-white flex items-center justify-center text-[10px] text-[#16A36A] shadow-xs">
+                💬
+              </div>
+              <div class="text-[11.5px] text-[#667085]">Nov 15, 2026, 11:20 AM • WhatsApp Official</div>
+              <div class="text-[13px] font-bold text-[#202938] mt-0.5">Product Deck & Feature Summary Sent</div>
+              <div class="text-[12px] text-[#667085]">Delivered Chamber Pro Product One-Pager PDF via WhatsApp to +91 98101 23456. Read receipt confirmed.</div>
+            </div>
+
+          </div>
+
+          <!-- Load Older History Button -->
+          <div class="pt-3 text-center border-t border-[#E5E7EB]">
+            <button onclick="loadOlderHistory()" id="btnLoadOlder" class="text-[12.5px] text-[#2563EB] font-semibold hover:underline">
+              Load Older History (6 more events) ↓
+            </button>
+          </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- 2. ADD INTERNAL COMMENT & TEAM NOTES (5 COLS)                       -->
+        <!-- =================================================================== -->
+        <div id="comments-section" class="col-span-5 bg-[#FFFFFF] p-5 rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)] space-y-4">
+          
+          <!-- Header with Security Indicator -->
+          <div class="flex items-start justify-between pb-2 border-b border-[#E5E7EB]">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <h3 class="text-[15px] font-bold text-[#202938]">Internal Notes</h3>
+                <span class="text-[11px] font-semibold bg-[#F1F5F9] text-[#475569] px-2 py-0.2 rounded flex items-center gap-1">
+                  🔒 Private to Team
+                </span>
+              </div>
+              <p class="text-[11.5px] text-[#667085] mt-0.5">Private strategy notes. Never visible to customer.</p>
+            </div>
+            <span id="noteCountBadge" class="text-[11px] font-bold text-[#2563EB] bg-[#EFF6FF] px-2 py-0.5 rounded border border-[#BFDBFE]">2 Notes</span>
+          </div>
+
+          <!-- Comment Composer Box (Component #2) -->
+          <div class="bg-[#F8FAFC] p-3 rounded-lg border border-[#E5E7EB] space-y-2.5">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-bold text-[10px]">SJ</div>
+              <span class="text-[12px] font-semibold text-[#202938]">Add internal note as Sarah Jenkins</span>
+            </div>
+            <textarea id="commentComposerInput" rows="3" placeholder="Write internal observation or mention @rep (e.g. partner billing preference, discount approval)..." 
+                      class="w-full bg-[#FFFFFF] border border-[#CBD5E1] rounded-md p-2.5 text-[12.5px] text-[#202938] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"></textarea>
+            
+            <div class="flex items-center justify-between pt-1">
+              <label class="flex items-center gap-1.5 text-[11.5px] text-[#667085] cursor-pointer">
+                <input type="checkbox" id="checkPinNote" class="rounded border-[#CBD5E1] text-[#2563EB]">
+                <span>Pin to top 📌</span>
+              </label>
+
+              <button onclick="postInternalComment()" class="px-3.5 py-1.5 bg-[#202938] hover:bg-black text-white text-[12px] font-semibold rounded-md shadow-xs transition-colors">
+                Post Internal Note
+              </button>
+            </div>
+          </div>
+
+          <!-- Existing Comments Stream -->
+          <div id="commentsStream" class="space-y-3">
+            
+            <!-- Comment 1: Pinned -->
+            <div id="commentNode1" class="p-3 bg-[#FFFBEB] rounded-lg border border-[#FDE68A] text-[12.5px] space-y-1.5">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-bold text-[10px]">SJ</div>
+                  <div>
+                    <span class="font-bold text-[#202938]">Sarah Jenkins</span>
+                    <span class="text-[10px] text-[#D97706] font-semibold ml-1.5">📌 PINNED NOTE</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 text-[11px] text-[#667085]">
+                  <span>Nov 18, 4:10 PM</span>
+                  <button onclick="editComment('commentNode1')" class="hover:text-[#2563EB] font-medium">Edit</button>
+                </div>
+              </div>
+              <p class="text-[#202938] leading-relaxed">
+                Managing Partner has sole budget authority. Mentioned during demo that if we can onboard their chamber before the Supreme Court winter recess begins, they will commit to 1-year prepaid upfront.
+              </p>
+            </div>
+
+            <!-- Comment 2: Manager Mention -->
+            <div id="commentNode2" class="p-3 bg-[#F8FAFC] rounded-lg border border-[#E5E7EB] text-[12.5px] space-y-1.5">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 rounded-full bg-[#16A36A] text-white flex items-center justify-center font-bold text-[10px]">DK</div>
+                  <div>
+                    <span class="font-bold text-[#202938]">David Kumar</span>
+                    <span class="text-[10px] text-[#667085] ml-1">Sales Manager</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 text-[11px] text-[#667085]">
+                  <span>Nov 17, 10:45 AM</span>
+                  <button onclick="editComment('commentNode2')" class="hover:text-[#2563EB] font-medium">Edit</button>
+                </div>
+              </div>
+              <p class="text-[#667085] leading-relaxed">
+                <span class="text-[#2563EB] font-semibold">@sarah</span> Approved for up to 10% annual discount if they lock in all 12 advocate seats. Make sure GSTIN is verified before contracting.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 1: ADD ACTIVITY MODAL (9 Fields & Zero-Effort Ergonomics)           -->
+  <!-- ========================================================================= -->
+  <div id="addActivityModal" class="hidden fixed inset-0 bg-[#202938]/40 backdrop-blur-[2px] z-50 flex items-center justify-center p-4">
+    <div class="bg-[#FFFFFF] rounded-xl max-w-xl w-full p-6 shadow-2xl border border-[#E5E7EB] space-y-4 max-h-[92vh] overflow-y-auto">
+      
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between pb-3 border-b border-[#E5E7EB]">
+        <div>
+          <h3 class="text-[18px] font-bold text-[#202938]">Log Sales Activity</h3>
+          <p class="text-[12px] text-[#667085]">Record calls, meetings, demos, and advance stage in one action.</p>
+        </div>
+        <button onclick="closeActivityModal()" class="text-[#667085] hover:text-[#202938] text-xl font-bold">×</button>
+      </div>
+
+      <!-- Activity Form -->
+      <div class="space-y-4 text-[13px]">
+        
+        <!-- Field 1: Activity Type (Segmented Pill Buttons) -->
+        <div>
+          <label class="block font-bold text-[#202938] mb-1.5">1. Activity Type *</label>
+          <div class="grid grid-cols-6 gap-1.5" id="activityTypeSelector">
+            <button type="button" onclick="selectActivityType('call', this)" class="act-type-btn py-2 px-1 rounded border border-[#2563EB] bg-[#EFF6FF] text-[#2563EB] font-semibold text-[11.5px] flex flex-col items-center gap-1">
+              <span>📞</span> Call
+            </button>
+            <button type="button" onclick="selectActivityType('demo', this)" class="act-type-btn py-2 px-1 rounded border border-[#E5E7EB] hover:bg-[#F7F8FA] text-[#667085] font-medium text-[11.5px] flex flex-col items-center gap-1">
+              <span>🎥</span> Demo
+            </button>
+            <button type="button" onclick="selectActivityType('meeting', this)" class="act-type-btn py-2 px-1 rounded border border-[#E5E7EB] hover:bg-[#F7F8FA] text-[#667085] font-medium text-[11.5px] flex flex-col items-center gap-1">
+              <span>🤝</span> Meeting
+            </button>
+            <button type="button" onclick="selectActivityType('email', this)" class="act-type-btn py-2 px-1 rounded border border-[#E5E7EB] hover:bg-[#F7F8FA] text-[#667085] font-medium text-[11.5px] flex flex-col items-center gap-1">
+              <span>✉️</span> Email
+            </button>
+            <button type="button" onclick="selectActivityType('whatsapp', this)" class="act-type-btn py-2 px-1 rounded border border-[#E5E7EB] hover:bg-[#F7F8FA] text-[#667085] font-medium text-[11.5px] flex flex-col items-center gap-1">
+              <span>💬</span> WhatsApp
+            </button>
+            <button type="button" onclick="selectActivityType('other', this)" class="act-type-btn py-2 px-1 rounded border border-[#E5E7EB] hover:bg-[#F7F8FA] text-[#667085] font-medium text-[11.5px] flex flex-col items-center gap-1">
+              <span>📝</span> Other
+            </button>
+          </div>
+        </div>
+
+        <!-- Field 2: Date & Time with Quick Shortcuts -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">2. Activity Date & Time *</label>
+            <input type="datetime-local" id="actDateTime" value="2026-11-19T13:15" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 focus:outline-none focus:border-[#2563EB]">
+          </div>
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">Time Shortcut</label>
+            <div class="flex gap-1.5 pt-0.5">
+              <button type="button" onclick="triggerToast('Set to Just Now')" class="px-2.5 py-1.5 bg-[#F7F8FA] border border-[#E5E7EB] rounded text-[11.5px] font-medium text-[#667085] hover:bg-[#E5E7EB]">Just now</button>
+              <button type="button" onclick="triggerToast('Set to 1 hour ago')" class="px-2.5 py-1.5 bg-[#F7F8FA] border border-[#E5E7EB] rounded text-[11.5px] font-medium text-[#667085] hover:bg-[#E5E7EB]">1h ago</button>
+              <button type="button" onclick="triggerToast('Set to Yesterday')" class="px-2.5 py-1.5 bg-[#F7F8FA] border border-[#E5E7EB] rounded text-[11.5px] font-medium text-[#667085] hover:bg-[#E5E7EB]">Yesterday</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Field 3: Conversation Outcome (Chip Grid) -->
+        <div>
+          <label class="block font-medium text-[#202938] mb-1.5">3. Conversation Outcome *</label>
+          <div class="flex flex-wrap gap-1.5" id="outcomeChips">
+            <button type="button" onclick="selectOutcome('Connected - Positive', this)" class="outcome-chip px-2.5 py-1 rounded-full border border-[#2563EB] bg-[#EFF6FF] text-[#2563EB] text-[12px] font-semibold">
+              ✓ Connected - Positive
+            </button>
+            <button type="button" onclick="selectOutcome('Demo Conducted', this)" class="outcome-chip px-2.5 py-1 rounded-full border border-[#E5E7EB] bg-[#FFFFFF] text-[#667085] text-[12px] hover:border-[#CBD5E1]">
+              🎥 Demo Conducted
+            </button>
+            <button type="button" onclick="selectOutcome('Left Voicemail / Busy', this)" class="outcome-chip px-2.5 py-1 rounded-full border border-[#E5E7EB] bg-[#FFFFFF] text-[#667085] text-[12px] hover:border-[#CBD5E1]">
+              📞 Left Voicemail / Busy
+            </button>
+            <button type="button" onclick="selectOutcome('Rescheduled', this)" class="outcome-chip px-2.5 py-1 rounded-full border border-[#E5E7EB] bg-[#FFFFFF] text-[#667085] text-[12px] hover:border-[#CBD5E1]">
+              📅 Rescheduled
+            </button>
+            <button type="button" onclick="selectOutcome('No Answer', this)" class="outcome-chip px-2.5 py-1 rounded-full border border-[#E5E7EB] bg-[#FFFFFF] text-[#667085] text-[12px] hover:border-[#CBD5E1]">
+              ❌ No Answer
+            </button>
+          </div>
+        </div>
+
+        <!-- Field 4: Discussion Notes -->
+        <div>
+          <label class="block font-medium text-[#202938] mb-1">4. Discussion Notes *</label>
+          <textarea id="actDiscussionNotes" rows="3" placeholder="Summary of discussion, partner concerns, judgment search feedback, next steps agreed..." 
+                    class="w-full border border-[#E5E7EB] rounded p-2.5 text-[12.5px] focus:outline-none focus:border-[#2563EB]"></textarea>
+        </div>
+
+        <!-- Field 5 & 6: Interest Level & Sales Stage -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">5. Prospect Interest Level</label>
+            <select id="actInterestLevel" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 bg-[#FFFFFF] focus:outline-none focus:border-[#2563EB]">
+              <option>🔥 High Intent (80%+ Close)</option>
+              <option>⚡ Warm (Actively Evaluating)</option>
+              <option>⚖️ Moderate (Information Gathering)</option>
+              <option>❄️ Cold (Needs Nurturing)</option>
+              <option>🚫 Not Interested</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">6. Update Sales Stage</label>
+            <select id="actSalesStage" class="w-full border border-[#2563EB] bg-[#EFF6FF]/40 rounded px-3 py-1.5 font-semibold text-[#2563EB] focus:outline-none">
+              <option value="Demo Completed">Demo Completed (Current)</option>
+              <option value="Interested">Advance to: Interested</option>
+              <option value="Negotiation">Advance to: Negotiation</option>
+              <option value="Contacted">Contacted</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Field 7, 8, 9: Next Action & Follow-up Date -->
+        <div class="p-3 bg-[#F8FAFC] rounded-lg border border-[#E5E7EB] space-y-3">
+          <div class="text-[12px] font-bold text-[#667085] uppercase tracking-wider">Compound Next Step Scheduling</div>
+          <div class="grid grid-cols-3 gap-2.5">
+            <div>
+              <label class="block font-medium text-[#202938] text-[12px] mb-1">7. Next Action</label>
+              <select id="actNextAction" class="w-full border border-[#E5E7EB] rounded px-2 py-1.5 bg-[#FFFFFF] text-[12px]">
+                <option>Send Proposal</option>
+                <option>Partner Call</option>
+                <option>Product Demo</option>
+                <option>Contract Review</option>
+                <option>None</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-medium text-[#202938] text-[12px] mb-1">8. Next Follow-up Date</label>
+              <input type="date" id="actNextDate" value="2026-11-20" class="w-full border border-[#E5E7EB] rounded px-2 py-1.5 text-[12px]">
+            </div>
+            <div>
+              <label class="block font-medium text-[#202938] text-[12px] mb-1">9. Assigned Rep</label>
+              <select class="w-full border border-[#E5E7EB] rounded px-2 py-1.5 bg-[#FFFFFF] text-[12px]">
+                <option>Sarah Jenkins (You)</option>
+                <option>David Kumar</option>
+                <option>Priya Nair</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="flex items-center justify-end gap-3 pt-3 border-t border-[#E5E7EB]">
+        <button onclick="closeActivityModal()" class="px-4 py-2 border border-[#E5E7EB] rounded text-[13px] text-[#202938] hover:bg-[#F7F8FA]">
+          Cancel
+        </button>
+        <button onclick="submitActivity()" class="px-5 py-2 bg-[#2563EB] hover:bg-[#1D4ED8] text-white rounded text-[13px] font-semibold shadow-xs transition-colors">
+          Save Activity & Advance Stage
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 4: FOLLOW-UP COMPLETION MODAL (The Resolution Loop)                 -->
+  <!-- ========================================================================= -->
+  <div id="completeFollowupModal" class="hidden fixed inset-0 bg-[#202938]/40 backdrop-blur-[2px] z-50 flex items-center justify-center p-4">
+    <div class="bg-[#FFFFFF] rounded-xl max-w-lg w-full p-6 shadow-2xl border border-[#E5E7EB] space-y-4">
+      
+      <div class="flex items-start justify-between pb-2 border-b border-[#E5E7EB]">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-[#ECFDF5] text-[#16A36A] flex items-center justify-center font-bold text-sm">
+            ✓
+          </div>
+          <div>
+            <h3 class="text-[17px] font-bold text-[#202938]">Complete Follow-up Task</h3>
+            <p id="compTaskTitle" class="text-[12px] text-[#667085]">Send Chamber Pro Proposal & GST Invoice Draft</p>
+          </div>
+        </div>
+        <button onclick="closeCompleteModal()" class="text-[#667085] hover:text-[#202938] text-xl font-bold">×</button>
+      </div>
+
+      <!-- 4 Required Resolution Questions -->
+      <div class="space-y-3.5 text-[13px]">
+        
+        <!-- Question 1: What happened? -->
+        <div>
+          <label class="block font-bold text-[#202938] mb-1">1. What happened? *</label>
+          <textarea id="compWhatHappened" rows="2" placeholder="Brief summary of communication or meeting outcome..." 
+                    class="w-full border border-[#E5E7EB] rounded p-2.5 text-[12.5px] focus:outline-none focus:border-[#2563EB]">Emailed formal quotation for 12 seats on Chamber Pro tier along with GST registration form. Spoke with partner's executive clerk to confirm receipt.</textarea>
+        </div>
+
+        <!-- Question 2: What was the outcome? -->
+        <div>
+          <label class="block font-bold text-[#202938] mb-1">2. What was the outcome? *</label>
+          <select id="compOutcome" class="w-full border border-[#E5E7EB] rounded px-3 py-2 bg-[#FFFFFF] font-medium text-[#202938] focus:outline-none focus:border-[#2563EB]">
+            <option>✓ Successful / Proposal Sent & Acknowledged</option>
+            <option>⏳ Needs More Time / Partner in Court Hearing</option>
+            <option>📅 Rescheduled by Advocate</option>
+            <option>❌ Unreachable / Left Voicemail</option>
+            <option>🚫 Lost / Budget Objection</option>
+          </select>
+        </div>
+
+        <!-- Question 3: Is another follow-up required? -->
+        <div class="p-3 bg-[#F8FAFC] rounded-lg border border-[#E5E7EB] flex items-center justify-between">
+          <div>
+            <div class="font-bold text-[#202938]">3. Is another follow-up required?</div>
+            <div class="text-[11.5px] text-[#667085]">Keep the sales momentum alive with a scheduled touchpoint.</div>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="compNextReqToggle" checked onchange="toggleNextFollowupFields(this)" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#2563EB]"></div>
+          </label>
+        </div>
+
+        <!-- Question 4: What is the next follow-up date? (Conditional) -->
+        <div id="nextFollowupFields" class="grid grid-cols-2 gap-3 p-3 bg-[#EFF6FF]/40 rounded-lg border border-[#BFDBFE]">
+          <div>
+            <label class="block font-medium text-[#202938] text-[12px] mb-1">4. Next Follow-up Date *</label>
+            <input type="date" value="2026-11-21" class="w-full border border-[#E5E7EB] rounded px-2.5 py-1.5 text-[12px] bg-white">
+          </div>
+          <div>
+            <label class="block font-medium text-[#202938] text-[12px] mb-1">Activity Channel</label>
+            <select class="w-full border border-[#E5E7EB] rounded px-2.5 py-1.5 text-[12px] bg-white">
+              <option>📞 Phone Call</option>
+              <option>🤝 Meeting</option>
+              <option>✉️ Email</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- History Preservation Notice -->
+      <div class="text-[11px] text-[#667085] flex items-center gap-1.5">
+        <span>🛡️</span>
+        <span>Completed follow-ups are preserved in the permanent interaction history.</span>
+      </div>
+
+      <!-- Footer -->
+      <div class="flex items-center justify-end gap-3 pt-3 border-t border-[#E5E7EB]">
+        <button onclick="closeCompleteModal()" class="px-4 py-2 border border-[#E5E7EB] rounded text-[13px] text-[#202938] hover:bg-[#F7F8FA]">
+          Cancel
+        </button>
+        <button onclick="executeCompleteFollowup()" class="px-5 py-2 bg-[#16A36A] hover:bg-[#15803D] text-white rounded text-[13px] font-semibold shadow-xs transition-colors">
+          Complete & Log History
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 3: SCHEDULE FOLLOW-UP MODAL                                         -->
+  <!-- ========================================================================= -->
+  <div id="scheduleModal" class="hidden fixed inset-0 bg-[#202938]/40 backdrop-blur-[2px] z-50 flex items-center justify-center p-4">
+    <div class="bg-[#FFFFFF] rounded-xl max-w-md w-full p-6 shadow-2xl border border-[#E5E7EB] space-y-4">
+      <div class="flex items-start justify-between pb-2 border-b border-[#E5E7EB]">
+        <div>
+          <h3 class="text-[17px] font-bold text-[#202938]">Schedule New Follow-up</h3>
+          <p class="text-[12px] text-[#667085]">Apex Legal Partners • Adv. Rajesh Sharma</p>
+        </div>
+        <button onclick="closeScheduleModal()" class="text-[#667085] hover:text-[#202938] text-xl font-bold">×</button>
+      </div>
+
+      <div class="space-y-3.5 text-[13px]">
+        <div>
+          <label class="block font-medium text-[#202938] mb-1">Follow-up Task Title / Agenda *</label>
+          <input type="text" id="schTitle" value="Partner Agreement Call (Review Discount Terms)" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 focus:outline-none focus:border-[#2563EB]">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">Activity Type</label>
+            <select id="schType" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 bg-[#FFFFFF] focus:outline-none">
+              <option>📞 Phone Call</option>
+              <option>🎥 Product Demo</option>
+              <option>🤝 Chamber Meeting</option>
+              <option>✉️ Email</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">Priority</label>
+            <select class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 bg-[#FFFFFF]">
+              <option>High Priority</option>
+              <option>Urgent</option>
+              <option>Medium</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-medium text-[#202938] mb-1">Date & Time *</label>
+          <input type="datetime-local" value="2026-11-20T11:00" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5">
+          <!-- Shortcuts -->
+          <div class="flex gap-1.5 mt-1.5">
+            <button type="button" onclick="triggerToast('Scheduled for Tomorrow 10 AM')" class="px-2 py-1 bg-[#F8FAFC] border border-[#E5E7EB] rounded text-[11px] text-[#667085] hover:bg-[#E5E7EB]">Tomorrow 10 AM</button>
+            <button type="button" onclick="triggerToast('Scheduled for In 2 Days')" class="px-2 py-1 bg-[#F8FAFC] border border-[#E5E7EB] rounded text-[11px] text-[#667085] hover:bg-[#E5E7EB]">In 2 Days</button>
+            <button type="button" onclick="triggerToast('Scheduled for Next Monday')" class="px-2 py-1 bg-[#F8FAFC] border border-[#E5E7EB] rounded text-[11px] text-[#667085] hover:bg-[#E5E7EB]">Next Monday</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">Reminder Alert</label>
+            <select class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 bg-[#FFFFFF]">
+              <option>15 minutes before</option>
+              <option>1 hour before</option>
+              <option>Morning of (9:00 AM)</option>
+              <option>No reminder</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">Assigned Rep</label>
+            <select class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 bg-[#FFFFFF]">
+              <option>Sarah Jenkins (You)</option>
+              <option>David Kumar</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-3 pt-3 border-t border-[#E5E7EB]">
+        <button onclick="closeScheduleModal()" class="px-4 py-2 border border-[#E5E7EB] rounded text-[13px] text-[#202938] hover:bg-[#F7F8FA]">
+          Cancel
+        </button>
+        <button onclick="executeScheduleFollowup()" class="px-5 py-2 bg-[#2563EB] hover:bg-[#1D4ED8] text-white rounded text-[13px] font-semibold">
+          Schedule Task
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast" class="hidden fixed bottom-6 right-6 bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg shadow-xl p-4 flex items-center gap-3 z-50 transition-all max-w-sm">
+    <div id="toastIcon" class="w-6 h-6 rounded-full bg-[#ECFDF5] text-[#16A36A] flex items-center justify-center font-bold text-xs flex-shrink-0">✓</div>
+    <div>
+      <div id="toastTitle" class="text-[13px] font-semibold text-[#202938]">Action Successful</div>
+      <div id="toastBody" class="text-[11.5px] text-[#667085]">Operation completed without errors.</div>
+    </div>
+  </div>
+
+  <!-- Interactive JavaScript Engine -->
+  <script>
+    let selectedActType = 'call';
+    let selectedOutcomeVal = 'Connected - Positive';
+    let activeCompleteTargetId = null;
+
+    // Activity Modal Handlers
+    function openActivityModal() {
+      document.getElementById('addActivityModal').classList.remove('hidden');
+    }
+
+    function closeActivityModal() {
+      document.getElementById('addActivityModal').classList.add('hidden');
+    }
+
+    function selectActivityType(type, btn) {
+      selectedActType = type;
+      document.querySelectorAll('.act-type-btn').forEach(b => {
+        b.className = 'act-type-btn py-2 px-1 rounded border border-[#E5E7EB] hover:bg-[#F7F8FA] text-[#667085] font-medium text-[11.5px] flex flex-col items-center gap-1';
+      });
+      btn.className = 'act-type-btn py-2 px-1 rounded border border-[#2563EB] bg-[#EFF6FF] text-[#2563EB] font-semibold text-[11.5px] flex flex-col items-center gap-1';
+    }
+
+    function selectOutcome(outcome, btn) {
+      selectedOutcomeVal = outcome;
+      document.querySelectorAll('.outcome-chip').forEach(b => {
+        b.className = 'outcome-chip px-2.5 py-1 rounded-full border border-[#E5E7EB] bg-[#FFFFFF] text-[#667085] text-[12px] hover:border-[#CBD5E1]';
+      });
+      btn.className = 'outcome-chip px-2.5 py-1 rounded-full border border-[#2563EB] bg-[#EFF6FF] text-[#2563EB] text-[12px] font-semibold';
+    }
+
+    function submitActivity() {
+      const notes = document.getElementById('actDiscussionNotes').value || 'Discussion completed with advocate.';
+      const newStage = document.getElementById('actSalesStage').value;
+      closeActivityModal();
+
+      // Prepend to Timeline (Newest first)
+      const stream = document.getElementById('timelineStream');
+      const newEvent = document.createElement('div');
+      newEvent.className = 'timeline-item relative group animate-fade-in';
+      newEvent.setAttribute('data-type', selectedActType);
+      newEvent.innerHTML = `
+        <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#EFF6FF] border-2 border-white flex items-center justify-center text-[10px] text-[#2563EB] shadow-xs">
+          📞
+        </div>
+        <div class="flex items-center justify-between text-[11.5px] text-[#667085]">
+          <span>Just now • Logged by <strong class="text-[#202938]">Sarah Jenkins</strong></span>
+          <span class="text-[11px] font-semibold text-[#2563EB] bg-[#EFF6FF] px-2 py-0.2 rounded border border-[#BFDBFE]">${selectedOutcomeVal}</span>
+        </div>
+        <div class="text-[13px] font-bold text-[#202938] mt-0.5">Call Activity Logged</div>
+        <p class="text-[12.5px] text-[#202938] mt-1 bg-[#F7F8FA] p-3 rounded-md border border-[#E5E7EB]">${notes}</p>
+      `;
+      stream.prepend(newEvent);
+
+      // Update Stage Badge
+      document.getElementById('headerStageBadge').innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-[#2563EB]"></span> ${newStage}`;
+
+      triggerToast(`Activity saved and stage updated to "${newStage}"!`, 'Activity Logged');
+    }
+
+    // Follow-Up Completion Modal (Component #4)
+    function promptCompleteFollowup(cardId, title) {
+      activeCompleteTargetId = cardId;
+      document.getElementById('compTaskTitle').innerText = title;
+      document.getElementById('completeFollowupModal').classList.remove('hidden');
+    }
+
+    function closeCompleteModal() {
+      document.getElementById('completeFollowupModal').classList.add('hidden');
+    }
+
+    function toggleNextFollowupFields(toggle) {
+      const fields = document.getElementById('nextFollowupFields');
+      if (toggle.checked) {
+        fields.classList.remove('hidden');
+      } else {
+        fields.classList.add('hidden');
+      }
+    }
+
+    function executeCompleteFollowup() {
+      const card = document.getElementById(activeCompleteTargetId);
+      const whatHappened = document.getElementById('compWhatHappened').value;
+      const outcome = document.getElementById('compOutcome').value;
+      closeCompleteModal();
+
+      if (card) {
+        // Strike through and update card to Completed state without deleting
+        card.className = 'p-3 rounded-md border border-[#BBF7D0] bg-[#F0FDF4]/50 flex items-center justify-between transition-all';
+        card.innerHTML = `
+          <div class="flex items-center gap-2.5">
+            <span class="text-[#16A36A] font-bold text-sm">✓</span>
+            <div>
+              <div class="text-[12.5px] font-semibold text-[#16A34A] line-through">Send Chamber Pro Proposal & GST Invoice Draft</div>
+              <div class="text-[11px] text-[#667085]">Resolved: ${outcome} • Completed just now by Sarah Jenkins</div>
+            </div>
+          </div>
+          <span class="text-[11px] font-bold text-[#16A36A] bg-[#DCFCE7] px-2 py-0.5 rounded">COMPLETED</span>
+        `;
+      }
+
+      // Add to timeline
+      const stream = document.getElementById('timelineStream');
+      const compEvent = document.createElement('div');
+      compEvent.className = 'timeline-item relative group';
+      compEvent.innerHTML = `
+        <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#ECFDF5] border-2 border-white flex items-center justify-center text-[10px] text-[#16A36A] shadow-xs">✓</div>
+        <div class="text-[11.5px] text-[#667085]">Just now • Task Completed by <strong class="text-[#202938]">Sarah Jenkins</strong></div>
+        <div class="text-[13px] font-bold text-[#16A36A] mt-0.5">Follow-up Task Resolved</div>
+        <p class="text-[12px] text-[#667085] mt-1 bg-[#F8FAFC] p-2.5 rounded border border-[#E5E7EB]">${whatHappened}</p>
+      `;
+      stream.prepend(compEvent);
+
+      document.getElementById('pendingCountBadge').innerText = '0 Due Today';
+      document.getElementById('pendingCountBadge').className = 'bg-[#F0FDF4] text-[#16A34A] border border-[#BBF7D0] px-2 py-0.2 rounded-full text-[11px] font-bold';
+
+      triggerToast('Follow-up marked complete and resolution logged in timeline.', 'Task Resolved');
+    }
+
+    // Schedule Follow-Up Modal (Component #3)
+    function openScheduleModal(prefillTitle = '') {
+      if (prefillTitle) {
+        document.getElementById('schTitle').value = prefillTitle;
+      }
+      document.getElementById('scheduleModal').classList.remove('hidden');
+    }
+
+    function closeScheduleModal() {
+      document.getElementById('scheduleModal').classList.add('hidden');
+    }
+
+    function executeScheduleFollowup() {
+      const title = document.getElementById('schTitle').value;
+      const type = document.getElementById('schType').value;
+      closeScheduleModal();
+
+      // Add to Follow-up queue
+      const list = document.getElementById('followupTaskList');
+      const newTask = document.createElement('div');
+      newTask.className = 'p-3.5 rounded-md border border-[#E5E7EB] bg-[#FFFFFF] flex items-start justify-between shadow-xs';
+      newTask.innerHTML = `
+        <div class="flex items-start gap-3">
+          <input type="checkbox" onchange="promptCompleteFollowup('task_${Date.now()}', '${title}')" class="mt-1 w-4 h-4 rounded text-[#2563EB]">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-[10px] font-semibold bg-[#2563EB] text-white px-1.5 py-0.2 rounded uppercase">SCHEDULED</span>
+              <span class="text-[12px] font-semibold text-[#202938]">Tomorrow, 11:00 AM</span>
+              <span class="text-[11px] text-[#667085]">• ${type}</span>
+            </div>
+            <div class="text-[13.5px] font-bold text-[#202938] mt-0.5">${title}</div>
+            <div class="text-[11px] text-[#667085] mt-1">Assigned: Sarah Jenkins • Reminder 15m before</div>
+          </div>
+        </div>
+        <button onclick="promptCompleteFollowup('task_${Date.now()}', '${title}')" class="px-2.5 py-1 bg-[#F7F8FA] border border-[#E5E7EB] hover:bg-[#E5E7EB] text-[12px] font-medium rounded text-[#202938]">
+          Mark Done
+        </button>
+      `;
+      list.prepend(newTask);
+
+      triggerToast(`New follow-up task scheduled for tomorrow 11:00 AM!`, 'Follow-up Scheduled');
+    }
+
+    // Internal Comments (Component #2)
+    function postInternalComment() {
+      const input = document.getElementById('commentComposerInput');
+      const isPinned = document.getElementById('checkPinNote').checked;
+      const content = input.value.trim();
+      if (!content) {
+        triggerToast('Please write a comment before posting', 'Validation');
+        return;
+      }
+
+      const stream = document.getElementById('commentsStream');
+      const newComment = document.createElement('div');
+      newComment.className = `p-3 rounded-lg border text-[12.5px] space-y-1.5 ${isPinned ? 'bg-[#FFFBEB] border-[#FDE68A]' : 'bg-[#F8FAFC] border-[#E5E7EB]'}`;
+      newComment.innerHTML = `
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-bold text-[10px]">SJ</div>
+            <div>
+              <span class="font-bold text-[#202938]">Sarah Jenkins</span>
+              ${isPinned ? '<span class="text-[10px] text-[#D97706] font-semibold ml-1.5">📌 PINNED NOTE</span>' : ''}
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-[11px] text-[#667085]">
+            <span>Just now</span>
+            <button onclick="this.closest('div.p-3').remove(); triggerToast('Comment deleted')" class="text-[#DC5252] hover:underline">Delete</button>
+          </div>
+        </div>
+        <p class="text-[#202938] leading-relaxed">${content}</p>
+      `;
+
+      if (isPinned) {
+        stream.prepend(newComment);
+      } else {
+        stream.appendChild(newComment);
+      }
+
+      input.value = '';
+      document.getElementById('checkPinNote').checked = false;
+      triggerToast('Internal note posted privately to CRM team.', 'Comment Added');
+    }
+
+    function editComment(nodeId) {
+      const node = document.getElementById(nodeId);
+      const p = node.querySelector('p');
+      const current = p.innerText;
+      const updated = prompt('Edit your internal comment:', current);
+      if (updated !== null && updated.trim()) {
+        p.innerText = updated.trim();
+        triggerToast('Internal comment updated successfully.', 'Comment Edited');
+      }
+    }
+
+    // Timeline Filter
+    function filterTimeline(filterType) {
+      const buttons = ['tlFilterAll', 'tlFilterCall', 'tlFilterDemo', 'tlFilterStage'];
+      buttons.forEach(b => {
+        const el = document.getElementById(b);
+        el.className = 'px-2 py-0.5 rounded text-[#667085] hover:text-[#202938]';
+      });
+
+      if (filterType === 'all') {
+        document.getElementById('tlFilterAll').className = 'px-2 py-0.5 rounded bg-white shadow-xs font-semibold text-[#202938]';
+      } else if (filterType === 'call') {
+        document.getElementById('tlFilterCall').className = 'px-2 py-0.5 rounded bg-white shadow-xs font-semibold text-[#202938]';
+      } else if (filterType === 'demo') {
+        document.getElementById('tlFilterDemo').className = 'px-2 py-0.5 rounded bg-white shadow-xs font-semibold text-[#202938]';
+      } else if (filterType === 'stage') {
+        document.getElementById('tlFilterStage').className = 'px-2 py-0.5 rounded bg-white shadow-xs font-semibold text-[#202938]';
+      }
+
+      document.querySelectorAll('.timeline-item').forEach(item => {
+        const type = item.getAttribute('data-type');
+        if (filterType === 'all' || type === filterType) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    function loadOlderHistory() {
+      const stream = document.getElementById('timelineStream');
+      const olderEvent = document.createElement('div');
+      olderEvent.className = 'timeline-item relative group';
+      olderEvent.setAttribute('data-type', 'stage');
+      olderEvent.innerHTML = `
+        <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#F1F5F9] border-2 border-white flex items-center justify-center text-[10px] text-[#475569]">+</div>
+        <div class="text-[11.5px] text-[#667085]">Nov 14, 2026, 10:00 AM • Bar Council Import</div>
+        <div class="text-[13px] font-bold text-[#202938] mt-0.5">Prospect Record Created</div>
+        <div class="text-[12px] text-[#667085]">Verified Bar Council Enrollment D/1982/2012 imported. Stage initialized as 'New Lead'.</div>
+      `;
+      stream.appendChild(olderEvent);
+      document.getElementById('btnLoadOlder').innerText = 'All historical activities loaded (7 total)';
+      document.getElementById('btnLoadOlder').disabled = true;
+      triggerToast('Loaded older interactions from archive', 'History Expanded');
+    }
+
+    // Toast
+    function triggerToast(bodyText, titleText = 'Action Completed') {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastTitle').innerText = titleText;
+      document.getElementById('toastBody').innerText = bodyText;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>

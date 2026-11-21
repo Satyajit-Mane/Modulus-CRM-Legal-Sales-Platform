@@ -1,0 +1,774 @@
+/* ==========================================================================
+       GEIST TYPOGRAPHY SYSTEM & TYPE SCALE TOKENS
+       ========================================================================== */
+    :root {
+      --font-geist: 'Geist', 'Geist Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      --font-geist-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+      /* Geist Harmonized Type Scale Tokens */
+      --text-display: 24px;   /* Hero Banner / Page Big Numbers */
+      --text-h1: 20px;        /* Screen Main Titles */
+      --text-h2: 16px;        /* Section Headings / Popover Titles */
+      --text-h3: 14px;        /* Modal Titles / Card Headings */
+      --text-body: 12px;      /* Standard UI / Inputs / Buttons / Row Cells */
+      --text-caption: 11px;   /* Captions / Subtitles / Meta / Badges */
+      --text-micro: 10px;     /* Column Headers / Overlines / Micro Tags */
+    }
+
+    /* Universal Font Enforcement across DOM, Pseudo-elements, and Form Controls */
+    *, *::before, *::after {
+      font-family: var(--font-geist);
+      letter-spacing: -0.01em;
+    }
+
+    html, body { 
+      font-family: var(--font-geist);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Universal Form Control Font Inheritance (Prevents Browser Default Fallbacks) */
+    input, select, textarea, button, optgroup, option {
+      font-family: var(--font-geist) !important;
+      letter-spacing: -0.01em;
+    }
+
+    /* Geist Mono for Numbers, Currency, Timestamps, Codes, and Technical Data */
+    .font-mono, code, kbd, samp, pre, .tabular-nums {
+      font-family: var(--font-geist-mono) !important;
+      font-feature-settings: "tnum" 1, "zero" 1;
+      letter-spacing: -0.005em !important;
+    }
+
+    /* Enforce Minimal Line Arrow on ALL Dropdowns & Selects (Zero Filled Triangles) */
+    select, select.appearance-none {
+      -webkit-appearance: none !important;
+      -moz-appearance: none !important;
+      appearance: none !important;
+      background-image: none !important;
+      cursor: pointer !important;
+    }
+    select::-ms-expand {
+      display: none !important;
+    }
+    /* Repliq Minimal Scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Safe Area for Mobile */
+    .pb-safe { padding-bottom: env(safe-area-inset-bottom, 1rem); }
+
+    /* Sidebar & Layout System */
+    #sidebarContainer {
+      width: 240px;
+      transition: width 240ms cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: width;
+    }
+    #sidebarNav {
+      transition: width 240ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease, transform 0.22s ease;
+    }
+    .sidebar-search-box {
+      min-height: 38px;
+    }
+    .sidebar-search-box input {
+      font-size: 12px;
+      line-height: 16px;
+    }
+
+    /* Mobile Devices (< 768px): #sidebarContainer takes ZERO in-flow space so main gets 100% */
+    @media (max-width: 767px) {
+      #sidebarContainer {
+        width: 0 !important;
+        min-width: 0 !important;
+        flex-shrink: 1 !important;
+        overflow: visible !important;
+      }
+      #sidebarNav {
+        width: 280px !important;
+        max-width: 82vw !important;
+        position: fixed !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        z-index: 50 !important;
+        box-shadow: 4px 0 24px -2px rgba(0, 0, 0, 0.25) !important;
+      }
+      #sidebarContainer .sidebar-brand-group {
+        display: flex !important;
+      }
+      #sidebarContainer .nav-label,
+      #sidebarContainer .nav-badge,
+      #sidebarContainer .sidebar-profile-options {
+        display: flex !important;
+      }
+      #sidebarContainer .sidebar-profile-text {
+        display: flex !important;
+        flex-direction: column !important;
+      }
+      #sidebarContainer .sidebar-nav-item {
+        width: 100% !important;
+        height: 40px !important;
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+        justify-content: space-between !important;
+      }
+      #sidebarContainer .sidebar-profile-row {
+        width: 100% !important;
+        height: auto !important;
+        padding: 0.375rem !important;
+        justify-content: space-between !important;
+      }
+      #sidebarContainer .nav-rail-dot {
+        display: none !important;
+      }
+    }
+
+
+
+    /* Top Navigation Sidebar Toggle Micro-interaction */
+    #topSidebarToggleIcon {
+      transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #topSidebarToggleIcon.rotate-180,
+    #sidebarContainer.sidebar-rail ~ main #topSidebarToggleIcon {
+      transform: rotate(180deg);
+    }
+
+    
+
+    @media (min-width: 768px) {
+      /* Pinned Expanded Mode (240px) */
+      #sidebarContainer.sidebar-pinned {
+        width: 240px !important;
+      }
+      #sidebarContainer.sidebar-pinned #sidebarNav {
+        width: 240px !important;
+      }
+
+
+      #sidebarContainer.sidebar-pinned .sidebar-header-row {
+        padding-left: 0.875rem !important;
+        padding-right: 0.875rem !important;
+        justify-content: flex-start !important;
+      }
+      #sidebarContainer.sidebar-pinned .sidebar-brand-group {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.75rem !important;
+      }
+      #sidebarContainer.sidebar-pinned .sidebar-brand-text {
+        display: flex !important;
+        flex-direction: column !important;
+      }
+
+      /* Collapsed Rail Mode (68px) - Logo Kept Consistent at Top (34px Center) */
+      #sidebarContainer.sidebar-rail {
+        width: 68px !important;
+      }
+      #sidebarContainer.sidebar-rail #sidebarNav {
+        width: 68px !important;
+      }
+      #sidebarContainer.sidebar-rail .sidebar-header-row {
+        width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        justify-content: center !important;
+      }
+      #sidebarContainer.sidebar-rail .sidebar-brand-group {
+        width: 40px !important;
+        height: 40px !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0 !important;
+      }
+      #sidebarContainer.sidebar-rail .sidebar-brand-logo {
+        margin: 0 auto !important;
+      }
+      #sidebarContainer.sidebar-rail .sidebar-brand-text {
+        display: none !important;
+      }
+      #sidebarContainer.sidebar-rail .nav-label,
+      #sidebarContainer.sidebar-rail .nav-badge,
+      #sidebarContainer.sidebar-rail .sidebar-profile-text,
+      #sidebarContainer.sidebar-rail .sidebar-profile-options {
+        display: none !important;
+      }
+      #sidebarContainer.sidebar-rail nav {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 4px !important;
+      }
+      #sidebarContainer.sidebar-rail .sidebar-nav-item {
+        width: 40px !important;
+        height: 40px !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 0.75rem !important;
+      }
+      #sidebarContainer.sidebar-rail .sidebar-profile-row {
+        width: 40px !important;
+        height: 40px !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+      #sidebarContainer.sidebar-rail .nav-rail-dot {
+        display: block !important;
+      }
+
+    }
+
+    /* Sidebar Navigation Item States: Active vs Inactive (Strict Zero Border/Outline) */
+    .sidebar-nav-item,
+    .sidebar-nav-item:hover,
+    .sidebar-nav-item:active,
+    .sidebar-nav-item:focus,
+    .sidebar-nav-item:focus-visible,
+    .sidebar-nav-item.active {
+      border: 0 !important;
+      border-style: none !important;
+      border-color: transparent !important;
+      outline: 0 !important;
+      outline: none !important;
+      box-shadow: none !important;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
+    .sidebar-nav-item {
+      height: 40px;
+      background-color: transparent;
+      color: #6B7280;
+      transition: background-color 150ms ease, color 150ms ease !important;
+    }
+    .sidebar-nav-item:active {
+      background-color: #F1F5F9 !important;
+    }
+    .sidebar-nav-item svg {
+      color: #9CA3AF !important;
+      transition: color 0.15s ease;
+    }
+    .sidebar-nav-item .nav-label {
+      color: #6B7280 !important;
+      font-weight: 500 !important;
+      transition: color 0.15s ease;
+    }
+    .sidebar-nav-item:hover {
+      background-color: #F9FAFB !important;
+    }
+    .sidebar-nav-item:hover svg {
+      color: #374151 !important;
+    }
+    .sidebar-nav-item:hover .nav-label {
+      color: #111827 !important;
+    }
+    .sidebar-nav-item.active {
+      background-color: #F0F9FF !important;
+    }
+    .sidebar-nav-item.active svg {
+      color: #0284C7 !important;
+    }
+    .sidebar-nav-item.active .nav-label {
+      color: #0284C7 !important;
+      font-weight: 600 !important;
+    }
+
+    /* Suppress browser native focus ring on mouse click globally */
+    button:focus:not(:focus-visible),
+    a:focus:not(:focus-visible) {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    /* Consistent Circular Navigation Badges */
+    .nav-badge {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 6px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      background-color: #F1F5F9;
+      color: #334155;
+      transition: all 0.15s ease;
+    }
+    .sidebar-nav-item:hover .nav-badge:not(#sidebarBadgeFollowups) {
+      background-color: #E2E8F0;
+      color: #1E293B;
+    }
+    .sidebar-nav-item.active .nav-badge:not(#sidebarBadgeFollowups) {
+      background-color: #E0F2FE;
+      color: #0284C7;
+    }
+    #sidebarBadgeFollowups {
+      background-color: #FFF1F2 !important;
+      color: #E11D48 !important;
+      border: 1px solid rgba(244, 63, 94, 0.25) !important;
+    }
+
+    /* Clean Calm Professional Canvas */
+    .tech-grid-canvas {
+      background-color: #F8F9FB !important;
+      background-image: none !important;
+    }
+
+    /* Strict single-line alignment for all tables across all screens */
+    table thead th,
+    table tbody td {
+      white-space: nowrap !important;
+    }
+
+    /* Table Checkbox Hover-to-Show Interaction (All Tables & Screens) */
+    table tbody tr input[type="checkbox"],
+    table thead tr input[type="checkbox"],
+    .table-checkbox {
+      opacity: 0;
+      transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+
+    table tbody tr:hover input[type="checkbox"],
+    table thead tr:hover input[type="checkbox"],
+    table th:hover input[type="checkbox"],
+    table td:hover input[type="checkbox"],
+    table input[type="checkbox"]:hover,
+    .table-checkbox:hover {
+      opacity: 1 !important;
+    }
+
+    table input[type="checkbox"]:checked,
+    table input[type="checkbox"]:focus-visible,
+    table input[type="checkbox"]:active,
+    .table-checkbox:checked,
+    .table-checkbox:focus-visible {
+      opacity: 1 !important;
+    }
+
+    table:has(tbody input[type="checkbox"]:checked) thead input[type="checkbox"] {
+      opacity: 1 !important;
+    }
+
+    /* ==========================================================================
+       MODULUS CRM ENTERPRISE DESIGN TOKENS
+       Clean, Professional SaaS Design System Architecture
+       ========================================================================== */
+    :root {
+      /* Primary Modulus Blue Palette */
+      --cyan-50:  #F0F9FF;
+      --cyan-100: #E0F2FE;
+      --cyan-200: #BAE6FD;
+      --cyan-300: #7DD3FC;
+      --cyan-400: #38BDF8;
+      --cyan-500: #0EA5E9;
+      --cyan-600: #0284C7;  /* Primary Brand Color */
+      --cyan-700: #0369A1;  /* Primary Hover */
+      --cyan-800: #075985;  /* Primary Active */
+      --cyan-900: #0C4A6E;
+
+      /* Primary Semantic Tokens */
+      --color-primary: #0284C7;
+      --color-primary-hover: #0369A1;
+      --color-primary-active: #075985;
+      --color-primary-light: #F0F9FF;
+      --color-primary-border: #BAE6FD;
+
+      /* Neutral Enterprise Surfaces & Borders */
+      --color-background: #F8F9FB;
+      --color-surface: #FFFFFF;
+      --color-surface-subtle: #F1F5F9;
+      --color-border: #E2E8F0;
+      --color-border-hover: #CBD5E1;
+
+      /* Typography Semantics */
+      --color-text-primary: #0F172A;
+      --color-text-secondary: #64748B;
+      --color-text-muted: #94A3B8;
+
+      /* Standard Spacing Scale */
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+
+      /* Focus Ring */
+      --focus-ring-color: rgba(2, 132, 199, 0.45);
+      --focus-ring-width: 2px;
+
+      /* Component Tokens */
+      --cta-btn-bg: #0284C7;
+      --cta-btn-hover-bg: #0369A1;
+      --cta-btn-text: #FFFFFF;
+      --cta-btn-shadow: 0 1px 2px rgba(2, 132, 199, 0.2);
+
+      --pill-active-bg: #F0F9FF;
+      --pill-active-text: #0284C7;
+      --pill-active-border: #BAE6FD;
+
+      --table-checkbox-checked: #0284C7;
+      --input-focus-border: #0284C7;
+
+      /* Smooth Kinetic Springs */
+      --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-haptic: cubic-bezier(0.32, 0.72, 0, 1);
+      --ease-smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* Enhanced Micro-interactions & Accessible Focus Rings */
+    button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible {
+      outline: 2px solid #0284C7;
+      outline-offset: 2px;
+    }
+
+    button:not(:disabled):active {
+      filter: brightness(0.96);
+      transition: filter 0.1s ease;
+    }
+
+    .btn-interactive {
+      transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+      cursor: pointer;
+    }
+    .btn-interactive:active {
+      filter: brightness(0.96);
+    }
+
+    .calendar-meeting-card {
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+    }
+    .calendar-meeting-card:hover {
+      box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.06), inset 0 1px 0 0 rgba(255, 255, 255, 1);
+      border-color: #0284C7;
+    }
+    .calendar-meeting-card:active {
+      background-color: #F8FAFC;
+    }
+
+    /* High-End Double-Bezel Card Architecture */
+    .card-double-bezel {
+      background: #FFFFFF;
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      border-radius: 1rem;
+      box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.03), inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+      transition: all 220ms var(--ease-spring);
+    }
+    .card-double-bezel:hover {
+      border-color: #CBD5E1;
+      box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.06), 0 2px 6px -2px rgba(15, 23, 42, 0.03), inset 0 1px 0 0 rgba(255, 255, 255, 1);
+      transform: translateY(-1.5px);
+    }
+
+    .card-hover-elevate {
+      transition: box-shadow 200ms var(--ease-spring), border-color 200ms ease, transform 200ms var(--ease-spring);
+    }
+    .card-hover-elevate:hover {
+      border-color: #CBD5E1;
+      box-shadow: 0 8px 20px -3px rgba(15, 23, 42, 0.07);
+      transform: translateY(-1px);
+    }
+
+    /* shadcn/ui Design Tokens & Tabs Architecture */
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 222.2 84% 4.9%;
+      --card: 0 0% 100%;
+      --card-foreground: 222.2 84% 4.9%;
+      --popover: 0 0% 100%;
+      --popover-foreground: 222.2 84% 4.9%;
+      --primary: 199 89% 48%; /* #0284C7 */
+      --primary-foreground: 210 40% 98%;
+      --secondary: 210 40% 96.1%;
+      --secondary-foreground: 222.2 47.4% 11.2%;
+      --muted: 210 40% 96.1%;
+      --muted-foreground: 215.4 16.3% 46.9%;
+      --accent: 210 40% 96.1%;
+      --accent-foreground: 222.2 47.4% 11.2%;
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 210 40% 98%;
+      --border: 214.3 31.8% 91.4%;
+      --input: 214.3 31.8% 91.4%;
+      --ring: 199 89% 48%;
+      --radius: 0.5rem;
+    }
+
+    .tabs-list {
+      display: inline-flex;
+      height: 2.25rem;
+      align-items: center;
+      justify-content: flex-start;
+      border-radius: 0.5rem;
+      background-color: #F1F5F9;
+      padding: 0.25rem;
+      color: #64748B;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 1px 2px 0 rgba(15, 23, 42, 0.03);
+    }
+    .tab-btn {
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.375rem;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #64748B;
+      transition: all 160ms cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      user-select: none;
+    }
+    .tab-btn:hover {
+      color: #0F172A;
+    }
+    .tab-btn.active {
+      background-color: #FFFFFF;
+      color: #0F172A;
+      font-weight: 600;
+      box-shadow: 0 1px 2px 0 rgba(15, 23, 42, 0.06);
+    }
+    .tab-btn:not(.active) {
+      color: #64748B;
+    }
+
+    /* Action Icon Tray Micro-interactions (Clean, Zero Scale Jitter) */
+    .action-icon-btn {
+      width: 1.75rem;
+      height: 1.75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.5rem;
+      color: #94A3B8;
+      transition: background-color 150ms ease, color 150ms ease;
+      cursor: pointer;
+    }
+    .action-icon-btn:hover {
+      color: #1E293B;
+      background-color: #F1F5F9;
+    }
+    .action-icon-btn:active {
+      background-color: #E2E8F0;
+    }
+    .action-icon-btn.btn-action-primary:hover {
+      color: #0284C7;
+      background-color: #F0F9FF;
+    }
+    .action-icon-btn.btn-action-primary:active {
+      background-color: #E0F2FE;
+    }
+    .action-icon-btn.btn-action-danger:hover {
+      color: #E11D48;
+      background-color: #FFF1F2;
+    }
+    .action-icon-btn.btn-action-danger:active {
+      background-color: #FFE4E6;
+    }
+
+    /* ==========================================================================
+       FRAMER MOTION ANIMATOR SYSTEM (Declarative Motion Tokens & Keyframes)
+       Spring Physics: Stiffness 300, Damping 24, Mass 1
+       ========================================================================== */
+    @keyframes motionViewEnter {
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .motion-view-enter {
+      animation: motionViewEnter 0.28s var(--ease-spring) forwards;
+    }
+
+    @keyframes motionRowEnter {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    .motion-row-enter {
+      animation: motionRowEnter 0.12s ease-out;
+    }
+
+    @keyframes motionBackdropEnter {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @keyframes motionModalEnter {
+      0% {
+        opacity: 0;
+        transform: scale(0.98) translateY(4px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+    .modal-backdrop-motion,
+    div[id^="modal"]:not(.hidden) {
+      animation: motionBackdropEnter 0.15s ease-out forwards;
+    }
+    .modal-content-motion,
+    div[id^="modal"]:not(.hidden) > div:first-child {
+      animation: motionModalEnter 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes motionPopoverEnter {
+      0% {
+        opacity: 0;
+        transform: scale(0.98) translateY(-2px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+    .motion-popover-enter,
+    #universalSearchResults:not(.hidden),
+    #headerNotificationsMenu:not(.hidden),
+    #dateRangeCalendarPopover:not(.hidden),
+    div[id^="menu-p-"]:not(.hidden),
+    div[id^="menu-c-"]:not(.hidden) {
+      animation: motionPopoverEnter 0.18s var(--ease-spring) forwards;
+      transform-origin: top right;
+    }
+    #universalSearchResults:not(.hidden) {
+      transform-origin: top left;
+    }
+
+    @keyframes motionToastEnter {
+      0% {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes motionToastExit {
+      0% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+    }
+    .motion-toast-enter {
+      animation: motionToastEnter 0.28s var(--ease-spring) forwards;
+    }
+    .motion-toast-exit {
+      animation: motionToastExit 0.22s ease-in forwards;
+    }
+
+    /* Spring physics for drawers */
+    .drawer-spring-motion {
+      transition: transform 0.32s var(--ease-spring) !important;
+    }
+
+    /* Reduced Motion Accessibility Guard */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+      .motion-view-enter,
+      .motion-row-enter,
+      .modal-backdrop-motion,
+      .modal-content-motion,
+      .motion-popover-enter,
+      .motion-toast-enter,
+      .motion-toast-exit {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    /* Grounded Non-Floating Table & View Architecture */
+    .view-container {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 0%;
+      min-height: 100%;
+    }
+    .view-container.hidden {
+      display: none !important;
+    }
+    .table-grounded-card {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 0%;
+      min-height: 420px;
+      background-color: #ffffff;
+      border-radius: 0.75rem;
+      border: 1px solid #E5E7EB;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+    .table-grounded-card.hidden {
+      display: none !important;
+    }
+    .table-scroll-area {
+      flex: 1 1 0%;
+      overflow: auto;
+      width: 100%;
+      background-color: #ffffff;
+    }
+    .table-scroll-area table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+    .table-scroll-area table thead {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .table-scroll-area table thead th {
+      background-color: #F9FAFB;
+      border-bottom: 1px solid #E5E7EB;
+      font-weight: 600;
+      color: #374151;
+      white-space: nowrap;
+    }
+    .table-scroll-area table tbody td {
+      border-bottom: 1px solid #E5E7EB;
+      vertical-align: middle;
+      background-color: #ffffff;
+      transition: background-color 120ms ease;
+    }
+    .table-scroll-area table tbody tr:hover td {
+      background-color: rgba(249, 250, 251, 0.85);
+    }

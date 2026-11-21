@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal Sales CRM - Client Management Module</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #F7F8FA; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+  </style>
+</head>
+<body class="bg-[#F7F8FA] text-[#202938] antialiased m-0 p-0 flex h-screen overflow-hidden">
+
+  <!-- ========================================================================= -->
+  <!-- SIDEBAR NAVIGATION (240px Fixed)                                          -->
+  <!-- ========================================================================= -->
+  <aside class="w-[240px] bg-[#FFFFFF] border-r border-[#E5E7EB] flex flex-col flex-shrink-0 select-none z-20">
+    <div class="h-16 flex items-center justify-between px-5 border-b border-[#E5E7EB]">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-[#2563EB] flex items-center justify-center text-white font-bold text-base shadow-sm">
+          ⚖️
+        </div>
+        <div>
+          <span class="font-bold text-[15px] tracking-tight text-[#202938]">LexisCRM</span>
+          <span class="block text-[10px] text-[#667085] font-medium leading-none">Legal Tech Sales</span>
+        </div>
+      </div>
+      <button class="text-[#667085] hover:text-[#202938] p-1 rounded hover:bg-[#F7F8FA]">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/></svg>
+      </button>
+    </div>
+
+    <!-- Workspace Switcher -->
+    <div class="p-3 border-b border-[#E5E7EB]">
+      <div class="bg-[#F7F8FA] rounded-md p-2 flex items-center justify-between border border-[#E5E7EB] cursor-pointer hover:border-[#CBD5E1] transition-colors">
+        <div class="flex items-center gap-2 overflow-hidden">
+          <div class="w-2 h-2 rounded-full bg-[#16A36A]"></div>
+          <div class="truncate text-left">
+            <span class="block text-[11px] font-semibold text-[#202938] leading-tight truncate">Delhi High Court & NCR</span>
+            <span class="block text-[10px] text-[#667085]">Litigation Division</span>
+          </div>
+        </div>
+        <svg class="w-3.5 h-3.5 text-[#667085] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </div>
+    </div>
+
+    <!-- Navigation Menu Items -->
+    <nav class="flex-1 overflow-y-auto px-3 py-3 space-y-4 text-[13px]">
+      <div>
+        <div class="px-2 text-[10px] font-semibold text-[#667085] uppercase tracking-wider mb-1.5">Overview</div>
+        <a href="#" class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938]">
+          <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+          <span>Dashboard</span>
+        </a>
+      </div>
+
+      <div>
+        <div class="px-2 text-[10px] font-semibold text-[#667085] uppercase tracking-wider mb-1.5">Pipeline & Accounts</div>
+        <a href="#" class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938]">
+          <div class="flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            <span>Prospects</span>
+          </div>
+          <span class="text-[11px] font-semibold bg-[#F1F5F9] text-[#475569] px-1.5 py-0.2 rounded-full">148</span>
+        </a>
+
+        <!-- Active Clients Navigation Group -->
+        <div class="mt-1">
+          <div class="flex items-center justify-between px-2.5 py-1.5 rounded-md bg-[#EFF6FF] text-[#2563EB] font-bold border-r-2 border-[#2563EB]">
+            <div class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-[#2563EB]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+              <span>Clients</span>
+            </div>
+            <span class="text-[11px] font-bold bg-[#2563EB] text-white px-1.5 py-0.2 rounded-full">100</span>
+          </div>
+          
+          <!-- Tri-State Sub-Nav Links -->
+          <div class="ml-6 pl-2 border-l border-[#E5E7EB] mt-1 space-y-1">
+            <button onclick="switchClientView('active')" id="subnavActive" class="w-full flex items-center justify-between py-1 px-1.5 rounded text-[12px] font-bold text-[#2563EB] bg-[#EFF6FF]">
+              <span>Active Clients</span>
+              <span class="text-[11px] font-semibold text-[#16A36A]">84</span>
+            </button>
+            <button onclick="switchClientView('at-risk')" id="subnavAtRisk" class="w-full flex items-center justify-between py-1 px-1.5 rounded text-[12px] text-[#667085] hover:text-[#202938]">
+              <span>At-Risk Clients</span>
+              <span class="px-1.5 py-0.2 rounded text-[10px] font-bold bg-[#FFF7ED] text-[#EA580C] border border-[#FED7AA]">5</span>
+            </button>
+            <button onclick="switchClientView('inactive')" id="subnavInactive" class="w-full flex items-center justify-between py-1 px-1.5 rounded text-[12px] text-[#667085] hover:text-[#202938]">
+              <span>Inactive & Expired</span>
+              <span class="text-[10px] text-[#98A2B3]">11</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="px-2 text-[10px] font-semibold text-[#667085] uppercase tracking-wider mb-1.5">Operations</div>
+        <a href="#" class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938]">
+          <div class="flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Follow-ups</span>
+          </div>
+          <span class="px-1.5 py-0.2 rounded text-[10px] font-bold bg-[#FEF2F2] text-[#DC2626]">7 due</span>
+        </a>
+        <a href="#" class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938]">
+          <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+          <span>Plans & Subs</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Rep Profile -->
+    <div class="p-3 border-t border-[#E5E7EB] bg-[#FFFFFF]">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-bold text-xs">
+          SJ
+        </div>
+        <div>
+          <div class="text-[12.5px] font-semibold text-[#202938] leading-tight">Sarah Jenkins</div>
+          <div class="text-[11px] text-[#667085]">Senior Sales Exec / CS</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN WORKSPACE                                                            -->
+  <!-- ========================================================================= -->
+  <div class="flex-1 flex flex-col h-screen overflow-hidden bg-[#F7F8FA]">
+
+    <!-- ======================================================================= -->
+    <!-- TOP NAVIGATION & GLOBAL ACTIONS                                         -->
+    <!-- ======================================================================= -->
+    <header class="h-16 bg-[#FFFFFF] border-b border-[#E5E7EB] px-6 flex items-center justify-between flex-shrink-0 z-10">
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 text-[13px] text-[#667085]">
+          <span>Clients</span>
+          <span>/</span>
+          <span id="topBreadcrumbContext" class="text-[#202938] font-bold text-[15px]">Active Clients</span>
+        </div>
+        <span id="clientCountBadge" class="text-[11.5px] font-semibold bg-[#F0FDF4] text-[#16A34A] border border-[#BBF7D0] px-2.5 py-0.5 rounded-full flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#16A34A]"></span> 84 Active Law Firms
+        </span>
+      </div>
+
+      <!-- Quick Screen Switcher for Testing Prototype -->
+      <div class="flex items-center gap-2 bg-[#F7F8FA] border border-[#E5E7EB] p-1 rounded-md text-[12px]">
+        <button id="btnViewList" onclick="showClientsListing()" class="px-2.5 py-1 rounded bg-white shadow-xs font-semibold text-[#202938]">
+          Clients Listing
+        </button>
+        <button id="btnViewProfile" onclick="showClientProfile('Apex Legal Partners')" class="px-2.5 py-1 rounded text-[#667085] hover:text-[#202938]">
+          Client 360° Profile
+        </button>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <!-- Omni-search -->
+        <div class="relative w-64">
+          <svg class="w-4 h-4 text-[#667085] absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input type="text" id="clientSearchInput" onkeyup="filterClientsTable()" placeholder="Search clients, advocates..." 
+                 class="w-full bg-[#F7F8FA] border border-[#E5E7EB] rounded-md pl-9 pr-8 py-1.5 text-[12.5px] text-[#202938] placeholder-[#667085] focus:outline-none focus:border-[#2563EB] focus:bg-[#FFFFFF]">
+        </div>
+
+        <!-- THE 6-STEP CONVERT PROSPECT CTA -->
+        <button onclick="openConversionWizard('Apex Legal Partners', 'Adv. Rajesh Sharma', 'Senior Advocate', 'sharma@apexlegal.in', '+91 98101 23456')" 
+                class="flex items-center gap-1.5 bg-[#16A36A] hover:bg-[#15803D] text-white px-3.5 py-1.5 rounded-md text-[13px] font-semibold shadow-xs transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          <span>Convert Prospect ➔</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ======================================================================= -->
+    <!-- VIEW CONTAINER: SCREEN 1 (ACTIVE / INACTIVE / AT-RISK LISTINGS)         -->
+    <!-- ======================================================================= -->
+    <main id="screenClientListing" class="flex-1 overflow-y-auto p-6 space-y-4">
+      
+      <!-- Filter Control Deck -->
+      <div class="bg-[#FFFFFF] p-3.5 rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)] flex items-center justify-between gap-3 flex-wrap text-[13px]">
+        <div class="flex items-center gap-2 flex-wrap">
+          
+          <!-- Tri-State View Switcher Pills -->
+          <div class="flex items-center bg-[#F7F8FA] border border-[#E5E7EB] p-1 rounded-md text-[12px] mr-2">
+            <button onclick="switchClientView('active')" id="pillActive" class="px-2.5 py-1 rounded bg-white shadow-xs font-bold text-[#202938]">
+              Active (84)
+            </button>
+            <button onclick="switchClientView('at-risk')" id="pillAtRisk" class="px-2.5 py-1 rounded text-[#EA580C] font-semibold hover:bg-white/60">
+              At-Risk (5)
+            </button>
+            <button onclick="switchClientView('inactive')" id="pillInactive" class="px-2.5 py-1 rounded text-[#667085] hover:text-[#202938]">
+              Inactive & Expired (11)
+            </button>
+          </div>
+
+          <!-- Filter by Plan -->
+          <select id="filterPlan" onchange="filterClientsTable()" class="bg-[#FFFFFF] border border-[#E5E7EB] text-[#202938] font-medium text-[12.5px] rounded px-2.5 py-1.5 focus:outline-none focus:border-[#2563EB]">
+            <option value="">Plan: All Plans</option>
+            <option value="Professional">Professional (Chamber Pro)</option>
+            <option value="Enterprise">Enterprise (Firm Suite)</option>
+            <option value="Starter">Starter (Solo Advocate)</option>
+          </select>
+
+          <!-- Filter by Subscription Type -->
+          <select id="filterCadence" onchange="filterClientsTable()" class="bg-[#FFFFFF] border border-[#E5E7EB] text-[#202938] font-medium text-[12.5px] rounded px-2.5 py-1.5 focus:outline-none focus:border-[#2563EB]">
+            <option value="">Billing: All Cadences</option>
+            <option value="Annual">Annual Prepaid</option>
+            <option value="Quarterly">Quarterly</option>
+            <option value="Monthly">Monthly</option>
+          </select>
+
+          <!-- Filter by Payment Status -->
+          <select id="filterPayment" onchange="filterClientsTable()" class="bg-[#FFFFFF] border border-[#E5E7EB] text-[#202938] font-medium text-[12.5px] rounded px-2.5 py-1.5 focus:outline-none focus:border-[#2563EB]">
+            <option value="">Payment: All</option>
+            <option value="Paid">Paid</option>
+            <option value="Pending">Pending Invoice</option>
+            <option value="Failed">Failed / Overdue</option>
+          </select>
+
+          <button onclick="clearClientFilters()" class="text-[12px] text-[#667085] hover:text-[#DC5252] font-medium px-2 py-1">Clear</button>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="triggerToast('View saved as Active Litigation Clients', 'Saved')" class="flex items-center gap-1.5 bg-[#FFFFFF] border border-[#E5E7EB] hover:bg-[#F7F8FA] px-2.5 py-1.5 rounded text-[12.5px] font-medium text-[#202938]">
+            <svg class="w-3.5 h-3.5 text-[#2563EB]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+            <span>Save View</span>
+          </button>
+          <button onclick="triggerToast('Exporting clients roster as CSV...')" class="flex items-center gap-1.5 bg-[#FFFFFF] border border-[#E5E7EB] hover:bg-[#F7F8FA] px-2.5 py-1.5 rounded text-[12.5px] font-medium text-[#202938]">
+            <svg class="w-3.5 h-3.5 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <span>Export</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Clients Data Table (Screen 1) -->
+      <div class="bg-[#FFFFFF] rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)] overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-[13px]">
+            <thead>
+              <tr class="bg-[#F7F8FA] border-b border-[#E5E7EB] text-[#667085] text-[11.5px] font-semibold uppercase tracking-wider">
+                <th class="px-3.5 py-2.5">Client Name</th>
+                <th class="px-3 py-2.5">Phone Number</th>
+                <th class="px-3 py-2.5">Email Address</th>
+                <th class="px-3 py-2.5">Profession</th>
+                <th class="px-3.5 py-2.5">Firm Name</th>
+                <th class="px-3 py-2.5">Plan Name</th>
+                <th class="px-3 py-2.5">Subscription Type</th>
+                <th class="px-3 py-2.5">Start Date</th>
+                <th class="px-3 py-2.5">Renewal Date</th>
+                <th class="px-3 py-2.5">Payment</th>
+                <th class="px-3 py-2.5">Client Status</th>
+                <th class="px-3 py-2.5">Account Manager</th>
+                <th class="px-3 py-2.5 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="clientsTbody" class="divide-y divide-[#E5E7EB] bg-[#FFFFFF]">
+              
+              <!-- Client Row 1: Active Annual Plan -->
+              <tr class="client-row hover:bg-[#F9FAFB] cursor-pointer transition-colors group" data-category="active" onclick="showClientProfile('Justice Chambers & Co.')">
+                <td class="px-3.5 py-3">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-[#ECFDF5] text-[#16A36A] flex items-center justify-center font-bold text-[10px]">VS</div>
+                    <div>
+                      <div class="font-bold text-[#202938] group-hover:text-[#2563EB] transition-colors leading-tight">Adv. Vikramaditya Sen</div>
+                      <div class="text-[10.5px] text-[#667085]">Bar ID: WB/891/2003</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-3 py-3 font-mono text-[12px] text-[#2563EB]" onclick="event.stopPropagation()">
+                  <a href="tel:+919830077215" class="hover:underline">📞 +91 98300 77215</a>
+                </td>
+                <td class="px-3 py-3 text-[#667085] text-[12px]">sen@justicechambers.com</td>
+                <td class="px-3 py-3 font-medium text-[#202938]">Senior Counsel</td>
+                <td class="px-3.5 py-3 font-semibold text-[#202938]">Justice Chambers & Co.</td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#EFF6FF] text-[#2563EB] border border-[#BFDBFE]">
+                    Professional
+                  </span>
+                </td>
+                <td class="px-3 py-3 text-[12px] text-[#202938]">Annual Prepaid (5 Seats)</td>
+                <td class="px-3 py-3 text-[12px] text-[#667085]">Nov 14, 2026</td>
+                <td class="px-3 py-3">
+                  <span class="text-[#202938] font-medium text-[12px] block">Nov 14, 2027</span>
+                  <span class="text-[10px] text-[#16A36A]">In 360 days</span>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded text-[11px] font-bold bg-[#ECFDF5] text-[#16A36A]">
+                    ✓ PAID
+                  </span>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#F0FDF4] text-[#16A34A] border border-[#BBF7D0]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#16A34A]"></span> Active
+                  </span>
+                </td>
+                <td class="px-3 py-3">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded-full bg-[#2563EB] text-white flex items-center justify-center text-[9px] font-bold">SJ</div>
+                    <span class="text-[12px] text-[#667085]">Sarah J.</span>
+                  </div>
+                </td>
+                <td class="px-3 py-3 text-right" onclick="event.stopPropagation()">
+                  <div class="flex items-center justify-end gap-1">
+                    <button onclick="openChangePlanModal('Justice Chambers & Co.', 'Professional', 18000)" class="p-1 text-[#667085] hover:text-[#2563EB] rounded hover:bg-[#EFF6FF]" title="Change / Upgrade Plan">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"/></svg>
+                    </button>
+                    <button onclick="openRecordPaymentModal('Justice Chambers & Co.', 75000)" class="p-1 text-[#667085] hover:text-[#16A36A] rounded hover:bg-[#F0FDF4]" title="Record Payment Receipt">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    </button>
+                    <button onclick="openMarkInactiveModal('Justice Chambers & Co.')" class="p-1 text-[#667085] hover:text-[#DC5252] rounded hover:bg-[#FEF2F2]" title="Mark Inactive / Cancel">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Client Row 2: At-Risk Account -->
+              <tr class="client-row hover:bg-[#F9FAFB] cursor-pointer transition-colors group bg-[#FFF7ED]/30" data-category="at-risk" onclick="showClientProfile('Singhania & Partners')">
+                <td class="px-3.5 py-3">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-[#FFF7ED] text-[#EA580C] flex items-center justify-center font-bold text-[10px]">KS</div>
+                    <div>
+                      <div class="font-bold text-[#202938] group-hover:text-[#2563EB] transition-colors leading-tight">Adv. Karan Singhania</div>
+                      <div class="text-[10.5px] text-[#EA580C] font-semibold">Health Score: 32/100 (Usage Dropped)</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-3 py-3 font-mono text-[12px] text-[#2563EB]" onclick="event.stopPropagation()">
+                  <a href="tel:+919930488129" class="hover:underline">📞 +91 99304 88129</a>
+                </td>
+                <td class="px-3 py-3 text-[#667085] text-[12px]">karan@singhanialaw.com</td>
+                <td class="px-3 py-3 font-medium text-[#202938]">Managing Partner</td>
+                <td class="px-3.5 py-3 font-semibold text-[#202938]">Singhania & Partners</td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#F5F3FF] text-[#7C3AED] border border-[#DDD6FE]">
+                    Professional
+                  </span>
+                </td>
+                <td class="px-3 py-3 text-[12px] text-[#202938]">Monthly Recurring (8 Seats)</td>
+                <td class="px-3 py-3 text-[12px] text-[#667085]">Oct 01, 2026</td>
+                <td class="px-3 py-3">
+                  <span class="text-[#DC5252] font-bold text-[12px] block">Dec 01, 2026</span>
+                  <span class="text-[10px] text-[#EA580C] font-semibold">Expiring in 12 days</span>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded text-[11px] font-bold bg-[#FEF2F2] text-[#DC2626]">
+                    ⚠️ PENDING
+                  </span>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#FFF7ED] text-[#EA580C] border border-[#FED7AA]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#EA580C]"></span> At Risk
+                  </span>
+                </td>
+                <td class="px-3 py-3">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded-full bg-[#2563EB] text-white flex items-center justify-center text-[9px] font-bold">SJ</div>
+                    <span class="text-[12px] text-[#667085]">Sarah J.</span>
+                  </div>
+                </td>
+                <td class="px-3 py-3 text-right" onclick="event.stopPropagation()">
+                  <button onclick="triggerToast('Retention cadence launched for Singhania & Partners', 'Retention Alert')" class="px-2 py-1 bg-[#EA580C] text-white rounded text-[11px] font-semibold hover:bg-[#C2410C]">
+                    Intervene
+                  </button>
+                </td>
+              </tr>
+
+              <!-- Client Row 3: Inactive / Cancelled Account -->
+              <tr class="client-row hover:bg-[#F9FAFB] cursor-pointer transition-colors group bg-[#F8FAFC]" data-category="inactive" onclick="showClientProfile('Verma & Co. Advocates')">
+                <td class="px-3.5 py-3">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-[#E2E8F0] text-[#64748B] flex items-center justify-center font-bold text-[10px]">AV</div>
+                    <div>
+                      <div class="font-bold text-[#64748B] leading-tight">Adv. Alok Verma</div>
+                      <div class="text-[10.5px] text-[#DC2626]">Churned Oct 28 • Chamber Split</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-3 py-3 font-mono text-[12px] text-[#64748B]">+91 98114 77201</td>
+                <td class="px-3 py-3 text-[#64748B] text-[12px]">verma@vermalaw.com</td>
+                <td class="px-3 py-3 text-[#64748B]">Chamber Counsel</td>
+                <td class="px-3.5 py-3 font-medium text-[#64748B]">Verma & Co. Advocates</td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#F1F5F9] text-[#64748B] border border-[#CBD5E1]">
+                    Starter (Former)
+                  </span>
+                </td>
+                <td class="px-3 py-3 text-[12px] text-[#64748B]">Monthly (Cancelled)</td>
+                <td class="px-3 py-3 text-[12px] text-[#64748B]">Jul 15, 2026</td>
+                <td class="px-3 py-3 text-[12px] text-[#64748B]">Expired Oct 28</td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded text-[11px] font-medium bg-[#F1F5F9] text-[#64748B]">
+                    INACTIVE
+                  </span>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#F3F4F6] text-[#6B7280] border border-[#E5E7EB]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#6B7280]"></span> Cancelled
+                  </span>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="text-[12px] text-[#64748B]">David K.</span>
+                </td>
+                <td class="px-3 py-3 text-right" onclick="event.stopPropagation()">
+                  <button onclick="triggerToast('Reactivation workflow triggered for Verma & Co.', 'Reactivate')" class="px-2 py-1 bg-[#2563EB] text-white rounded text-[11px] font-semibold hover:bg-[#1D4ED8]">
+                    Reactivate
+                  </button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <!-- ======================================================================= -->
+    <!-- VIEW CONTAINER: SCREEN 3 (CLIENT 360° PROFILE WITH 6 TABS)              -->
+    <!-- ======================================================================= -->
+    <main id="screenClientProfile" class="hidden flex-1 overflow-y-auto p-6 space-y-6">
+      
+      <!-- Client Profile Header & Overview -->
+      <section class="bg-[#FFFFFF] p-6 rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-4">
+            <div class="w-14 h-14 rounded-xl bg-[#ECFDF5] border border-[#A7F3D0] text-[#16A36A] flex items-center justify-center text-2xl font-bold flex-shrink-0">
+              🏛️
+            </div>
+            <div>
+              <div class="flex items-center gap-3">
+                <h1 id="cpFirmName" class="text-[22px] font-bold text-[#202938] tracking-tight">Justice Chambers & Co.</h1>
+                <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[12px] font-semibold bg-[#F0FDF4] text-[#16A34A] border border-[#BBF7D0]">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#16A34A]"></span> Active Paying Client
+                </span>
+                <span class="text-[11.5px] font-semibold bg-[#EFF6FF] text-[#2563EB] border border-[#BFDBFE] px-2.5 py-0.5 rounded-full">
+                  Health Score: 94 / 100
+                </span>
+              </div>
+              
+              <div class="text-[13px] text-[#667085] mt-1">
+                Managing Partner: <strong class="text-[#202938]">Adv. Vikramaditya Sen</strong> • Bar Registration: <strong class="text-[#202938] font-mono">WB/891/2003</strong>
+              </div>
+
+              <!-- Contact Chips -->
+              <div class="flex items-center gap-5 mt-3 text-[12.5px] text-[#667085]">
+                <a href="tel:+919830077215" class="flex items-center gap-1.5 text-[#2563EB] hover:underline font-mono">
+                  📞 +91 98300 77215
+                </a>
+                <a href="mailto:sen@justicechambers.com" class="flex items-center gap-1.5 text-[#2563EB] hover:underline">
+                  ✉️ sen@justicechambers.com
+                </a>
+                <span>📍 Kolkata & New Delhi Chambers</span>
+                <span>👤 Account Manager: <strong class="text-[#202938]">Sarah Jenkins</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="flex items-center gap-2">
+            <button onclick="openChangePlanModal('Justice Chambers & Co.', 'Professional', 18000)" class="px-3.5 py-2 border border-[#E5E7EB] hover:bg-[#F7F8FA] rounded-md text-[13px] font-medium text-[#202938]">
+              Change / Upgrade Plan
+            </button>
+            <button onclick="openRenewModal('Justice Chambers & Co.')" class="px-3.5 py-2 bg-[#2563EB] hover:bg-[#1D4ED8] text-white rounded-md text-[13px] font-semibold shadow-xs">
+              Renew Subscription
+            </button>
+          </div>
+        </div>
+
+        <!-- Subscription Summary Banner Card -->
+        <div class="mt-6 pt-5 border-t border-[#E5E7EB] bg-[#F8FAFC] p-4 rounded-lg border border-[#E5E7EB]">
+          <div class="text-[11.5px] font-bold text-[#667085] uppercase tracking-wider mb-2">Active Subscription Ledger</div>
+          <div class="grid grid-cols-5 gap-4 text-[13px]">
+            <div>
+              <span class="text-[11px] text-[#667085] block">Current Plan</span>
+              <span class="font-bold text-[#202938]">Professional (Chamber Pro)</span>
+            </div>
+            <div>
+              <span class="text-[11px] text-[#667085] block">Contract Value</span>
+              <span class="font-bold text-[#16A36A]">₹2,16,000 / year (Paid)</span>
+            </div>
+            <div>
+              <span class="text-[11px] text-[#667085] block">Advocate Seat Licenses</span>
+              <span class="font-bold text-[#202938]">5 of 5 Seats Allocated</span>
+            </div>
+            <div>
+              <span class="text-[11px] text-[#667085] block">Contract Term</span>
+              <span class="font-medium text-[#202938]">Nov 14, 2026 – Nov 14, 2027</span>
+            </div>
+            <div>
+              <span class="text-[11px] text-[#667085] block">Payment Reference</span>
+              <span class="font-mono text-[12px] text-[#2563EB]">NEFT-HDFC-991204</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 Profile Tabs -->
+      <section class="bg-[#FFFFFF] rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)] overflow-hidden">
+        
+        <!-- Tab Bar -->
+        <div class="px-5 pt-3 border-b border-[#E5E7EB] flex items-center gap-6 text-[13px]">
+          <button onclick="switchTab('tabOverview', this)" class="tab-btn pb-3 border-b-2 border-[#2563EB] text-[#2563EB] font-bold">1. Overview</button>
+          <button onclick="switchTab('tabTimeline', this)" class="tab-btn pb-3 text-[#667085] hover:text-[#202938]">2. Activity Timeline (Pre & Post)</button>
+          <button onclick="switchTab('tabSubHistory', this)" class="tab-btn pb-3 text-[#667085] hover:text-[#202938]">3. Subscription History</button>
+          <button onclick="switchTab('tabPayments', this)" class="tab-btn pb-3 text-[#667085] hover:text-[#202938]">4. Payments & Invoices</button>
+          <button onclick="switchTab('tabNotes', this)" class="tab-btn pb-3 text-[#667085] hover:text-[#202938]">5. Internal Notes</button>
+          <button onclick="switchTab('tabFollowups', this)" class="tab-btn pb-3 text-[#667085] hover:text-[#202938]">6. Follow-ups (Retention)</button>
+        </div>
+
+        <div class="p-6">
+          
+          <!-- TAB 1: OVERVIEW -->
+          <div id="tabOverview" class="tab-pane space-y-4 text-[13px]">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="p-4 bg-[#F8FAFC] rounded border border-[#E5E7EB]">
+                <div class="font-bold text-[#202938] mb-2">Chamber & Organizational Details</div>
+                <div class="space-y-1.5 text-[12.5px]">
+                  <div class="flex justify-between"><span class="text-[#667085]">Firm Entity:</span><span class="font-medium text-[#202938]">Justice Chambers & Co.</span></div>
+                  <div class="flex justify-between"><span class="text-[#667085]">Managing Counsel:</span><span class="font-medium text-[#202938]">Adv. Vikramaditya Sen</span></div>
+                  <div class="flex justify-between"><span class="text-[#667085]">GSTIN / Tax ID:</span><span class="font-mono text-[#202938]">19AAAFJ9921K1ZP</span></div>
+                  <div class="flex justify-between"><span class="text-[#667085]">Primary Court:</span><span class="font-medium text-[#202938]">Calcutta High Court & Supreme Court</span></div>
+                </div>
+              </div>
+
+              <div class="p-4 bg-[#F8FAFC] rounded border border-[#E5E7EB]">
+                <div class="font-bold text-[#202938] mb-2">Licensed Feature Entitlements</div>
+                <div class="space-y-1.5 text-[12.5px] text-[#16A36A] font-medium">
+                  <div class="flex items-center gap-1.5">✓ Full High Court & Supreme Court Judgment Search</div>
+                  <div class="flex items-center gap-1.5">✓ Automated WhatsApp Evening Cause-List Alerts</div>
+                  <div class="flex items-center gap-1.5">✓ Digital Case Diary & Chamber Diary (5 Associate Seats)</div>
+                  <div class="flex items-center gap-1.5">✓ Priority Customer Success & Zoom Onboarding</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: ACTIVITY TIMELINE (Zero-Loss Preservation) -->
+          <div id="tabTimeline" class="tab-pane hidden space-y-4">
+            <div class="p-3 bg-[#ECFDF5] border border-[#A7F3D0] rounded-md text-[12px] text-[#16A36A] font-semibold flex items-center gap-2">
+              <span>🛡️ Zero-Loss History Guarantee:</span>
+              <span>All 14 pre-conversion discovery calls and demo recordings have been locked and preserved alongside post-sale onboarding.</span>
+            </div>
+
+            <div class="relative pl-6 space-y-4 before:content-[''] before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-[#E5E7EB]">
+              <div class="relative">
+                <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#ECFDF5] border-2 border-white flex items-center justify-center text-[10px] text-[#16A36A]">✓</div>
+                <div class="text-[11.5px] text-[#667085]">Nov 14, 2026 at 4:30 PM • Closed by <strong>Sarah Jenkins</strong></div>
+                <div class="text-[13px] font-bold text-[#16A36A]">Converted to Paying Client (Chamber Pro Plan)</div>
+                <p class="text-[12px] text-[#667085] mt-1 bg-[#F8FAFC] p-2 rounded border border-[#E5E7EB]">
+                  Formal sign-off completed. Annual NEFT transfer received. Created subscription and assigned CS onboarding.
+                </p>
+              </div>
+
+              <div class="relative">
+                <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#F5F3FF] border-2 border-white flex items-center justify-center text-[10px] text-[#7C3AED]">🎥</div>
+                <div class="text-[11.5px] text-[#667085]">Nov 11, 2026 at 2:00 PM • Pre-Conversion Demo</div>
+                <div class="text-[13px] font-bold text-[#202938]">Product Demonstration with Senior Counsel</div>
+                <div class="text-[12px] text-[#667085]">Walked through arbitration research modules. Adv. Sen requested annual pricing.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: SUBSCRIPTION HISTORY -->
+          <div id="tabSubHistory" class="tab-pane hidden text-[13px]">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-[#F8FAFC] border-b border-[#E5E7EB] text-[11.5px] text-[#667085] font-semibold uppercase">
+                  <th class="py-2 px-3">Effective Date</th>
+                  <th class="py-2 px-3">Plan Tier</th>
+                  <th class="py-2 px-3">Seats</th>
+                  <th class="py-2 px-3">Cadence</th>
+                  <th class="py-2 px-3">Contract Value</th>
+                  <th class="py-2 px-3">Action Recorded</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[#E5E7EB]">
+                <tr>
+                  <td class="py-2.5 px-3">Nov 14, 2026</td>
+                  <td class="py-2.5 px-3 font-bold text-[#2563EB]">Professional</td>
+                  <td class="py-2.5 px-3">5 Seats</td>
+                  <td class="py-2.5 px-3">Annual</td>
+                  <td class="py-2.5 px-3 font-semibold text-[#16A36A]">₹2,16,000</td>
+                  <td class="py-2.5 px-3"><span class="bg-[#ECFDF5] text-[#16A36A] px-2 py-0.5 rounded text-[11px] font-bold">Initial Activation</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- TAB 4: PAYMENTS & INVOICES -->
+          <div id="tabPayments" class="tab-pane hidden text-[13px]">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-[#202938]">Official GST Tax Invoices</span>
+              <button onclick="openRecordPaymentModal('Justice Chambers & Co.', 75000)" class="px-3 py-1 bg-[#2563EB] text-white rounded text-[12px] font-semibold">+ Record Offline Payment</button>
+            </div>
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-[#F8FAFC] border-b border-[#E5E7EB] text-[11.5px] text-[#667085] font-semibold uppercase">
+                  <th class="py-2 px-3">Invoice #</th>
+                  <th class="py-2 px-3">Billing Date</th>
+                  <th class="py-2 px-3">Amount (Incl. GST)</th>
+                  <th class="py-2 px-3">Status</th>
+                  <th class="py-2 px-3">Payment Method</th>
+                  <th class="py-2 px-3 text-right">Download</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[#E5E7EB]">
+                <tr>
+                  <td class="py-2.5 px-3 font-mono font-bold text-[#2563EB]">INV-2026-9921</td>
+                  <td class="py-2.5 px-3">Nov 14, 2026</td>
+                  <td class="py-2.5 px-3 font-bold text-[#202938]">₹2,16,000</td>
+                  <td class="py-2.5 px-3"><span class="bg-[#ECFDF5] text-[#16A36A] px-2 py-0.5 rounded text-[11px] font-bold">PAID</span></td>
+                  <td class="py-2.5 px-3 font-mono text-[12px]">HDFC Bank NEFT / UTR-991204</td>
+                  <td class="py-2.5 px-3 text-right"><button onclick="triggerToast('Downloading PDF GST Invoice...')" class="text-[#2563EB] hover:underline font-medium">Download PDF</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- TAB 5: INTERNAL NOTES -->
+          <div id="tabNotes" class="tab-pane hidden space-y-3 text-[13px]">
+            <div class="p-3 bg-[#FFFBEB] rounded border border-[#FDE68A]">
+              <div class="flex justify-between text-[11px] text-[#D97706] font-semibold">
+                <span>📌 Sarah Jenkins (Account Owner)</span>
+                <span>Nov 14, 2026</span>
+              </div>
+              <p class="text-[#202938] mt-1">
+                "Adv. Sen prefers quarterly check-ins on arbitration feature updates. Do not email invoices after 8 PM; coordinate directly with their senior clerk Mr. Mukherjee."
+              </p>
+            </div>
+          </div>
+
+          <!-- TAB 6: FOLLOW-UPS (RETENTION) -->
+          <div id="tabFollowups" class="tab-pane hidden space-y-3 text-[13px]">
+            <div class="p-3 bg-[#F8FAFC] rounded border border-[#E5E7EB] flex items-center justify-between">
+              <div>
+                <span class="text-[11px] font-bold text-[#2563EB] uppercase">SCHEDULED CS CHECK-IN</span>
+                <div class="font-bold text-[#202938] mt-0.5">30-Day Onboarding Review with Chamber Clerk</div>
+                <div class="text-[11.5px] text-[#667085]">Dec 14, 2026 at 11:00 AM • Assigned to Sarah Jenkins</div>
+              </div>
+              <button onclick="triggerToast('Check-in scheduled on calendar')" class="px-2.5 py-1 bg-white border border-[#E5E7EB] rounded text-[12px] font-medium">View Calendar</button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- SCREEN 2: THE 6-STEP CONVERSION WIZARD MODAL                              -->
+  <!-- ========================================================================= -->
+  <div id="conversionWizardModal" class="hidden fixed inset-0 bg-[#202938]/40 backdrop-blur-[2px] z-50 flex items-center justify-center p-4">
+    <div class="bg-[#FFFFFF] rounded-xl max-w-2xl w-full p-6 shadow-2xl border border-[#E5E7EB] space-y-4 max-h-[94vh] overflow-y-auto">
+      
+      <!-- Wizard Header -->
+      <div class="flex items-start justify-between pb-3 border-b border-[#E5E7EB]">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-[#16A36A] text-white flex items-center justify-center text-xs font-bold">➔</span>
+            <h3 class="text-[18px] font-bold text-[#202938]">Convert Prospect to Paying Client</h3>
+          </div>
+          <p class="text-[12px] text-[#667085] mt-0.5">Step-by-step subscription provisioning with zero-loss history guarantee.</p>
+        </div>
+        <button onclick="closeConversionWizard()" class="text-[#667085] hover:text-[#202938] text-xl font-bold">×</button>
+      </div>
+
+      <!-- Step Indicator Bar -->
+      <div class="grid grid-cols-6 gap-1 text-center text-[10.5px] font-semibold py-1">
+        <div id="stepTab1" class="p-1.5 rounded bg-[#2563EB] text-white">1. Review</div>
+        <div id="stepTab2" class="p-1.5 rounded bg-[#F1F5F9] text-[#667085]">2. Contact & GST</div>
+        <div id="stepTab3" class="p-1.5 rounded bg-[#F1F5F9] text-[#667085]">3. Plan Tier</div>
+        <div id="stepTab4" class="p-1.5 rounded bg-[#F1F5F9] text-[#667085]">4. Subscription</div>
+        <div id="stepTab5" class="p-1.5 rounded bg-[#F1F5F9] text-[#667085]">5. CS Manager</div>
+        <div id="stepTab6" class="p-1.5 rounded bg-[#F1F5F9] text-[#667085]">6. Confirm</div>
+      </div>
+
+      <!-- STEP 1: REVIEW PROSPECT -->
+      <div id="stepContent1" class="step-content space-y-3 text-[13px]">
+        <div class="p-3.5 bg-[#F8FAFC] rounded-lg border border-[#E5E7EB] space-y-2">
+          <div class="font-bold text-[#202938]">Review Ingested Prospect Information</div>
+          <div class="grid grid-cols-2 gap-3 text-[12.5px]">
+            <div><span class="text-[#667085] block">Law Firm:</span><strong id="wizReviewFirm">Apex Legal Partners</strong></div>
+            <div><span class="text-[#667085] block">Key Advocate:</span><strong id="wizReviewAdv">Adv. Rajesh Sharma</strong></div>
+            <div><span class="text-[#667085] block">Current Stage:</span><span class="font-semibold text-[#7C3AED]">Demo Completed (80% Win)</span></div>
+            <div><span class="text-[#667085] block">Total Ingested Activity:</span><span class="font-semibold text-[#16A36A]">14 Interaction Logs & Notes</span></div>
+          </div>
+        </div>
+        <div class="p-3 bg-[#ECFDF5] border border-[#A7F3D0] rounded text-[12px] text-[#16A36A] flex items-center gap-2">
+          <span>✓</span>
+          <span>All 14 call notes, meeting transcripts, and Bar accreditations will be preserved into the client profile.</span>
+        </div>
+      </div>
+
+      <!-- STEP 2: CONFIRM CONTACT & GST -->
+      <div id="stepContent2" class="step-content hidden space-y-3 text-[13px]">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">Official Legal Billing Entity *</label>
+            <input type="text" value="Apex Legal Partners LLP" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5">
+          </div>
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">GSTIN Number (Optional)</label>
+            <input type="text" value="07AAACP9924K1Z0" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 font-mono">
+          </div>
+          <div class="col-span-2">
+            <label class="block font-medium text-[#202938] mb-1">Registered Chamber Billing Address *</label>
+            <input type="text" value="Chamber 402, Lawyers Chambers Block, Delhi High Court, New Delhi 110003" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5">
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: SELECT SUBSCRIPTION PLAN -->
+      <div id="stepContent3" class="step-content hidden space-y-3 text-[13px]">
+        <div class="font-bold text-[#202938]">Select Software Plan Tier *</div>
+        <div class="grid grid-cols-3 gap-3">
+          <!-- Starter -->
+          <div onclick="selectWizardPlan('Starter', 3500, this)" class="wiz-plan-card p-3 rounded-lg border border-[#E5E7EB] cursor-pointer hover:border-[#2563EB] transition-all">
+            <div class="font-bold text-[14px] text-[#202938]">Starter</div>
+            <div class="text-[11px] text-[#667085]">Solo Advocate</div>
+            <div class="text-[16px] font-extrabold text-[#202938] mt-2">₹3,500 <span class="text-[10px] font-normal text-[#667085]">/mo</span></div>
+            <div class="text-[10.5px] text-[#667085] mt-1.5">1 Advocate Seat • Judgment Search</div>
+          </div>
+          <!-- Professional (Default selected) -->
+          <div onclick="selectWizardPlan('Professional', 18000, this)" class="wiz-plan-card p-3 rounded-lg border-2 border-[#2563EB] bg-[#EFF6FF]/40 cursor-pointer shadow-xs transition-all">
+            <div class="font-bold text-[14px] text-[#2563EB]">Professional</div>
+            <div class="text-[11px] text-[#667085]">Chambers Pro</div>
+            <div class="text-[16px] font-extrabold text-[#202938] mt-2">₹18,000 <span class="text-[10px] font-normal text-[#667085]">/mo</span></div>
+            <div class="text-[10.5px] text-[#2563EB] font-semibold mt-1.5">Up to 12 Seats • Cause-List Sync</div>
+          </div>
+          <!-- Enterprise -->
+          <div onclick="selectWizardPlan('Enterprise', 45000, this)" class="wiz-plan-card p-3 rounded-lg border border-[#E5E7EB] cursor-pointer hover:border-[#2563EB] transition-all">
+            <div class="font-bold text-[14px] text-[#202938]">Enterprise</div>
+            <div class="text-[11px] text-[#667085]">Law Firm Suite</div>
+            <div class="text-[16px] font-extrabold text-[#202938] mt-2">₹45,000 <span class="text-[10px] font-normal text-[#667085]">/mo</span></div>
+            <div class="text-[10.5px] text-[#667085] mt-1.5">Unlimited Seats • Custom APIs</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4: ENTER SUBSCRIPTION DETAILS -->
+      <div id="stepContent4" class="step-content hidden space-y-3 text-[13px]">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">Subscription Type / Cadence *</label>
+            <select id="wizCadence" onchange="calculateWizardAmount()" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 bg-white font-medium">
+              <option value="Annual">Annual Prepaid (10% Discount)</option>
+              <option value="Quarterly">Quarterly</option>
+              <option value="Monthly">Monthly</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">Total Contract Value (INR) *</label>
+            <input type="text" id="wizAmount" value="₹2,16,000 (Incl. 10% Annual Disc)" class="w-full border border-[#16A36A] bg-[#ECFDF5]/30 font-bold text-[#16A36A] rounded px-3 py-1.5">
+          </div>
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">Contract Start Date *</label>
+            <input type="date" value="2026-11-19" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5">
+          </div>
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">Payment Status *</label>
+            <select class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 bg-white font-semibold text-[#16A36A]">
+              <option>✓ Paid (NEFT / Bank Transfer Verified)</option>
+              <option>Pending Payment (Net 15 Days Invoice)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5: ASSIGN ACCOUNT MANAGER -->
+      <div id="stepContent5" class="step-content hidden space-y-3 text-[13px]">
+        <div>
+          <label class="block font-medium text-[#202938] mb-1">Assigned Account Manager & Customer Success Lead *</label>
+          <select class="w-full border border-[#E5E7EB] rounded px-3 py-2 bg-white font-medium">
+            <option>Sarah Jenkins (Senior Sales Exec & Onboarding Lead)</option>
+            <option>David Kumar (Sales Manager)</option>
+            <option>Priya Nair (Customer Success)</option>
+          </select>
+          <p class="text-[11.5px] text-[#667085] mt-1.5">This person will coordinate license keys, schedule Zoom associate onboarding, and handle quarterly renewals.</p>
+        </div>
+      </div>
+
+      <!-- STEP 6: CONFIRM CONVERSION -->
+      <div id="stepContent6" class="step-content hidden space-y-3 text-[13px]">
+        <div class="p-4 bg-[#F8FAFC] rounded-lg border border-[#E5E7EB] space-y-2">
+          <div class="font-bold text-[#202938] text-[14px]">Ready to Activate Client?</div>
+          <p class="text-[12px] text-[#667085]">Please verify final terms before provisioning software licenses:</p>
+          <div class="space-y-1 text-[12.5px] pt-1">
+            <div class="flex justify-between py-1 border-b border-[#E5E7EB]"><span class="text-[#667085]">Firm:</span><strong class="text-[#202938]">Apex Legal Partners LLP</strong></div>
+            <div class="flex justify-between py-1 border-b border-[#E5E7EB]"><span class="text-[#667085]">Purchased Tier:</span><strong class="text-[#2563EB]">Professional (Chambers Pro - 12 Seats)</strong></div>
+            <div class="flex justify-between py-1 border-b border-[#E5E7EB]"><span class="text-[#667085]">Annual Value:</span><strong class="text-[#16A36A]">₹2,16,000 / year</strong></div>
+            <div class="flex justify-between py-1"><span class="text-[#667085]">Conversion Date:</span><strong class="text-[#202938]">Thursday, Nov 19, 2026</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wizard Navigation Footer -->
+      <div class="flex items-center justify-between pt-3 border-t border-[#E5E7EB]">
+        <button id="wizBackBtn" onclick="wizardPrev()" class="px-4 py-2 border border-[#E5E7EB] rounded text-[13px] text-[#667085] hover:bg-[#F7F8FA]" disabled>
+          ‹ Back
+        </button>
+        <button id="wizNextBtn" onclick="wizardNext()" class="px-5 py-2 bg-[#2563EB] hover:bg-[#1D4ED8] text-white rounded text-[13px] font-semibold shadow-xs">
+          Continue to Step 2 ➔
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- CONVERSION SUCCESS CELEBRATION MODAL                                      -->
+  <!-- ========================================================================= -->
+  <div id="conversionSuccessModal" class="hidden fixed inset-0 bg-[#202938]/50 backdrop-blur-[2px] z-50 flex items-center justify-center p-4">
+    <div class="bg-[#FFFFFF] rounded-2xl max-w-md w-full p-6 text-center shadow-2xl border border-[#A7F3D0] space-y-4">
+      <div class="w-16 h-16 rounded-full bg-[#ECFDF5] text-[#16A36A] flex items-center justify-center text-3xl font-bold mx-auto border-4 border-[#A7F3D0]">
+        ✓
+      </div>
+      <div>
+        <h3 class="text-[20px] font-bold text-[#202938]">Conversion Complete!</h3>
+        <p class="text-[13px] text-[#667085] mt-1">
+          <strong class="text-[#202938]">Apex Legal Partners</strong> is now an <strong>Active Paying Client</strong>.
+        </p>
+      </div>
+      <div class="p-3 bg-[#F8FAFC] rounded-lg border border-[#E5E7EB] text-[12px] text-[#16A36A] font-medium text-left space-y-1">
+        <div>✓ 100% of historical calls and demo recordings locked & preserved.</div>
+        <div>✓ Created active subscription ledger (12 seats • Annual Prepaid).</div>
+        <div>✓ Conversion recorded for Nov 19, 2026.</div>
+      </div>
+      <button onclick="goToClientFromSuccess()" class="w-full py-2.5 bg-[#16A36A] hover:bg-[#15803D] text-white rounded-lg text-[13px] font-bold shadow-sm transition-colors">
+        Open Client 360° Profile ➔
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- ACTION MODAL: CHANGE / UPGRADE PLAN                                       -->
+  <!-- ========================================================================= -->
+  <div id="changePlanModal" class="hidden fixed inset-0 bg-[#202938]/40 backdrop-blur-[2px] z-50 flex items-center justify-center p-4">
+    <div class="bg-[#FFFFFF] rounded-xl max-w-md w-full p-6 shadow-2xl border border-[#E5E7EB] space-y-4">
+      <div class="flex items-start justify-between pb-2 border-b border-[#E5E7EB]">
+        <div>
+          <h3 class="text-[17px] font-bold text-[#202938]">Change or Upgrade Subscription</h3>
+          <p class="text-[12px] text-[#667085]">Justice Chambers & Co.</p>
+        </div>
+        <button onclick="closeChangePlanModal()" class="text-[#667085] hover:text-[#202938] text-xl font-bold">×</button>
+      </div>
+
+      <div class="space-y-3 text-[13px]">
+        <div>
+          <label class="block font-medium text-[#202938] mb-1">New Plan Tier *</label>
+          <select class="w-full border border-[#2563EB] rounded px-3 py-2 bg-[#EFF6FF]/40 font-bold text-[#2563EB]">
+            <option>Enterprise Suite (₹45,000 / mo - Unlimited Seats)</option>
+            <option selected>Professional - Chamber Pro (₹18,000 / mo)</option>
+            <option>Starter - Solo Advocate (₹3,500 / mo)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-medium text-[#202938] mb-1">Seat License Allocation</label>
+          <input type="number" value="8" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 font-bold">
+        </div>
+        <div>
+          <label class="block font-medium text-[#202938] mb-1">Reason for Plan Change</label>
+          <textarea rows="2" placeholder="e.g. Added 3 new litigation associates to the chamber..." class="w-full border border-[#E5E7EB] rounded p-2 text-[12.5px]"></textarea>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-3 pt-3 border-t border-[#E5E7EB]">
+        <button onclick="closeChangePlanModal()" class="px-4 py-2 border border-[#E5E7EB] rounded text-[13px] text-[#202938]">Cancel</button>
+        <button onclick="executePlanChange()" class="px-5 py-2 bg-[#2563EB] text-white rounded text-[13px] font-semibold">Apply Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- ACTION MODAL: MARK INACTIVE / CANCEL SUBSCRIPTION (With Churn Reasons)    -->
+  <!-- ========================================================================= -->
+  <div id="markInactiveModal" class="hidden fixed inset-0 bg-[#202938]/40 backdrop-blur-[2px] z-50 flex items-center justify-center p-4">
+    <div class="bg-[#FFFFFF] rounded-xl max-w-md w-full p-6 shadow-2xl border border-[#E5E7EB] space-y-4">
+      <div class="flex items-start justify-between pb-2 border-b border-[#E5E7EB]">
+        <div>
+          <h3 class="text-[17px] font-bold text-[#DC2626]">Mark Client Inactive / Cancel</h3>
+          <p class="text-[12px] text-[#667085]">Zero-loss preservation: Record will not be deleted</p>
+        </div>
+        <button onclick="closeMarkInactiveModal()" class="text-[#667085] hover:text-[#202938] text-xl font-bold">×</button>
+      </div>
+
+      <div class="space-y-3 text-[13px]">
+        <div>
+          <label class="block font-bold text-[#202938] mb-1">Primary Churn / Inactivity Reason *</label>
+          <select id="churnReasonSelect" class="w-full border border-[#E5E7EB] rounded px-3 py-2 bg-white font-medium text-[#202938]">
+            <option>Chamber Dissolved / Partners Split</option>
+            <option>Budget Constraints / Firm Cost Cuts</option>
+            <option>Court Recess Seasonality (Dormant)</option>
+            <option>Missing Specific Court Coverage / Tribunals</option>
+            <option>Switched to Competitor (SCC Online / Manupatra)</option>
+            <option>Retired from Active Legal Practice</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-medium text-[#202938] mb-1">Qualitative Exit Feedback</label>
+          <textarea rows="2" placeholder="Record partner feedback, pain points, or notes for future win-back outreach..." class="w-full border border-[#E5E7EB] rounded p-2 text-[12.5px]"></textarea>
+        </div>
+        <div class="p-3 bg-[#F8FAFC] rounded border border-[#E5E7EB] text-[11.5px] text-[#667085]">
+          🛡️ The account will move to <strong>Inactive Clients</strong> view. All past invoices and notes will be preserved for retention follow-up.
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-3 pt-2 border-t border-[#E5E7EB]">
+        <button onclick="closeMarkInactiveModal()" class="px-4 py-2 border border-[#E5E7EB] rounded text-[13px] text-[#202938]">Cancel</button>
+        <button onclick="executeMarkInactive()" class="px-5 py-2 bg-[#DC5252] hover:bg-[#B91C1C] text-white rounded text-[13px] font-semibold">Confirm Inactivity</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast" class="hidden fixed bottom-6 right-6 bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg shadow-xl p-4 flex items-center gap-3 z-50 transition-all max-w-sm">
+    <div id="toastIcon" class="w-6 h-6 rounded-full bg-[#ECFDF5] text-[#16A36A] flex items-center justify-center font-bold text-xs flex-shrink-0">✓</div>
+    <div>
+      <div id="toastTitle" class="text-[13px] font-semibold text-[#202938]">Action Successful</div>
+      <div id="toastBody" class="text-[11.5px] text-[#667085]">Operation completed without errors.</div>
+    </div>
+  </div>
+
+  <!-- Interactive JavaScript Engine -->
+  <script>
+    let currentWizardStep = 1;
+    let selectedWizPlanName = 'Professional';
+    let selectedWizPlanPrice = 18000;
+
+    // View Switching: Table Listing vs 360 Profile
+    function showClientsListing() {
+      document.getElementById('screenClientListing').classList.remove('hidden');
+      document.getElementById('screenClientProfile').classList.add('hidden');
+      document.getElementById('topBreadcrumbContext').innerText = 'Active Clients';
+      document.getElementById('btnViewList').className = 'px-2.5 py-1 rounded bg-white shadow-xs font-semibold text-[#202938]';
+      document.getElementById('btnViewProfile').className = 'px-2.5 py-1 rounded text-[#667085] hover:text-[#202938]';
+    }
+
+    function showClientProfile(firmName = 'Justice Chambers & Co.') {
+      document.getElementById('screenClientListing').classList.add('hidden');
+      document.getElementById('screenClientProfile').classList.remove('hidden');
+      document.getElementById('cpFirmName').innerText = firmName;
+      document.getElementById('topBreadcrumbContext').innerText = `${firmName} (Profile 360°)`;
+      document.getElementById('btnViewProfile').className = 'px-2.5 py-1 rounded bg-white shadow-xs font-semibold text-[#202938]';
+      document.getElementById('btnViewList').className = 'px-2.5 py-1 rounded text-[#667085] hover:text-[#202938]';
+    }
+
+    // Tri-State View Switcher (Active, At-Risk, Inactive)
+    function switchClientView(view) {
+      const rows = document.querySelectorAll('.client-row');
+      const pills = ['pillActive', 'pillAtRisk', 'pillInactive'];
+      pills.forEach(p => {
+        document.getElementById(p).className = 'px-2.5 py-1 rounded text-[#667085] hover:text-[#202938]';
+      });
+
+      if (view === 'active') {
+        document.getElementById('pillActive').className = 'px-2.5 py-1 rounded bg-white shadow-xs font-bold text-[#202938]';
+        document.getElementById('subnavActive').className = 'w-full flex items-center justify-between py-1 px-1.5 rounded text-[12px] font-bold text-[#2563EB] bg-[#EFF6FF]';
+        document.getElementById('topBreadcrumbContext').innerText = 'Active Clients (84)';
+        rows.forEach(r => r.style.display = (r.getAttribute('data-category') === 'active') ? '' : 'none');
+        triggerToast('Showing 84 Active Law Firms in good standing', 'Active Clients');
+      } else if (view === 'at-risk') {
+        document.getElementById('pillAtRisk').className = 'px-2.5 py-1 rounded bg-white shadow-xs font-bold text-[#EA580C]';
+        document.getElementById('topBreadcrumbContext').innerText = 'At-Risk Clients (5 Urgent)';
+        rows.forEach(r => r.style.display = (r.getAttribute('data-category') === 'at-risk') ? '' : 'none');
+        triggerToast('Showing 5 At-Risk accounts requiring retention intervention', 'At-Risk Worklist');
+      } else if (view === 'inactive') {
+        document.getElementById('pillInactive').className = 'px-2.5 py-1 rounded bg-white shadow-xs font-bold text-[#64748B]';
+        document.getElementById('topBreadcrumbContext').innerText = 'Inactive & Expired Clients (11)';
+        rows.forEach(r => r.style.display = (r.getAttribute('data-category') === 'inactive') ? '' : 'none');
+        triggerToast('Showing 11 Inactive/Cancelled clients preserved for win-back', 'Inactive Archive');
+      }
+    }
+
+    // Tab Switching inside Client 360 Profile
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.className = 'tab-btn pb-3 text-[#667085] hover:text-[#202938]';
+      });
+      btn.className = 'tab-btn pb-3 border-b-2 border-[#2563EB] text-[#2563EB] font-bold';
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.add('hidden'));
+      document.getElementById(tabId).classList.remove('hidden');
+    }
+
+    // 6-Step Conversion Wizard Controller
+    function openConversionWizard(firm, adv, profession, email, phone) {
+      currentWizardStep = 1;
+      document.getElementById('wizReviewFirm').innerText = firm;
+      document.getElementById('wizReviewAdv').innerText = adv;
+      renderWizardStep();
+      document.getElementById('conversionWizardModal').classList.remove('hidden');
+    }
+
+    function closeConversionWizard() {
+      document.getElementById('conversionWizardModal').classList.add('hidden');
+    }
+
+    function renderWizardStep() {
+      for (let i = 1; i <= 6; i++) {
+        document.getElementById(`stepContent${i}`).classList.add('hidden');
+        const tab = document.getElementById(`stepTab${i}`);
+        if (i < currentWizardStep) {
+          tab.className = 'p-1.5 rounded bg-[#ECFDF5] text-[#16A36A] font-bold';
+        } else if (i === currentWizardStep) {
+          tab.className = 'p-1.5 rounded bg-[#2563EB] text-white font-bold';
+        } else {
+          tab.className = 'p-1.5 rounded bg-[#F1F5F9] text-[#667085]';
+        }
+      }
+      document.getElementById(`stepContent${currentWizardStep}`).classList.remove('hidden');
+
+      const backBtn = document.getElementById('wizBackBtn');
+      const nextBtn = document.getElementById('wizNextBtn');
+
+      backBtn.disabled = (currentWizardStep === 1);
+      if (currentWizardStep === 6) {
+        nextBtn.innerText = 'Confirm & Provision Client ➔';
+        nextBtn.className = 'px-5 py-2 bg-[#16A36A] hover:bg-[#15803D] text-white rounded text-[13px] font-bold shadow-xs';
+      } else {
+        nextBtn.innerText = `Continue to Step ${currentWizardStep + 1} ➔`;
+        nextBtn.className = 'px-5 py-2 bg-[#2563EB] hover:bg-[#1D4ED8] text-white rounded text-[13px] font-semibold shadow-xs';
+      }
+    }
+
+    function wizardNext() {
+      if (currentWizardStep < 6) {
+        currentWizardStep++;
+        renderWizardStep();
+      } else {
+        // Complete conversion
+        closeConversionWizard();
+        document.getElementById('conversionSuccessModal').classList.remove('hidden');
+      }
+    }
+
+    function wizardPrev() {
+      if (currentWizardStep > 1) {
+        currentWizardStep--;
+        renderWizardStep();
+      }
+    }
+
+    function selectWizardPlan(name, price, card) {
+      selectedWizPlanName = name;
+      selectedWizPlanPrice = price;
+      document.querySelectorAll('.wiz-plan-card').forEach(c => {
+        c.className = 'wiz-plan-card p-3 rounded-lg border border-[#E5E7EB] cursor-pointer hover:border-[#2563EB] transition-all';
+      });
+      card.className = 'wiz-plan-card p-3 rounded-lg border-2 border-[#2563EB] bg-[#EFF6FF]/40 cursor-pointer shadow-xs transition-all';
+      calculateWizardAmount();
+    }
+
+    function calculateWizardAmount() {
+      const cadence = document.getElementById('wizCadence').value;
+      let total = selectedWizPlanPrice;
+      if (cadence === 'Annual') {
+        total = (selectedWizPlanPrice * 12 * 0.9);
+        document.getElementById('wizAmount').value = `₹${total.toLocaleString('en-IN')} (Incl. 10% Annual Disc)`;
+      } else if (cadence === 'Quarterly') {
+        total = selectedWizPlanPrice * 3;
+        document.getElementById('wizAmount').value = `₹${total.toLocaleString('en-IN')} / quarter`;
+      } else {
+        document.getElementById('wizAmount').value = `₹${selectedWizPlanPrice.toLocaleString('en-IN')} / month`;
+      }
+    }
+
+    function goToClientFromSuccess() {
+      document.getElementById('conversionSuccessModal').classList.add('hidden');
+      showClientProfile('Apex Legal Partners');
+      triggerToast('Welcome to Apex Legal Partners Client 360° Profile!', 'Client Activated');
+    }
+
+    // Action Modals: Change Plan
+    function openChangePlanModal(firm, plan, price) {
+      document.getElementById('changePlanModal').classList.remove('hidden');
+    }
+    function closeChangePlanModal() {
+      document.getElementById('changePlanModal').classList.add('hidden');
+    }
+    function executePlanChange() {
+      closeChangePlanModal();
+      triggerToast('Subscription upgraded to Enterprise Suite! Invoices pro-rated.', 'Plan Updated');
+    }
+
+    // Action Modals: Mark Inactive
+    function openMarkInactiveModal(firm) {
+      document.getElementById('markInactiveModal').classList.remove('hidden');
+    }
+    function closeMarkInactiveModal() {
+      document.getElementById('markInactiveModal').classList.add('hidden');
+    }
+    function executeMarkInactive() {
+      const reason = document.getElementById('churnReasonSelect').value;
+      closeMarkInactiveModal();
+      triggerToast(`Account moved to Inactive view (Reason: ${reason}). Zero data deleted.`, 'Client Inactive');
+    }
+
+    // Payment Modal Simulation
+    function openRecordPaymentModal(firm, amt) {
+      triggerToast(`Recording ₹${amt.toLocaleString('en-IN')} offline NEFT receipt...`, 'Payment Recorded');
+    }
+
+    function openRenewModal(firm) {
+      triggerToast(`Renewal contract drafted for ${firm} for next annual term`, 'Renewal Drafted');
+    }
+
+    // Table Filters
+    function filterClientsTable() {
+      const q = document.getElementById('clientSearchInput').value.toLowerCase();
+      const plan = document.getElementById('filterPlan').value;
+      document.querySelectorAll('#clientsTbody tr').forEach(r => {
+        const text = r.innerText.toLowerCase();
+        const matchesQ = !q || text.includes(q);
+        const matchesPlan = !plan || text.includes(plan.toLowerCase());
+        r.style.display = (matchesQ && matchesPlan) ? '' : 'none';
+      });
+    }
+
+    function clearClientFilters() {
+      document.getElementById('clientSearchInput').value = '';
+      document.getElementById('filterPlan').value = '';
+      document.getElementById('filterCadence').value = '';
+      document.getElementById('filterPayment').value = '';
+      filterClientsTable();
+      triggerToast('All client filters cleared', 'Filters Reset');
+    }
+
+    // Toast Notification
+    function triggerToast(bodyText, titleText = 'Action Completed') {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastTitle').innerText = titleText;
+      document.getElementById('toastBody').innerText = bodyText;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>

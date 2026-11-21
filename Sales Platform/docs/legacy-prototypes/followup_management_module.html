@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal Sales CRM - Follow-up Management Module</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #F7F8FA; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+  </style>
+</head>
+<body class="bg-[#F7F8FA] text-[#202938] antialiased m-0 p-0 flex h-screen overflow-hidden">
+
+  <!-- ========================================================================= -->
+  <!-- SIDEBAR NAVIGATION (240px Fixed)                                          -->
+  <!-- ========================================================================= -->
+  <aside class="w-[240px] bg-[#FFFFFF] border-r border-[#E5E7EB] flex flex-col flex-shrink-0 select-none z-20">
+    <div class="h-16 flex items-center justify-between px-5 border-b border-[#E5E7EB]">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-[#2563EB] flex items-center justify-center text-white font-bold text-base shadow-sm">
+          ⚖️
+        </div>
+        <div>
+          <span class="font-bold text-[15px] tracking-tight text-[#202938]">LexisCRM</span>
+          <span class="block text-[10px] text-[#667085] font-medium leading-none">Task & SLA Center</span>
+        </div>
+      </div>
+      <button class="text-[#667085] hover:text-[#202938] p-1 rounded hover:bg-[#F7F8FA]">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/></svg>
+      </button>
+    </div>
+
+    <!-- Active Division Switcher -->
+    <div class="p-3 border-b border-[#E5E7EB]">
+      <div class="bg-[#F7F8FA] rounded-md p-2 flex items-center justify-between border border-[#E5E7EB] cursor-pointer hover:border-[#CBD5E1]">
+        <div class="flex items-center gap-2 overflow-hidden">
+          <div class="w-2 h-2 rounded-full bg-[#16A36A]"></div>
+          <div class="truncate text-left">
+            <span class="block text-[11px] font-semibold text-[#202938] leading-tight truncate">Delhi High Court & NCR</span>
+            <span class="block text-[10px] text-[#667085]">Litigation Division</span>
+          </div>
+        </div>
+        <svg class="w-3.5 h-3.5 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </div>
+    </div>
+
+    <!-- Nav Items -->
+    <nav class="flex-1 overflow-y-auto px-3 py-3 space-y-4 text-[13px]">
+      <div>
+        <div class="px-2 text-[10px] font-semibold text-[#667085] uppercase tracking-wider mb-1.5">Overview</div>
+        <a href="#" class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938]">
+          <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+          <span>Dashboard</span>
+        </a>
+      </div>
+
+      <div>
+        <div class="px-2 text-[10px] font-semibold text-[#667085] uppercase tracking-wider mb-1.5">Pipeline & Accounts</div>
+        <a href="#" class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938]">
+          <div class="flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            <span>Prospects</span>
+          </div>
+          <span class="text-[11px] font-semibold bg-[#F1F5F9] text-[#475569] px-1.5 py-0.2 rounded-full">148</span>
+        </a>
+        <a href="#" class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938] mt-1">
+          <div class="flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+            <span>Clients</span>
+          </div>
+          <span class="text-[11px] text-[#16A36A] font-semibold">84</span>
+        </a>
+      </div>
+
+      <!-- Follow-ups Active Navigation Group -->
+      <div>
+        <div class="px-2 text-[10px] font-semibold text-[#667085] uppercase tracking-wider mb-1.5">Operations</div>
+        <div class="flex items-center justify-between px-2.5 py-1.5 rounded-md bg-[#EFF6FF] text-[#2563EB] font-bold border-r-2 border-[#2563EB]">
+          <div class="flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-[#2563EB]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Follow-ups</span>
+          </div>
+          <span class="text-[11px] font-bold bg-[#DC5252] text-white px-1.5 py-0.2 rounded-full">7 Overdue</span>
+        </div>
+
+        <!-- 5 Status Sub-Views -->
+        <div class="ml-6 pl-2 border-l border-[#E5E7EB] mt-1 space-y-1">
+          <button onclick="switchFollowupTab('all')" id="subnavAll" class="w-full flex items-center justify-between py-1 px-1.5 rounded text-[12px] font-bold text-[#2563EB] bg-[#EFF6FF]">
+            <span>All Tasks</span>
+            <span class="text-[11px] text-[#667085]">26</span>
+          </button>
+          <button onclick="switchFollowupTab('today')" id="subnavToday" class="w-full flex items-center justify-between py-1 px-1.5 rounded text-[12px] text-[#667085] hover:text-[#202938]">
+            <span>Today's Follow-ups</span>
+            <span class="px-1.5 py-0.2 rounded text-[10px] font-bold bg-[#FFF7ED] text-[#EA580C] border border-[#FED7AA]">5</span>
+          </button>
+          <button onclick="switchFollowupTab('upcoming')" id="subnavUpcoming" class="w-full flex items-center justify-between py-1 px-1.5 rounded text-[12px] text-[#667085] hover:text-[#202938]">
+            <span>Upcoming</span>
+            <span class="text-[11px] text-[#0284C7]">14</span>
+          </button>
+          <button onclick="switchFollowupTab('overdue')" id="subnavOverdue" class="w-full flex items-center justify-between py-1 px-1.5 rounded text-[12px] font-bold text-[#DC2626] hover:bg-[#FEF2F2]">
+            <span>Overdue SLA</span>
+            <span class="px-1.5 py-0.2 rounded text-[10px] font-bold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]">7</span>
+          </button>
+          <button onclick="switchFollowupTab('completed')" id="subnavCompleted" class="w-full flex items-center justify-between py-1 px-1.5 rounded text-[12px] text-[#667085] hover:text-[#202938]">
+            <span>Completed Archive</span>
+            <span class="text-[11px] text-[#16A36A]">8</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Rep Profile -->
+    <div class="p-3 border-t border-[#E5E7EB] bg-[#FFFFFF]">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-bold text-xs">
+          SJ
+        </div>
+        <div>
+          <div class="text-[12.5px] font-semibold text-[#202938] leading-tight">Sarah Jenkins</div>
+          <div class="text-[11px] text-[#667085]">Senior Sales Exec</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN WORKSPACE                                                            -->
+  <!-- ========================================================================= -->
+  <div class="flex-1 flex flex-col h-screen overflow-hidden bg-[#F7F8FA]">
+
+    <!-- ======================================================================= -->
+    <!-- TOP NAVIGATION & VIEW SWITCHERS                                         -->
+    <!-- ======================================================================= -->
+    <header class="h-16 bg-[#FFFFFF] border-b border-[#E5E7EB] px-6 flex items-center justify-between flex-shrink-0 z-10">
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 text-[13px] text-[#667085]">
+          <span>Operations</span>
+          <span>/</span>
+          <span id="topBreadcrumbContext" class="text-[#202938] font-bold text-[15px]">All Follow-up Tasks</span>
+        </div>
+        <span id="taskSlaBadge" class="text-[11.5px] font-bold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA] px-2.5 py-0.5 rounded-full flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-pulse"></span> 7 Overdue SLA Tasks
+        </span>
+      </div>
+
+      <!-- The 3 Visual Layout Archetypes: List, Calendar, Kanban -->
+      <div class="flex items-center bg-[#F7F8FA] border border-[#E5E7EB] p-1 rounded-md text-[12px]">
+        <button id="viewBtnList" onclick="switchLayoutArchetype('list')" class="px-2.5 py-1 rounded bg-white shadow-xs font-bold text-[#202938] flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+          <span>List View</span>
+        </button>
+        <button id="viewBtnCalendar" onclick="switchLayoutArchetype('calendar')" class="px-2.5 py-1 rounded text-[#667085] hover:text-[#202938] flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <span>Calendar</span>
+        </button>
+        <button id="viewBtnKanban" onclick="switchLayoutArchetype('kanban')" class="px-2.5 py-1 rounded text-[#667085] hover:text-[#202938] flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/></svg>
+          <span>Status Kanban</span>
+        </button>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <button onclick="openScheduleModal()" class="flex items-center gap-1.5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white px-3.5 py-1.5 rounded-md text-[13px] font-semibold shadow-xs transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          <span>+ Schedule Follow-up</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ======================================================================= -->
+    <!-- SCROLLABLE WORKSPACE CANVAS                                             -->
+    <!-- ======================================================================= -->
+    <main class="flex-1 overflow-y-auto p-6 space-y-4">
+
+      <!-- ===================================================================== -->
+      <!-- 5 SEGMENTED STATUS TABS & FILTER DECK                                 -->
+      <!-- ===================================================================== -->
+      <div class="bg-[#FFFFFF] p-3.5 rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)] flex items-center justify-between gap-3 flex-wrap text-[13px]">
+        
+        <!-- Left: Status Tabs -->
+        <div class="flex items-center gap-2 flex-wrap">
+          <div class="flex items-center bg-[#F7F8FA] border border-[#E5E7EB] p-1 rounded-md text-[12px]">
+            <button onclick="switchFollowupTab('all')" id="tabBtnAll" class="px-3 py-1 rounded bg-white shadow-xs font-bold text-[#202938]">
+              All (26)
+            </button>
+            <button onclick="switchFollowupTab('today')" id="tabBtnToday" class="px-3 py-1 rounded text-[#EA580C] font-semibold hover:bg-white/60">
+              Today's (5)
+            </button>
+            <button onclick="switchFollowupTab('upcoming')" id="tabBtnUpcoming" class="px-3 py-1 rounded text-[#0284C7] font-semibold hover:bg-white/60">
+              Upcoming (14)
+            </button>
+            <button onclick="switchFollowupTab('overdue')" id="tabBtnOverdue" class="px-3 py-1 rounded text-[#DC2626] font-bold hover:bg-white/60">
+              Overdue (7)
+            </button>
+            <button onclick="switchFollowupTab('completed')" id="tabBtnCompleted" class="px-3 py-1 rounded text-[#16A36A] font-semibold hover:bg-white/60">
+              Completed (8)
+            </button>
+          </div>
+
+          <!-- Filter by Activity Type -->
+          <select id="filterActivityType" onchange="filterFollowupTable()" class="bg-[#FFFFFF] border border-[#E5E7EB] text-[#202938] font-medium text-[12.5px] rounded px-2.5 py-1.5 focus:outline-none focus:border-[#2563EB]">
+            <option value="">Activity: All Types</option>
+            <option value="Proposal">✉️ Proposal Review</option>
+            <option value="Demo">🎥 Product Demo</option>
+            <option value="Call">📞 Phone Call</option>
+            <option value="Meeting">🤝 Chamber Meeting</option>
+          </select>
+
+          <!-- Filter by Priority -->
+          <select id="filterPriority" onchange="filterFollowupTable()" class="bg-[#FFFFFF] border border-[#E5E7EB] text-[#202938] font-medium text-[12.5px] rounded px-2.5 py-1.5 focus:outline-none focus:border-[#2563EB]">
+            <option value="">Priority: All</option>
+            <option value="URGENT">Urgent (Red)</option>
+            <option value="HIGH">High (Amber)</option>
+            <option value="MEDIUM">Medium (Blue)</option>
+          </select>
+
+          <!-- Filter by Record Type -->
+          <select id="filterRecordType" onchange="filterFollowupTable()" class="bg-[#FFFFFF] border border-[#E5E7EB] text-[#202938] font-medium text-[12.5px] rounded px-2.5 py-1.5 focus:outline-none focus:border-[#2563EB]">
+            <option value="">Record: All</option>
+            <option value="PROSPECT">Prospects</option>
+            <option value="CLIENT">Clients</option>
+            <option value="AT-RISK">At-Risk</option>
+          </select>
+
+          <button onclick="clearFollowupFilters()" class="text-[12px] text-[#667085] hover:text-[#DC5252] font-medium px-2 py-1">Clear</button>
+        </div>
+
+        <!-- Right: Search & Date Range -->
+        <div class="flex items-center gap-2">
+          <input type="text" id="followupSearchInput" onkeyup="filterFollowupTable()" placeholder="Search advocate, firm, task..." 
+                 class="w-56 bg-[#F7F8FA] border border-[#E5E7EB] rounded px-3 py-1.5 text-[12.5px] text-[#202938] focus:outline-none focus:border-[#2563EB] focus:bg-[#FFFFFF]">
+          <button onclick="triggerToast('Filtering for this court term...')" class="flex items-center gap-1.5 bg-[#FFFFFF] border border-[#E5E7EB] hover:bg-[#F7F8FA] px-2.5 py-1.5 rounded text-[12.5px] font-medium text-[#202938]">
+            <svg class="w-3.5 h-3.5 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span>Date Range</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- ARCHETYPE 1: HIGH-DENSITY LIST VIEW (TABLE)                           -->
+      <!-- ===================================================================== -->
+      <div id="layoutList" class="bg-[#FFFFFF] rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)] overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-[13px]">
+            <thead>
+              <tr class="bg-[#F7F8FA] border-b border-[#E5E7EB] text-[#667085] text-[11.5px] font-semibold uppercase tracking-wider">
+                <th class="w-8 px-3 py-2.5 text-center">
+                  <input type="checkbox" class="rounded border-[#CBD5E1] text-[#2563EB]">
+                </th>
+                <th class="px-3.5 py-2.5">Prospect / Client Name</th>
+                <th class="px-3 py-2.5">Phone Number</th>
+                <th class="px-3 py-2.5">Record Type</th>
+                <th class="px-3 py-2.5">Activity Type</th>
+                <th class="px-3 py-2.5">Follow-up Date & Time</th>
+                <th class="px-3 py-2.5">Priority</th>
+                <th class="px-3 py-2.5">Salesperson</th>
+                <th class="px-3 py-2.5">Reminder Status</th>
+                <th class="px-3 py-2.5 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="followupsTbody" class="divide-y divide-[#E5E7EB] bg-[#FFFFFF]">
+              
+              <!-- Task 1: Overdue Task (Pulsing Red SLA Alert) -->
+              <tr class="followup-row hover:bg-[#F9FAFB] transition-colors bg-[#FEF2F2]/25" data-status="overdue" data-priority="URGENT" data-record="PROSPECT" data-activity="Proposal">
+                <td class="px-3 py-3 text-center">
+                  <input type="checkbox" onchange="promptCompleteTask('task_1', 'Send Chamber Pro Proposal & GST Invoice Draft', 'Apex Legal Partners')" class="rounded border-[#CBD5E1] text-[#2563EB] cursor-pointer">
+                </td>
+                <td class="px-3.5 py-3">
+                  <div class="font-bold text-[#202938] leading-tight">Apex Legal Partners</div>
+                  <div class="text-[11px] text-[#667085]">Adv. Rajesh Sharma • Bar: D/1982/2012</div>
+                </td>
+                <td class="px-3 py-3 font-mono text-[12px] text-[#2563EB]">
+                  <a href="tel:+919810123456" class="hover:underline">📞 +91 98101 23456</a>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded text-[10.5px] font-bold bg-[#EFF6FF] text-[#2563EB] border border-[#BFDBFE]">
+                    PROSPECT
+                  </span>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 bg-[#EEF2FF] text-[#4F46E5] px-2 py-0.5 rounded text-[11px] font-medium">
+                    ✉️ Proposal Review
+                  </span>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="text-[#DC2626] font-bold text-[12px] block">Today, 10:00 AM</span>
+                  <span class="text-[10px] text-[#DC2626] font-extrabold uppercase">3h 28m Overdue</span>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded-full text-[10.5px] font-bold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]">
+                    URGENT
+                  </span>
+                </td>
+                <td class="px-3 py-3">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded-full bg-[#2563EB] text-white flex items-center justify-center text-[9px] font-bold">SJ</div>
+                    <span class="text-[12px] text-[#667085]">Sarah J.</span>
+                  </div>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-pulse"></span> Overdue
+                  </span>
+                </td>
+                <td class="px-3 py-3 text-right">
+                  <div class="flex items-center justify-end gap-1">
+                    <button onclick="promptCompleteTask('task_1', 'Send Chamber Pro Proposal & GST Invoice Draft', 'Apex Legal Partners')" class="px-2.5 py-1 bg-[#16A36A] hover:bg-[#15803D] text-white rounded text-[11px] font-bold shadow-xs">
+                      Complete ✓
+                    </button>
+                    <button onclick="openReschedulePopover('task_1', 'Apex Legal Partners')" class="p-1 text-[#667085] hover:text-[#2563EB] rounded hover:bg-[#EFF6FF]" title="Reschedule / Snooze">
+                      ⏱️
+                    </button>
+                    <button onclick="openReassignModal('task_1', 'Apex Legal Partners')" class="p-1 text-[#667085] hover:text-[#2563EB] rounded hover:bg-[#F7F8FA]" title="Reassign Salesperson">
+                      👤
+                    </button>
+                    <button onclick="openPeekDrawer('Apex Legal Partners', 'Adv. Rajesh Sharma', '+91 98101 23456')" class="p-1 text-[#667085] hover:text-[#202938] rounded hover:bg-[#F7F8FA]" title="View Contact Drawer">
+                      👁️
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Task 2: Due Today Task (Amber Reminder) -->
+              <tr class="followup-row hover:bg-[#F9FAFB] transition-colors bg-[#FFF7ED]/25" data-status="today" data-priority="HIGH" data-record="PROSPECT" data-activity="Demo">
+                <td class="px-3 py-3 text-center">
+                  <input type="checkbox" onchange="promptCompleteTask('task_2', 'Product Demo Walkthrough (IP & Trademark Suite)', 'Chitale & Associates')" class="rounded border-[#CBD5E1] text-[#2563EB] cursor-pointer">
+                </td>
+                <td class="px-3.5 py-3">
+                  <div class="font-bold text-[#202938] leading-tight">Chitale & Associates</div>
+                  <div class="text-[11px] text-[#667085]">Adv. Sneha Chitale • Bombay High Court</div>
+                </td>
+                <td class="px-3 py-3 font-mono text-[12px] text-[#2563EB]">
+                  <a href="tel:+919820244910" class="hover:underline">📞 +91 98202 44910</a>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded text-[10.5px] font-bold bg-[#EFF6FF] text-[#2563EB] border border-[#BFDBFE]">
+                    PROSPECT
+                  </span>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 bg-[#F5F3FF] text-[#7C3AED] px-2 py-0.5 rounded text-[11px] font-medium">
+                    🎥 Product Demo
+                  </span>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="text-[#202938] font-bold text-[12px] block">Today, 3:00 PM</span>
+                  <span class="text-[10px] text-[#EA580C] font-semibold">Due in 1 hour 30m</span>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded-full text-[10.5px] font-bold bg-[#FFF7ED] text-[#EA580C] border border-[#FED7AA]">
+                    HIGH
+                  </span>
+                </td>
+                <td class="px-3 py-3">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded-full bg-[#2563EB] text-white flex items-center justify-center text-[9px] font-bold">SJ</div>
+                    <span class="text-[12px] text-[#667085]">Sarah J.</span>
+                  </div>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#FFF7ED] text-[#EA580C] border border-[#FED7AA]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#EA580C]"></span> Due Today
+                  </span>
+                </td>
+                <td class="px-3 py-3 text-right">
+                  <div class="flex items-center justify-end gap-1">
+                    <button onclick="promptCompleteTask('task_2', 'Product Demo Walkthrough (IP & Trademark Suite)', 'Chitale & Associates')" class="px-2.5 py-1 bg-[#16A36A] hover:bg-[#15803D] text-white rounded text-[11px] font-bold shadow-xs">
+                      Complete ✓
+                    </button>
+                    <button onclick="openReschedulePopover('task_2', 'Chitale & Associates')" class="p-1 text-[#667085] hover:text-[#2563EB] rounded hover:bg-[#EFF6FF]">
+                      ⏱️
+                    </button>
+                    <button onclick="openPeekDrawer('Chitale & Associates', 'Adv. Sneha Chitale', '+91 98202 44910')" class="p-1 text-[#667085] hover:text-[#202938] rounded hover:bg-[#F7F8FA]">
+                      👁️
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Task 3: Upcoming Task (Blue Scheduled) -->
+              <tr class="followup-row hover:bg-[#F9FAFB] transition-colors" data-status="upcoming" data-priority="MEDIUM" data-record="CLIENT" data-activity="Meeting">
+                <td class="px-3 py-3 text-center">
+                  <input type="checkbox" onchange="promptCompleteTask('task_3', 'Quarterly CS Feature Review & Seat Expansion', 'Justice Chambers & Co.')" class="rounded border-[#CBD5E1] text-[#2563EB] cursor-pointer">
+                </td>
+                <td class="px-3.5 py-3">
+                  <div class="font-bold text-[#202938] leading-tight">Justice Chambers & Co.</div>
+                  <div class="text-[11px] text-[#667085]">Adv. Vikramaditya Sen • Calcutta & Delhi HC</div>
+                </td>
+                <td class="px-3 py-3 font-mono text-[12px] text-[#2563EB]">
+                  <a href="tel:+919830077215" class="hover:underline">📞 +91 98300 77215</a>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded text-[10.5px] font-bold bg-[#ECFDF5] text-[#16A36A] border border-[#A7F3D0]">
+                    CLIENT
+                  </span>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 bg-[#F0FDF4] text-[#16A34A] px-2 py-0.5 rounded text-[11px] font-medium">
+                    🤝 Chamber Meeting
+                  </span>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="text-[#202938] font-medium text-[12px] block">Tomorrow, 11:30 AM</span>
+                  <span class="text-[10px] text-[#667085]">In 22 hours</span>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded-full text-[10.5px] font-medium bg-[#EFF6FF] text-[#2563EB] border border-[#BFDBFE]">
+                    MEDIUM
+                  </span>
+                </td>
+                <td class="px-3 py-3">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded-full bg-[#16A36A] text-white flex items-center justify-center text-[9px] font-bold">DK</div>
+                    <span class="text-[12px] text-[#667085]">David K.</span>
+                  </div>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#F0F9FF] text-[#0284C7] border border-[#BAE6FD]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#0284C7]"></span> Upcoming
+                  </span>
+                </td>
+                <td class="px-3 py-3 text-right">
+                  <div class="flex items-center justify-end gap-1">
+                    <button onclick="promptCompleteTask('task_3', 'Quarterly CS Feature Review & Seat Expansion', 'Justice Chambers & Co.')" class="px-2.5 py-1 bg-white border border-[#CBD5E1] text-[#202938] rounded text-[11px] font-medium hover:bg-[#F7F8FA]">
+                      Mark Done
+                    </button>
+                    <button onclick="openReschedulePopover('task_3', 'Justice Chambers & Co.')" class="p-1 text-[#667085] hover:text-[#202938] rounded">
+                      ⏱️
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Task 4: At-Risk Retention Call (Urgent) -->
+              <tr class="followup-row hover:bg-[#F9FAFB] transition-colors bg-[#FFF7ED]/30" data-status="overdue" data-priority="URGENT" data-record="AT-RISK" data-activity="Call">
+                <td class="px-3 py-3 text-center">
+                  <input type="checkbox" onchange="promptCompleteTask('task_4', 'Urgent Retention Review: Address Dropped Usage & Expiry', 'Singhania & Partners')" class="rounded border-[#CBD5E1] text-[#2563EB] cursor-pointer">
+                </td>
+                <td class="px-3.5 py-3">
+                  <div class="font-bold text-[#202938] leading-tight">Singhania & Partners</div>
+                  <div class="text-[11px] text-[#EA580C] font-semibold">Health Score: 32/100 • Renewal in 12 days</div>
+                </td>
+                <td class="px-3 py-3 font-mono text-[12px] text-[#2563EB]">
+                  <a href="tel:+919930488129" class="hover:underline">📞 +91 99304 88129</a>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded text-[10.5px] font-bold bg-[#FFF7ED] text-[#EA580C] border border-[#FED7AA]">
+                    AT-RISK
+                  </span>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 bg-[#FFF7ED] text-[#EA580C] px-2 py-0.5 rounded text-[11px] font-medium">
+                    🛡️ Retention Call
+                  </span>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="text-[#DC2626] font-bold text-[12px] block">Nov 18, 5:00 PM</span>
+                  <span class="text-[10px] text-[#DC2626] font-bold">Overdue by 20h</span>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded-full text-[10.5px] font-bold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]">
+                    URGENT
+                  </span>
+                </td>
+                <td class="px-3 py-3">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded-full bg-[#2563EB] text-white flex items-center justify-center text-[9px] font-bold">SJ</div>
+                    <span class="text-[12px] text-[#667085]">Sarah J.</span>
+                  </div>
+                </td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-pulse"></span> Overdue
+                  </span>
+                </td>
+                <td class="px-3 py-3 text-right">
+                  <button onclick="promptCompleteTask('task_4', 'Urgent Retention Review: Address Dropped Usage & Expiry', 'Singhania & Partners')" class="px-2.5 py-1 bg-[#EA580C] hover:bg-[#C2410C] text-white rounded text-[11px] font-bold shadow-xs">
+                    Intervene ✓
+                  </button>
+                </td>
+              </tr>
+
+              <!-- Task 5: Completed Task (Strikethrough & Resolved) -->
+              <tr class="followup-row hover:bg-[#F9FAFB] transition-colors opacity-60 bg-[#F0FDF4]/30" data-status="completed" data-priority="MEDIUM" data-record="PROSPECT" data-activity="Call">
+                <td class="px-3 py-3 text-center">
+                  <input type="checkbox" checked disabled class="rounded border-[#CBD5E1] text-[#16A36A]">
+                </td>
+                <td class="px-3.5 py-3">
+                  <div class="font-bold text-[#16A34A] line-through leading-tight">LexCor Advocates</div>
+                  <div class="text-[10.5px] text-[#667085]">Completed by Sarah Jenkins • Nov 18, 11:30 AM</div>
+                </td>
+                <td class="px-3 py-3 font-mono text-[12px] text-[#667085]">+91 97110 55823</td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded text-[10.5px] font-bold bg-[#EFF6FF] text-[#2563EB]">PROSPECT</span>
+                </td>
+                <td class="px-3 py-3 text-[#667085]">📞 Discovery Call</td>
+                <td class="px-3 py-3 text-[12px] text-[#16A36A] font-semibold">Resolved Nov 18</td>
+                <td class="px-3 py-3 text-[10.5px] text-[#667085]">MEDIUM</td>
+                <td class="px-3 py-3 text-[#667085]">Sarah J.</td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#F0FDF4] text-[#16A34A] border border-[#BBF7D0]">
+                    ✓ Completed
+                  </span>
+                </td>
+                <td class="px-3 py-3 text-right text-[11.5px] text-[#667085]">
+                  <span>Archived</span>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- ARCHETYPE 2: INTERACTIVE CALENDAR VIEW                                -->
+      <!-- ===================================================================== -->
+      <div id="layoutCalendar" class="hidden bg-[#FFFFFF] rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)] p-5 space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-[#E5E7EB]">
+          <div class="flex items-center gap-3">
+            <h3 class="text-[16px] font-bold text-[#202938]">Thursday, November 19, 2026</h3>
+            <span class="text-[11.5px] bg-[#EFF6FF] text-[#2563EB] px-2 py-0.5 rounded font-semibold">Chamber Working Hours</span>
+          </div>
+          <div class="flex items-center gap-1 text-[12px]">
+            <button onclick="triggerToast('Viewing Previous Day')" class="px-2 py-1 rounded border border-[#E5E7EB] hover:bg-[#F7F8FA]">‹</button>
+            <button class="px-3 py-1 rounded bg-[#2563EB] text-white font-bold">Today</button>
+            <button onclick="triggerToast('Viewing Next Day')" class="px-2 py-1 rounded border border-[#E5E7EB] hover:bg-[#F7F8FA]">›</button>
+          </div>
+        </div>
+
+        <!-- Hourly Schedule Grid -->
+        <div class="space-y-3 text-[13px]">
+          <!-- 10:00 AM (Overdue) -->
+          <div class="flex items-start gap-4 p-3 rounded-lg border border-[#FECACA] bg-[#FEF2F2]/40">
+            <div class="w-20 font-bold text-[#DC2626] text-right flex-shrink-0">10:00 AM</div>
+            <div class="flex-1">
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] font-bold bg-[#DC2626] text-white px-1.5 py-0.2 rounded uppercase">OVERDUE</span>
+                <span class="font-bold text-[#202938]">Apex Legal Partners • Adv. Rajesh Sharma</span>
+                <span class="text-[#667085] text-[12px]">(✉️ Send Proposal)</span>
+              </div>
+              <div class="text-[12px] text-[#667085] mt-0.5">Assigned to Sarah Jenkins • 12-seat Chamber Pro quotation</div>
+            </div>
+            <button onclick="promptCompleteTask('cal_1', 'Send Proposal', 'Apex Legal Partners')" class="px-3 py-1 bg-[#16A36A] text-white text-[11px] font-bold rounded">Complete ✓</button>
+          </div>
+
+          <!-- 03:00 PM (Due Today) -->
+          <div class="flex items-start gap-4 p-3 rounded-lg border border-[#FED7AA] bg-[#FFF7ED]/40">
+            <div class="w-20 font-bold text-[#EA580C] text-right flex-shrink-0">03:00 PM</div>
+            <div class="flex-1">
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] font-bold bg-[#EA580C] text-white px-1.5 py-0.2 rounded uppercase">DUE TODAY</span>
+                <span class="font-bold text-[#202938]">Chitale & Associates • Adv. Sneha Chitale</span>
+                <span class="text-[#7C3AED] text-[12px] font-semibold">(🎥 Product Demo)</span>
+              </div>
+              <div class="text-[12px] text-[#667085] mt-0.5">Zoom meeting link booked • IP & Trademark judgment analysis</div>
+            </div>
+            <button onclick="triggerToast('Launching Zoom Room...', 'Demo Launch')" class="px-3 py-1 bg-[#2563EB] text-white text-[11px] font-bold rounded">Launch Demo</button>
+          </div>
+
+          <!-- 05:30 PM (Scheduled) -->
+          <div class="flex items-start gap-4 p-3 rounded-lg border border-[#E5E7EB] bg-[#FFFFFF]">
+            <div class="w-20 font-bold text-[#202938] text-right flex-shrink-0">05:30 PM</div>
+            <div class="flex-1">
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] font-medium bg-[#EFF6FF] text-[#2563EB] px-1.5 py-0.2 rounded uppercase">UPCOMING</span>
+                <span class="font-bold text-[#202938]">LexCor Advocates • Adv. Meenakshi Iyer</span>
+                <span class="text-[#202938] text-[12px]">(🤝 Contract Review)</span>
+              </div>
+              <div class="text-[12px] text-[#667085] mt-0.5">Evening chamber call following Bombay HC rising</div>
+            </div>
+            <button onclick="openReschedulePopover('cal_3', 'LexCor Advocates')" class="px-2.5 py-1 border border-[#E5E7EB] text-[11.5px] rounded hover:bg-[#F7F8FA]">Reschedule</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- ARCHETYPE 3: STATUS KANBAN BOARD                                      -->
+      <!-- ===================================================================== -->
+      <div id="layoutKanban" class="hidden grid grid-cols-4 gap-4 items-start">
+        
+        <!-- Column 1: Overdue (7) -->
+        <div class="bg-[#F8FAFC] p-3.5 rounded-lg border border-[#FECACA] space-y-3">
+          <div class="flex items-center justify-between pb-2 border-b border-[#FECACA]">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse"></span>
+              <span class="font-bold text-[13px] text-[#DC2626]">Overdue SLA (7)</span>
+            </div>
+            <span class="text-[11px] font-extrabold text-[#DC2626] bg-[#FEF2F2] px-2 py-0.5 rounded">Urgent</span>
+          </div>
+
+          <!-- Card 1 -->
+          <div class="p-3 bg-white rounded border border-[#FECACA] shadow-xs space-y-1.5">
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="font-bold text-[#DC2626]">3h Overdue</span>
+              <span class="text-[#4F46E5] font-semibold">✉️ Proposal</span>
+            </div>
+            <div class="font-bold text-[13px] text-[#202938]">Apex Legal Partners</div>
+            <div class="text-[11.5px] text-[#667085]">Adv. Rajesh Sharma</div>
+            <div class="pt-2 flex justify-between items-center border-t border-[#E5E7EB]">
+              <span class="text-[11px] text-[#667085]">Sarah J.</span>
+              <button onclick="promptCompleteTask('kb_1', 'Send Proposal', 'Apex Legal Partners')" class="px-2 py-0.5 bg-[#16A36A] text-white rounded text-[11px] font-bold">Done ✓</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: Due Today (5) -->
+        <div class="bg-[#F8FAFC] p-3.5 rounded-lg border border-[#FED7AA] space-y-3">
+          <div class="flex items-center justify-between pb-2 border-b border-[#FED7AA]">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-[#EA580C]"></span>
+              <span class="font-bold text-[13px] text-[#EA580C]">Due Today (5)</span>
+            </div>
+            <span class="text-[11px] font-bold text-[#EA580C] bg-[#FFF7ED] px-2 py-0.5 rounded">Active</span>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="p-3 bg-white rounded border border-[#FED7AA] shadow-xs space-y-1.5">
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="font-bold text-[#EA580C]">Due 3:00 PM</span>
+              <span class="text-[#7C3AED] font-semibold">🎥 Demo</span>
+            </div>
+            <div class="font-bold text-[13px] text-[#202938]">Chitale & Associates</div>
+            <div class="text-[11.5px] text-[#667085]">Adv. Sneha Chitale</div>
+            <div class="pt-2 flex justify-between items-center border-t border-[#E5E7EB]">
+              <span class="text-[11px] text-[#667085]">Sarah J.</span>
+              <button onclick="promptCompleteTask('kb_2', 'Demo Call', 'Chitale & Associates')" class="px-2 py-0.5 bg-[#16A36A] text-white rounded text-[11px] font-bold">Done ✓</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 3: Upcoming (14) -->
+        <div class="bg-[#F8FAFC] p-3.5 rounded-lg border border-[#E5E7EB] space-y-3">
+          <div class="flex items-center justify-between pb-2 border-b border-[#E5E7EB]">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-[#0284C7]"></span>
+              <span class="font-bold text-[13px] text-[#0284C7]">Upcoming (14)</span>
+            </div>
+            <span class="text-[11px] text-[#667085]">Scheduled</span>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="p-3 bg-white rounded border border-[#E5E7EB] shadow-xs space-y-1.5">
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="font-medium text-[#667085]">Tomorrow 11:30 AM</span>
+              <span class="text-[#16A34A] font-semibold">🤝 Meeting</span>
+            </div>
+            <div class="font-bold text-[13px] text-[#202938]">Justice Chambers & Co.</div>
+            <div class="text-[11.5px] text-[#667085]">Adv. Vikramaditya Sen</div>
+            <div class="pt-2 flex justify-between items-center border-t border-[#E5E7EB]">
+              <span class="text-[11px] text-[#667085]">David K.</span>
+              <button onclick="openReschedulePopover('kb_3', 'Justice Chambers')" class="px-2 py-0.5 border border-[#E5E7EB] rounded text-[11px]">Snooze</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 4: Completed (8) -->
+        <div class="bg-[#F8FAFC] p-3.5 rounded-lg border border-[#A7F3D0] space-y-3">
+          <div class="flex items-center justify-between pb-2 border-b border-[#A7F3D0]">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-[#16A36A]"></span>
+              <span class="font-bold text-[13px] text-[#16A36A]">Completed (8)</span>
+            </div>
+            <span class="text-[11px] font-bold text-[#16A36A] bg-[#ECFDF5] px-2 py-0.5 rounded">Resolved</span>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="p-3 bg-white rounded border border-[#A7F3D0] shadow-xs space-y-1.5 opacity-70">
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="font-bold text-[#16A36A]">✓ Resolved Nov 18</span>
+              <span class="text-[#667085]">📞 Call</span>
+            </div>
+            <div class="font-bold text-[13px] text-[#16A34A] line-through">LexCor Advocates</div>
+            <div class="text-[11.5px] text-[#667085]">Discovery Call Completed</div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: COMPLETE FOLLOW-UP RESOLUTION MODAL (Compound Loop)                -->
+  <!-- ========================================================================= -->
+  <div id="completeTaskModal" class="hidden fixed inset-0 bg-[#202938]/40 backdrop-blur-[2px] z-50 flex items-center justify-center p-4">
+    <div class="bg-[#FFFFFF] rounded-xl max-w-lg w-full p-6 shadow-2xl border border-[#E5E7EB] space-y-4">
+      <div class="flex items-start justify-between pb-2 border-b border-[#E5E7EB]">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-[#ECFDF5] text-[#16A36A] flex items-center justify-center font-bold text-sm">✓</div>
+          <div>
+            <h3 class="text-[17px] font-bold text-[#202938]">Complete Follow-up Task</h3>
+            <p id="ctTaskTitle" class="text-[12px] text-[#667085]">Send Chamber Pro Proposal & GST Invoice</p>
+          </div>
+        </div>
+        <button onclick="closeCompleteModal()" class="text-[#667085] hover:text-[#202938] text-xl font-bold">×</button>
+      </div>
+
+      <div class="space-y-3.5 text-[13px]">
+        <div>
+          <label class="block font-bold text-[#202938] mb-1">1. What happened? *</label>
+          <textarea id="ctNotes" rows="2" placeholder="Summary of discussion, partner feedback, or delivery status..." 
+                    class="w-full border border-[#E5E7EB] rounded p-2.5 text-[12.5px] focus:outline-none focus:border-[#2563EB]">Delivered proposal via official email and confirmed over WhatsApp with Managing Partner.</textarea>
+        </div>
+
+        <div>
+          <label class="block font-bold text-[#202938] mb-1">2. What was the outcome? *</label>
+          <select id="ctOutcome" class="w-full border border-[#E5E7EB] rounded px-3 py-2 bg-white font-medium text-[#202938] focus:outline-none focus:border-[#2563EB]">
+            <option>✓ Successful / Proposal Sent & Partner Evaluating</option>
+            <option>⏳ Needs More Time / Hearing in Progress</option>
+            <option>📅 Rescheduled by Advocate</option>
+            <option>❌ Unreachable / Left Voicemail</option>
+          </select>
+        </div>
+
+        <div class="p-3 bg-[#F8FAFC] rounded-lg border border-[#E5E7EB] flex items-center justify-between">
+          <div>
+            <div class="font-bold text-[#202938]">3. Is another follow-up required?</div>
+            <div class="text-[11.5px] text-[#667085]">Automatically queue next sales commitment.</div>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="ctNextToggle" checked onchange="toggleNextTaskFields(this)" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#2563EB]"></div>
+          </label>
+        </div>
+
+        <div id="ctNextFields" class="grid grid-cols-2 gap-3 p-3 bg-[#EFF6FF]/40 rounded-lg border border-[#BFDBFE]">
+          <div>
+            <label class="block font-medium text-[#202938] text-[12px] mb-1">Next Follow-up Date *</label>
+            <input type="date" value="2026-11-21" class="w-full border border-[#E5E7EB] rounded px-2.5 py-1.5 text-[12px] bg-white">
+          </div>
+          <div>
+            <label class="block font-medium text-[#202938] text-[12px] mb-1">Activity Channel</label>
+            <select class="w-full border border-[#E5E7EB] rounded px-2.5 py-1.5 text-[12px] bg-white">
+              <option>📞 Phone Call</option>
+              <option>🤝 Chamber Meeting</option>
+              <option>✉️ Email</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[11px] text-[#667085] flex items-center gap-1.5">
+        <span>🛡️</span>
+        <span>Audit Trail: Completed tasks are archived and never deleted.</span>
+      </div>
+
+      <div class="flex items-center justify-end gap-3 pt-3 border-t border-[#E5E7EB]">
+        <button onclick="closeCompleteModal()" class="px-4 py-2 border border-[#E5E7EB] rounded text-[13px] text-[#202938]">Cancel</button>
+        <button onclick="executeCompleteTask()" class="px-5 py-2 bg-[#16A36A] hover:bg-[#15803D] text-white rounded text-[13px] font-bold shadow-xs">Complete & Schedule Next ➔</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: RESCHEDULE / SNOOZE POPOVER                                        -->
+  <!-- ========================================================================= -->
+  <div id="rescheduleModal" class="hidden fixed inset-0 bg-[#202938]/40 backdrop-blur-[2px] z-50 flex items-center justify-center p-4">
+    <div class="bg-[#FFFFFF] rounded-xl max-w-sm w-full p-5 shadow-2xl border border-[#E5E7EB] space-y-3.5">
+      <div class="flex items-start justify-between pb-2 border-b border-[#E5E7EB]">
+        <div>
+          <h3 class="text-[16px] font-bold text-[#202938]">Reschedule Follow-up</h3>
+          <p id="reschedFirm" class="text-[11.5px] text-[#667085]">Apex Legal Partners</p>
+        </div>
+        <button onclick="closeRescheduleModal()" class="text-[#667085] hover:text-[#202938] text-xl font-bold">×</button>
+      </div>
+
+      <!-- Quick-Snooze Presets -->
+      <div class="space-y-1.5 text-[12.5px]">
+        <div class="font-bold text-[#667085] text-[11px] uppercase tracking-wider mb-1">Quick Presets</div>
+        <button onclick="applySnooze('Tomorrow Morning 10:00 AM')" class="w-full text-left p-2.5 rounded bg-[#F8FAFC] border border-[#E5E7EB] hover:border-[#2563EB] hover:bg-[#EFF6FF] font-medium flex justify-between">
+          <span>Tomorrow Morning</span> <span class="text-[#667085]">10:00 AM</span>
+        </button>
+        <button onclick="applySnooze('Tomorrow Afternoon 03:00 PM')" class="w-full text-left p-2.5 rounded bg-[#F8FAFC] border border-[#E5E7EB] hover:border-[#2563EB] hover:bg-[#EFF6FF] font-medium flex justify-between">
+          <span>Tomorrow Afternoon</span> <span class="text-[#667085]">03:00 PM</span>
+        </button>
+        <button onclick="applySnooze('In 2 Business Days')" class="w-full text-left p-2.5 rounded bg-[#F8FAFC] border border-[#E5E7EB] hover:border-[#2563EB] hover:bg-[#EFF6FF] font-medium flex justify-between">
+          <span>In 2 Days</span> <span class="text-[#667085]">Nov 21, 11 AM</span>
+        </button>
+        <button onclick="applySnooze('Next Monday 10:00 AM')" class="w-full text-left p-2.5 rounded bg-[#F8FAFC] border border-[#E5E7EB] hover:border-[#2563EB] hover:bg-[#EFF6FF] font-medium flex justify-between">
+          <span>Next Monday</span> <span class="text-[#667085]">Nov 24</span>
+        </button>
+      </div>
+
+      <div class="pt-2 border-t border-[#E5E7EB]">
+        <label class="block font-medium text-[12px] text-[#202938] mb-1">Custom Date & Time</label>
+        <input type="datetime-local" class="w-full border border-[#E5E7EB] rounded p-1.5 text-xs">
+      </div>
+
+      <div class="flex justify-end gap-2 pt-2">
+        <button onclick="closeRescheduleModal()" class="px-3 py-1.5 border border-[#E5E7EB] text-[12px] rounded">Cancel</button>
+        <button onclick="applySnooze('Custom Selected Time')" class="px-3.5 py-1.5 bg-[#2563EB] text-white text-[12px] rounded font-semibold">Save Date</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- RIGHT-SIDE CONTACT PEEK DRAWER (600px)                                    -->
+  <!-- ========================================================================= -->
+  <div id="contactPeekDrawer" class="hidden fixed inset-y-0 right-0 w-[600px] bg-[#FFFFFF] shadow-2xl border-l border-[#E5E7EB] z-50 flex flex-col">
+    <div class="p-5 border-b border-[#E5E7EB] flex items-center justify-between bg-[#FFFFFF]">
+      <div>
+        <h2 id="pdFirm" class="text-[17px] font-bold text-[#202938]">Apex Legal Partners</h2>
+        <div id="pdAdv" class="text-[12px] text-[#667085] mt-0.5">Adv. Rajesh Sharma • Bar ID: D/1982/2012</div>
+      </div>
+      <button onclick="closePeekDrawer()" class="text-[#667085] hover:text-[#202938] p-1.5 rounded-md hover:bg-[#F7F8FA]">×</button>
+    </div>
+
+    <div class="px-5 py-2.5 bg-[#F8FAFC] border-b border-[#E5E7EB] flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <button onclick="triggerToast('Dialing advocate on softphone...')" class="text-[12px] bg-white border border-[#E5E7EB] px-2.5 py-1.5 rounded font-medium">📞 1-Click Call</button>
+        <button onclick="triggerToast('Opening email composer...')" class="text-[12px] bg-white border border-[#E5E7EB] px-2.5 py-1.5 rounded font-medium">✉️ Email</button>
+      </div>
+      <button onclick="promptCompleteTask('peek_comp', 'Follow-up Task', 'Apex Legal Partners')" class="text-[12px] bg-[#16A36A] text-white px-3 py-1.5 rounded font-bold">Complete Task ✓</button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-5 space-y-4 text-[13px]">
+      <div class="p-3.5 bg-[#F8FAFC] rounded border border-[#E5E7EB]">
+        <div class="font-bold text-[#202938] text-[12px] uppercase mb-1">Contact Summary</div>
+        <div>Phone: <strong class="font-mono text-[#2563EB]">+91 98101 23456</strong></div>
+        <div>Email: <strong class="text-[#202938]">sharma@apexlegal.in</strong></div>
+        <div>Jurisdiction: <strong>Supreme Court & Delhi High Court</strong></div>
+      </div>
+
+      <div>
+        <div class="font-bold text-[#202938] text-[12px] uppercase mb-2">Recent Timeline Notes</div>
+        <div class="p-2.5 bg-white border border-[#E5E7EB] rounded text-[12px] text-[#667085]">
+          "Demo completed successfully. Partner requested formal invoice draft for Chamber Pro 12-seat package."
+        </div>
+      </div>
+    </div>
+
+    <div class="p-4 border-t border-[#E5E7EB] flex justify-end">
+      <button onclick="closePeekDrawer()" class="px-4 py-2 border border-[#E5E7EB] rounded text-[13px]">Close Drawer</button>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast" class="hidden fixed bottom-6 right-6 bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg shadow-xl p-4 flex items-center gap-3 z-50 transition-all max-w-sm">
+    <div id="toastIcon" class="w-6 h-6 rounded-full bg-[#ECFDF5] text-[#16A36A] flex items-center justify-center font-bold text-xs flex-shrink-0">✓</div>
+    <div>
+      <div id="toastTitle" class="text-[13px] font-semibold text-[#202938]">Action Successful</div>
+      <div id="toastBody" class="text-[11.5px] text-[#667085]">Operation completed without errors.</div>
+    </div>
+  </div>
+
+  <!-- Interactive JavaScript Engine -->
+  <script>
+    let activeCompleteTaskId = null;
+
+    // View Switching: 5 Status Tabs
+    function switchFollowupTab(tab) {
+      const tabs = ['all', 'today', 'upcoming', 'overdue', 'completed'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tabBtn${t.charAt(0).toUpperCase() + t.slice(1)}`);
+        const sub = document.getElementById(`subnav${t.charAt(0).toUpperCase() + t.slice(1)}`);
+        if (btn) btn.className = 'px-3 py-1 rounded text-[#667085] hover:text-[#202938]';
+        if (sub) sub.className = 'w-full flex items-center justify-between py-1 px-1.5 rounded text-[12px] text-[#667085] hover:text-[#202938]';
+      });
+
+      const activeBtn = document.getElementById(`tabBtn${tab.charAt(0).toUpperCase() + tab.slice(1)}`);
+      const activeSub = document.getElementById(`subnav${tab.charAt(0).toUpperCase() + tab.slice(1)}`);
+      if (activeBtn) activeBtn.className = 'px-3 py-1 rounded bg-white shadow-xs font-bold text-[#202938]';
+      if (activeSub) activeSub.className = 'w-full flex items-center justify-between py-1 px-1.5 rounded text-[12px] font-bold text-[#2563EB] bg-[#EFF6FF]';
+
+      const rows = document.querySelectorAll('.followup-row');
+      rows.forEach(r => {
+        const rowStatus = r.getAttribute('data-status');
+        if (tab === 'all' || rowStatus === tab) {
+          r.style.display = '';
+        } else {
+          r.style.display = 'none';
+        }
+      });
+
+      triggerToast(`Switched view to ${tab.toUpperCase()} follow-ups`, 'View Switched');
+    }
+
+    // Archetype Switcher: List vs Calendar vs Kanban
+    function switchLayoutArchetype(layout) {
+      document.getElementById('layoutList').classList.add('hidden');
+      document.getElementById('layoutCalendar').classList.add('hidden');
+      document.getElementById('layoutKanban').classList.add('hidden');
+
+      ['viewBtnList', 'viewBtnCalendar', 'viewBtnKanban'].forEach(b => {
+        document.getElementById(b).className = 'px-2.5 py-1 rounded text-[#667085] hover:text-[#202938] flex items-center gap-1.5';
+      });
+
+      if (layout === 'list') {
+        document.getElementById('layoutList').classList.remove('hidden');
+        document.getElementById('viewBtnList').className = 'px-2.5 py-1 rounded bg-white shadow-xs font-bold text-[#202938] flex items-center gap-1.5';
+        triggerToast('Showing High-Density Table View', 'List Layout');
+      } else if (layout === 'calendar') {
+        document.getElementById('layoutCalendar').classList.remove('hidden');
+        document.getElementById('viewBtnCalendar').className = 'px-2.5 py-1 rounded bg-white shadow-xs font-bold text-[#202938] flex items-center gap-1.5';
+        triggerToast('Showing Court Hourly Calendar View', 'Calendar Layout');
+      } else if (layout === 'kanban') {
+        document.getElementById('layoutKanban').classList.remove('hidden');
+        document.getElementById('viewBtnKanban').className = 'px-2.5 py-1 rounded bg-white shadow-xs font-bold text-[#202938] flex items-center gap-1.5';
+        triggerToast('Showing Status Columnar Kanban Board', 'Kanban Layout');
+      }
+    }
+
+    // Complete Task Modal (Compound Resolution Loop)
+    function promptCompleteTask(id, title, firm) {
+      activeCompleteTaskId = id;
+      document.getElementById('ctTaskTitle').innerText = `${title} (${firm})`;
+      document.getElementById('completeTaskModal').classList.remove('hidden');
+    }
+
+    function closeCompleteModal() {
+      document.getElementById('completeTaskModal').classList.add('hidden');
+    }
+
+    function toggleNextTaskFields(toggle) {
+      document.getElementById('ctNextFields').classList.toggle('hidden', !toggle.checked);
+    }
+
+    function executeCompleteTask() {
+      closeCompleteModal();
+      triggerToast('Task completed! Resolution logged and next touchpoint scheduled.', 'Task Resolved');
+    }
+
+    // Reschedule Snooze Popover
+    function openReschedulePopover(id, firm) {
+      document.getElementById('reschedFirm').innerText = firm;
+      document.getElementById('rescheduleModal').classList.remove('hidden');
+    }
+
+    function closeRescheduleModal() {
+      document.getElementById('rescheduleModal').classList.add('hidden');
+    }
+
+    function applySnooze(preset) {
+      closeRescheduleModal();
+      triggerToast(`Task successfully rescheduled to: ${preset}`, 'Task Snoozed');
+    }
+
+    // Contact Peek Drawer
+    function openPeekDrawer(firm, adv, phone) {
+      document.getElementById('pdFirm').innerText = firm;
+      document.getElementById('pdAdv').innerText = `${adv} • Delhi High Court`;
+      document.getElementById('contactPeekDrawer').classList.remove('hidden');
+    }
+
+    function closePeekDrawer() {
+      document.getElementById('contactPeekDrawer').classList.add('hidden');
+    }
+
+    // Table Filtering
+    function filterFollowupTable() {
+      const q = document.getElementById('followupSearchInput').value.toLowerCase();
+      const act = document.getElementById('filterActivityType').value;
+      const prio = document.getElementById('filterPriority').value;
+      const rec = document.getElementById('filterRecordType').value;
+
+      document.querySelectorAll('.followup-row').forEach(r => {
+        const text = r.innerText.toLowerCase();
+        const matchesQ = !q || text.includes(q);
+        const matchesAct = !act || r.getAttribute('data-activity') === act;
+        const matchesPrio = !prio || r.getAttribute('data-priority') === prio;
+        const matchesRec = !rec || r.getAttribute('data-record') === rec;
+        r.style.display = (matchesQ && matchesAct && matchesPrio && matchesRec) ? '' : 'none';
+      });
+    }
+
+    function clearFollowupFilters() {
+      document.getElementById('followupSearchInput').value = '';
+      document.getElementById('filterActivityType').value = '';
+      document.getElementById('filterPriority').value = '';
+      document.getElementById('filterRecordType').value = '';
+      filterFollowupTable();
+      triggerToast('Follow-up filters cleared', 'Filters Reset');
+    }
+
+    // Toast Notification
+    function triggerToast(bodyText, titleText = 'Action Completed') {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastTitle').innerText = titleText;
+      document.getElementById('toastBody').innerText = bodyText;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>

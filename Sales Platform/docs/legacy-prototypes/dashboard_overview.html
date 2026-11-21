@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal Sales CRM - Dashboard Overview</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+    /* Custom subtle scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #F7F8FA; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+    
+    .pipeline-stage:hover .stage-card {
+      border-color: #2563EB;
+      box-shadow: 0 2px 4px rgba(37, 99, 235, 0.08);
+    }
+  </style>
+</head>
+<body class="bg-[#F7F8FA] text-[#202938] antialiased m-0 p-0 flex h-screen overflow-hidden">
+
+  <!-- ========================================================================= -->
+  <!-- SIDEBAR NAVIGATION (240px Fixed)                                          -->
+  <!-- ========================================================================= -->
+  <aside class="w-[240px] bg-[#FFFFFF] border-r border-[#E5E7EB] flex flex-col flex-shrink-0 select-none z-20">
+    <!-- Brand Header -->
+    <div class="h-16 flex items-center justify-between px-5 border-b border-[#E5E7EB]">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-[#2563EB] flex items-center justify-center text-white font-bold text-base shadow-sm">
+          ⚖️
+        </div>
+        <div>
+          <span class="font-bold text-[15px] tracking-tight text-[#202938]">LexisCRM</span>
+          <span class="block text-[10px] text-[#667085] font-medium leading-none">Legal Tech Sales</span>
+        </div>
+      </div>
+      <button class="text-[#667085] hover:text-[#202938] p-1 rounded hover:bg-[#F7F8FA]">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/></svg>
+      </button>
+    </div>
+
+    <!-- Workspace Jurisdiction Switcher -->
+    <div class="p-3 border-b border-[#E5E7EB]">
+      <div class="bg-[#F7F8FA] rounded-md p-2 flex items-center justify-between border border-[#E5E7EB] cursor-pointer hover:border-[#CBD5E1] transition-colors">
+        <div class="flex items-center gap-2 overflow-hidden">
+          <div class="w-2 h-2 rounded-full bg-[#16A36A]"></div>
+          <div class="truncate text-left">
+            <span class="block text-[11px] font-semibold text-[#202938] leading-tight truncate">Delhi High Court & NCR</span>
+            <span class="block text-[10px] text-[#667085]">Litigation Division</span>
+          </div>
+        </div>
+        <svg class="w-3.5 h-3.5 text-[#667085] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </div>
+    </div>
+
+    <!-- Navigation Menu Items -->
+    <nav class="flex-1 overflow-y-auto px-3 py-3 space-y-5 text-[13px]">
+      <!-- Group: Overview -->
+      <div>
+        <div class="px-2 text-[10px] font-semibold text-[#667085] uppercase tracking-wider mb-1.5">Overview</div>
+        <!-- Active Dashboard Link -->
+        <a href="#" class="flex items-center justify-between px-2.5 py-1.5 rounded-md bg-[#EFF6FF] text-[#2563EB] font-medium transition-colors border-r-2 border-[#2563EB]">
+          <div class="flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-[#2563EB]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+            <span>Dashboard</span>
+          </div>
+          <span class="w-2 h-2 rounded-full bg-[#2563EB]"></span>
+        </a>
+      </div>
+
+      <!-- Group: Pipeline & Accounts -->
+      <div>
+        <div class="px-2 text-[10px] font-semibold text-[#667085] uppercase tracking-wider mb-1.5">Pipeline & Accounts</div>
+        <a href="#" class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938] transition-colors">
+          <div class="flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            <span>Prospects</span>
+          </div>
+          <span class="text-[11px] font-semibold bg-[#F1F5F9] text-[#475569] px-1.5 py-0.2 rounded-full">148</span>
+        </a>
+
+        <!-- Clients Collapsible -->
+        <div class="mt-1">
+          <button class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938] transition-colors">
+            <div class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+              <span>Clients</span>
+            </div>
+            <svg class="w-3.5 h-3.5 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="ml-6 pl-2 border-l border-[#E5E7EB] mt-1 space-y-1">
+            <a href="#" class="flex items-center justify-between py-1 px-1.5 rounded text-[12px] text-[#667085] hover:text-[#202938]">
+              <span>Active Clients</span>
+              <span class="text-[11px] font-medium text-[#16A36A]">84</span>
+            </a>
+            <a href="#" class="flex items-center justify-between py-1 px-1.5 rounded text-[12px] text-[#667085] hover:text-[#202938]">
+              <span>At-Risk Clients</span>
+              <span class="px-1.5 py-0.2 rounded text-[10px] font-semibold bg-[#FFF7ED] text-[#EA580C] border border-[#FED7AA]">5</span>
+            </a>
+            <a href="#" class="flex items-center justify-between py-1 px-1.5 rounded text-[12px] text-[#667085] hover:text-[#202938]">
+              <span>Inactive / Expired</span>
+              <span class="text-[10px] text-[#98A2B3]">11</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group: Operations -->
+      <div>
+        <div class="px-2 text-[10px] font-semibold text-[#667085] uppercase tracking-wider mb-1.5">Operations</div>
+        <a href="#followups-section" class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938] transition-colors">
+          <div class="flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Follow-ups</span>
+          </div>
+          <span class="px-1.5 py-0.2 rounded text-[10px] font-semibold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]">7 due</span>
+        </a>
+        <a href="#" class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938] transition-colors">
+          <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+          <span>Plans & Subs</span>
+        </a>
+      </div>
+
+      <!-- Group: Intelligence & System -->
+      <div>
+        <div class="px-2 text-[10px] font-semibold text-[#667085] uppercase tracking-wider mb-1.5">Intelligence</div>
+        <a href="#" class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938] transition-colors">
+          <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          <span>Reports & Analytics</span>
+        </a>
+        <a href="#" class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938] transition-colors">
+          <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <span>Team Management</span>
+        </a>
+        <a href="#" class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938] transition-colors">
+          <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <span>Settings</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Sidebar Bottom: Rep Profile -->
+    <div class="p-3 border-t border-[#E5E7EB] bg-[#FFFFFF]">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="relative">
+            <div class="w-8 h-8 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-semibold text-xs">
+              SJ
+            </div>
+            <div class="w-2.5 h-2.5 rounded-full bg-[#16A36A] border-2 border-white absolute bottom-0 right-0"></div>
+          </div>
+          <div>
+            <div class="text-[12.5px] font-semibold text-[#202938] leading-tight">Sarah Jenkins</div>
+            <div class="text-[11px] text-[#667085]">Senior Sales Exec</div>
+          </div>
+        </div>
+        <button class="text-[#667085] hover:text-[#DC5252] p-1.5 rounded hover:bg-[#F7F8FA]" title="Sign Out">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN WORKSPACE CONTAINER                                                  -->
+  <!-- ========================================================================= -->
+  <div class="flex-1 flex flex-col h-screen overflow-hidden bg-[#F7F8FA]">
+
+    <!-- ======================================================================= -->
+    <!-- TOP NAVIGATION & SEARCH                                                 -->
+    <!-- ======================================================================= -->
+    <header class="h-16 bg-[#FFFFFF] border-b border-[#E5E7EB] px-6 flex items-center justify-between flex-shrink-0 z-10">
+      <div class="flex items-center gap-3">
+        <span class="text-[#202938] font-bold text-[16px] tracking-tight">Sales Operations Dashboard</span>
+        <span class="text-[11.5px] font-medium bg-[#F0FDF4] text-[#16A34A] border border-[#BBF7D0] px-2 py-0.5 rounded-full flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#16A34A]"></span> Live Data Sync
+        </span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- Omni-Search -->
+        <div class="relative w-72">
+          <svg class="w-4 h-4 text-[#667085] absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input type="text" placeholder="Search legal firms, advocates (⌘K)..." 
+                 class="w-full bg-[#F7F8FA] border border-[#E5E7EB] rounded-md pl-9 pr-12 py-1.5 text-[13px] text-[#202938] placeholder-[#667085] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] focus:bg-[#FFFFFF] transition-all">
+          <kbd class="absolute right-2.5 top-2 px-1.5 py-0.5 text-[10px] font-semibold text-[#667085] bg-[#FFFFFF] border border-[#E5E7EB] rounded">⌘K</kbd>
+        </div>
+
+        <!-- Overdue Follow-up SLA Warning -->
+        <div onclick="filterFollowUps('overdue')" class="flex items-center gap-1.5 bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA] px-2.5 py-1 rounded-full text-[12px] font-medium cursor-pointer hover:bg-[#FEE2E2] transition-colors">
+          <span class="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse"></span>
+          <span>7 Overdue Follow-ups</span>
+        </div>
+
+        <!-- Notification Bell -->
+        <button class="relative p-2 text-[#667085] hover:text-[#202938] hover:bg-[#F7F8FA] rounded-md transition-colors" title="Notifications">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+          <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#DC5252]"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ======================================================================= -->
+    <!-- SCROLLABLE DASHBOARD CANVAS                                             -->
+    <!-- ======================================================================= -->
+    <main class="flex-1 overflow-y-auto p-6 space-y-6">
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 1: WELCOME HEADER                                             -->
+      <!-- ===================================================================== -->
+      <section class="bg-[#FFFFFF] p-5 rounded-lg border border-[#E5E7EB] flex items-center justify-between shadow-[0_1px_2px_rgba(16,24,40,0.04)]">
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-[22px] font-bold text-[#202938] tracking-tight">Good afternoon, Sarah</h1>
+            <span class="text-[12px] font-medium bg-[#EFF6FF] text-[#2563EB] border border-[#BFDBFE] px-2 py-0.5 rounded-full">Senior Sales Exec</span>
+          </div>
+          <p class="text-[13px] text-[#667085] mt-1 flex items-center gap-2">
+            <span>📅 Thursday, November 19, 2026</span>
+            <span>•</span>
+            <span>You have <strong>4 high-priority demos</strong> scheduled for Supreme Court & Delhi High Court matters today.</span>
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <!-- Export Action -->
+          <button onclick="triggerToast('Sales Summary exported as PDF', 'Export Complete')" class="flex items-center gap-1.5 bg-[#FFFFFF] border border-[#E5E7EB] hover:bg-[#F7F8FA] px-3.5 py-2 rounded-md text-[13px] font-medium text-[#202938] transition-colors shadow-xs">
+            <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <span>Export Report</span>
+          </button>
+
+          <!-- Add Prospect CTA Button -->
+          <button onclick="openAddProspectModal()" class="flex items-center gap-1.5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white px-4 py-2 rounded-md text-[13px] font-medium shadow-sm transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            <span>Add Prospect</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 2: 6 KPI CARDS                                                -->
+      <!-- ===================================================================== -->
+      <section class="grid grid-cols-6 gap-3.5">
+        
+        <!-- Card 1: Total Prospects -->
+        <div onclick="triggerToast('Filtering prospects pipeline...', 'Navigation')" class="bg-[#FFFFFF] p-4 rounded-lg border border-[#E5E7EB] hover:border-[#CBD5E1] transition-all cursor-pointer shadow-[0_1px_2px_rgba(16,24,40,0.03)] group">
+          <div class="flex items-center justify-between text-[#667085] text-[12px] font-medium">
+            <span>Total Prospects</span>
+            <div class="w-6 h-6 rounded bg-[#EFF6FF] text-[#2563EB] flex items-center justify-center font-bold text-xs">🎯</div>
+          </div>
+          <div class="mt-2.5">
+            <div class="text-[22px] font-bold text-[#202938] tracking-tight group-hover:text-[#2563EB] transition-colors">148</div>
+            <div class="mt-1 flex items-center gap-1 text-[11px] font-semibold text-[#16A36A]">
+              <span>↑ 18.2%</span>
+              <span class="text-[#667085] font-normal">vs last month</span>
+            </div>
+            <div class="mt-1.5 text-[10.5px] text-[#667085]">28 closing this month</div>
+          </div>
+        </div>
+
+        <!-- Card 2: Active Clients -->
+        <div onclick="triggerToast('Viewing 84 Active Client firms', 'Navigation')" class="bg-[#FFFFFF] p-4 rounded-lg border border-[#E5E7EB] hover:border-[#CBD5E1] transition-all cursor-pointer shadow-[0_1px_2px_rgba(16,24,40,0.03)] group">
+          <div class="flex items-center justify-between text-[#667085] text-[12px] font-medium">
+            <span>Active Clients</span>
+            <div class="w-6 h-6 rounded bg-[#ECFDF5] text-[#16A36A] flex items-center justify-center font-bold text-xs">🏛️</div>
+          </div>
+          <div class="mt-2.5">
+            <div class="text-[22px] font-bold text-[#202938] tracking-tight group-hover:text-[#16A36A] transition-colors">84 Firms</div>
+            <div class="mt-1 flex items-center gap-1 text-[11px] font-semibold text-[#16A36A]">
+              <span>↑ 8.5%</span>
+              <span class="text-[#667085] font-normal">vs last month</span>
+            </div>
+            <div class="mt-1.5 text-[10.5px] text-[#667085]">312 active seat licenses</div>
+          </div>
+        </div>
+
+        <!-- Card 3: Pending Follow-ups -->
+        <div onclick="filterFollowUps('today')" class="bg-[#FFFFFF] p-4 rounded-lg border border-[#E5E7EB] hover:border-[#CBD5E1] transition-all cursor-pointer shadow-[0_1px_2px_rgba(16,24,40,0.03)] group">
+          <div class="flex items-center justify-between text-[#667085] text-[12px] font-medium">
+            <span>Pending Follow-ups</span>
+            <div class="w-6 h-6 rounded bg-[#F5F3FF] text-[#7C3AED] flex items-center justify-center font-bold text-xs">⏱️</div>
+          </div>
+          <div class="mt-2.5">
+            <div class="text-[22px] font-bold text-[#202938] tracking-tight group-hover:text-[#7C3AED] transition-colors">19 Tasks</div>
+            <div class="mt-1 flex items-center gap-1 text-[11px] font-semibold text-[#7C3AED]">
+              <span>4 Due Today</span>
+              <span class="text-[#667085] font-normal">• 15 upcoming</span>
+            </div>
+            <div class="mt-1.5 text-[10.5px] text-[#667085]">100% assigned to team</div>
+          </div>
+        </div>
+
+        <!-- Card 4: Overdue Follow-ups (Alert State) -->
+        <div onclick="filterFollowUps('overdue')" class="bg-[#FFFFFF] p-4 rounded-lg border border-[#FECACA] hover:border-[#DC5252] transition-all cursor-pointer shadow-[0_1px_2px_rgba(16,24,40,0.03)] bg-[#FEF2F2]/30 group">
+          <div class="flex items-center justify-between text-[#667085] text-[12px] font-medium">
+            <span class="text-[#DC5252] font-semibold">Overdue Tasks</span>
+            <div class="w-6 h-6 rounded bg-[#FEF2F2] text-[#DC2626] flex items-center justify-center font-bold text-xs">⚠️</div>
+          </div>
+          <div class="mt-2.5">
+            <div class="text-[22px] font-bold text-[#DC5252] tracking-tight">7 Overdue</div>
+            <div class="mt-1 flex items-center gap-1 text-[11px] font-semibold text-[#16A36A]">
+              <span>↓ 2</span>
+              <span class="text-[#667085] font-normal">cleared from y'day</span>
+            </div>
+            <div class="mt-1.5 text-[10.5px] text-[#DC2626] font-medium">SLA breach resolution needed</div>
+          </div>
+        </div>
+
+        <!-- Card 5: Conversion Rate -->
+        <div onclick="triggerToast('Conversion Funnel Analytics', 'Navigation')" class="bg-[#FFFFFF] p-4 rounded-lg border border-[#E5E7EB] hover:border-[#CBD5E1] transition-all cursor-pointer shadow-[0_1px_2px_rgba(16,24,40,0.03)] group">
+          <div class="flex items-center justify-between text-[#667085] text-[12px] font-medium">
+            <span>Conversion Rate</span>
+            <div class="w-6 h-6 rounded bg-[#F0FDF4] text-[#16A34A] flex items-center justify-center font-bold text-xs">📈</div>
+          </div>
+          <div class="mt-2.5">
+            <div class="text-[22px] font-bold text-[#202938] tracking-tight group-hover:text-[#16A34A] transition-colors">24.6%</div>
+            <div class="mt-1 flex items-center gap-1 text-[11px] font-semibold text-[#16A36A]">
+              <span>↑ 3.1%</span>
+              <span class="text-[#667085] font-normal">vs quarterly goal</span>
+            </div>
+            <div class="mt-1.5 text-[10.5px] text-[#667085]">Litigation top quartile (32%)</div>
+          </div>
+        </div>
+
+        <!-- Card 6: Monthly Revenue -->
+        <div onclick="triggerToast('Opening Revenue Operations Ledger', 'Navigation')" class="bg-[#FFFFFF] p-4 rounded-lg border border-[#E5E7EB] hover:border-[#CBD5E1] transition-all cursor-pointer shadow-[0_1px_2px_rgba(16,24,40,0.03)] group">
+          <div class="flex items-center justify-between text-[#667085] text-[12px] font-medium">
+            <span>Monthly Revenue</span>
+            <div class="w-6 h-6 rounded bg-[#FFFBEB] text-[#D97706] flex items-center justify-center font-bold text-xs">💳</div>
+          </div>
+          <div class="mt-2.5">
+            <div class="text-[22px] font-bold text-[#202938] tracking-tight group-hover:text-[#D97706] transition-colors">₹38.4 Lakh</div>
+            <div class="mt-1 flex items-center gap-1 text-[11px] font-semibold text-[#16A36A]">
+              <span>↑ 14.2%</span>
+              <span class="text-[#667085] font-normal">vs last month</span>
+            </div>
+            <div class="mt-1.5 text-[10.5px] text-[#667085]">85.3% of ₹45L monthly quota</div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 3: SALES PIPELINE (VISUAL SALES FUNNEL - 8 STAGES)            -->
+      <!-- ===================================================================== -->
+      <section class="bg-[#FFFFFF] p-5 rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.04)]">
+        <div class="flex items-center justify-between mb-3.5">
+          <div>
+            <div class="flex items-center gap-2">
+              <h2 class="text-[15px] font-bold text-[#202938]">Sales Stage Progression & Funnel Velocity</h2>
+              <span class="text-[11px] font-semibold bg-[#F1F5F9] text-[#475569] px-2 py-0.5 rounded-full">148 Active Deals • ₹67.9 Lakh Total Pipeline</span>
+            </div>
+            <p class="text-[12px] text-[#667085] mt-0.5">Click any stage to filter the prospects directory or view specific deal bottlenecks.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="triggerToast('Viewing Full Kanban Board', 'Prospects')" class="text-[12.5px] text-[#2563EB] font-semibold hover:underline flex items-center gap-1">
+              <span>Open Visual Kanban</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- 8-Stage Funnel Container -->
+        <div class="grid grid-cols-8 gap-2.5">
+          
+          <!-- Stage 1: New Leads -->
+          <div onclick="filterByStage('New Leads', 42, '₹14.8L')" class="pipeline-stage cursor-pointer">
+            <div class="stage-card p-3 rounded-md border border-[#E5E7EB] bg-[#F8FAFC] transition-all">
+              <div class="flex items-center justify-between text-[11px] text-[#667085]">
+                <span class="font-semibold text-[#475569] uppercase">1. New Leads</span>
+                <span class="w-2 h-2 rounded-full bg-[#475569]"></span>
+              </div>
+              <div class="mt-2 flex items-baseline justify-between">
+                <span class="text-[18px] font-bold text-[#202938]">42</span>
+                <span class="text-[11px] font-medium text-[#667085]">₹14.8L</span>
+              </div>
+              <div class="w-full bg-[#E2E8F0] h-1.5 rounded-full mt-2 overflow-hidden">
+                <div class="bg-[#475569] h-full" style="width: 100%"></div>
+              </div>
+              <div class="mt-2 text-[10px] text-[#667085] flex justify-between">
+                <span>Inflow: +9 this wk</span>
+                <span class="text-[#2563EB] font-medium">85% advance</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 2: Contacted -->
+          <div onclick="filterByStage('Contacted', 36, '₹12.4L')" class="pipeline-stage cursor-pointer">
+            <div class="stage-card p-3 rounded-md border border-[#E5E7EB] bg-[#F0F9FF]/40 transition-all">
+              <div class="flex items-center justify-between text-[11px] text-[#667085]">
+                <span class="font-semibold text-[#0284C7] uppercase">2. Contacted</span>
+                <span class="w-2 h-2 rounded-full bg-[#0284C7]"></span>
+              </div>
+              <div class="mt-2 flex items-baseline justify-between">
+                <span class="text-[18px] font-bold text-[#202938]">36</span>
+                <span class="text-[11px] font-medium text-[#667085]">₹12.4L</span>
+              </div>
+              <div class="w-full bg-[#E2E8F0] h-1.5 rounded-full mt-2 overflow-hidden">
+                <div class="bg-[#0284C7] h-full" style="width: 85%"></div>
+              </div>
+              <div class="mt-2 text-[10px] text-[#667085] flex justify-between">
+                <span>Avg: 1.8 days</span>
+                <span class="text-[#2563EB] font-medium">50% to Demo</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 3: Demo Scheduled -->
+          <div onclick="filterByStage('Demo Scheduled', 18, '₹8.6L')" class="pipeline-stage cursor-pointer">
+            <div class="stage-card p-3 rounded-md border border-[#E5E7EB] bg-[#EEF2FF]/40 transition-all">
+              <div class="flex items-center justify-between text-[11px] text-[#667085]">
+                <span class="font-semibold text-[#4F46E5] uppercase">3. Demo Sched</span>
+                <span class="w-2 h-2 rounded-full bg-[#4F46E5]"></span>
+              </div>
+              <div class="mt-2 flex items-baseline justify-between">
+                <span class="text-[18px] font-bold text-[#202938]">18</span>
+                <span class="text-[11px] font-medium text-[#667085]">₹8.6L</span>
+              </div>
+              <div class="w-full bg-[#E2E8F0] h-1.5 rounded-full mt-2 overflow-hidden">
+                <div class="bg-[#4F46E5] h-full" style="width: 50%"></div>
+              </div>
+              <div class="mt-2 text-[10px] text-[#667085] flex justify-between">
+                <span>4 Today</span>
+                <span class="text-[#2563EB] font-medium">78% show-up</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 4: Demo Completed -->
+          <div onclick="filterByStage('Demo Completed', 14, '₹7.2L')" class="pipeline-stage cursor-pointer">
+            <div class="stage-card p-3 rounded-md border border-[#E5E7EB] bg-[#F5F3FF]/40 transition-all">
+              <div class="flex items-center justify-between text-[11px] text-[#667085]">
+                <span class="font-semibold text-[#7C3AED] uppercase">4. Demo Done</span>
+                <span class="w-2 h-2 rounded-full bg-[#7C3AED]"></span>
+              </div>
+              <div class="mt-2 flex items-baseline justify-between">
+                <span class="text-[18px] font-bold text-[#202938]">14</span>
+                <span class="text-[11px] font-medium text-[#667085]">₹7.2L</span>
+              </div>
+              <div class="w-full bg-[#E2E8F0] h-1.5 rounded-full mt-2 overflow-hidden">
+                <div class="bg-[#7C3AED] h-full" style="width: 39%"></div>
+              </div>
+              <div class="mt-2 text-[10px] text-[#667085] flex justify-between">
+                <span>Evaluating</span>
+                <span class="text-[#2563EB] font-medium">79% intent</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 5: Interested -->
+          <div onclick="filterByStage('Interested', 11, '₹6.1L')" class="pipeline-stage cursor-pointer">
+            <div class="stage-card p-3 rounded-md border border-[#E5E7EB] bg-[#FFFBEB]/40 transition-all">
+              <div class="flex items-center justify-between text-[11px] text-[#667085]">
+                <span class="font-semibold text-[#D97706] uppercase">5. Interested</span>
+                <span class="w-2 h-2 rounded-full bg-[#D97706]"></span>
+              </div>
+              <div class="mt-2 flex items-baseline justify-between">
+                <span class="text-[18px] font-bold text-[#202938]">11</span>
+                <span class="text-[11px] font-medium text-[#667085]">₹6.1L</span>
+              </div>
+              <div class="w-full bg-[#E2E8F0] h-1.5 rounded-full mt-2 overflow-hidden">
+                <div class="bg-[#D97706] h-full" style="width: 30%"></div>
+              </div>
+              <div class="mt-2 text-[10px] text-[#667085] flex justify-between">
+                <span>Pricing sent</span>
+                <span class="text-[#2563EB] font-medium">73% to Neg</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 6: Negotiation -->
+          <div onclick="filterByStage('Negotiation', 8, '₹5.4L')" class="pipeline-stage cursor-pointer">
+            <div class="stage-card p-3 rounded-md border border-[#E5E7EB] bg-[#EFF6FF]/40 transition-all">
+              <div class="flex items-center justify-between text-[11px] text-[#667085]">
+                <span class="font-semibold text-[#2563EB] uppercase">6. Negotiate</span>
+                <span class="w-2 h-2 rounded-full bg-[#2563EB]"></span>
+              </div>
+              <div class="mt-2 flex items-baseline justify-between">
+                <span class="text-[18px] font-bold text-[#202938]">8</span>
+                <span class="text-[11px] font-medium text-[#667085]">₹5.4L</span>
+              </div>
+              <div class="w-full bg-[#E2E8F0] h-1.5 rounded-full mt-2 overflow-hidden">
+                <div class="bg-[#2563EB] h-full" style="width: 22%"></div>
+              </div>
+              <div class="mt-2 text-[10px] text-[#667085] flex justify-between">
+                <span>Contract review</span>
+                <span class="text-[#16A36A] font-bold">67% close</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 7: Converted (Won) -->
+          <div onclick="filterByStage('Converted', 12, '₹9.6L')" class="pipeline-stage cursor-pointer">
+            <div class="stage-card p-3 rounded-md border border-[#A7F3D0] bg-[#ECFDF5] transition-all">
+              <div class="flex items-center justify-between text-[11px] text-[#16A36A]">
+                <span class="font-bold uppercase">7. Converted ✓</span>
+                <span class="w-2 h-2 rounded-full bg-[#16A36A]"></span>
+              </div>
+              <div class="mt-2 flex items-baseline justify-between">
+                <span class="text-[18px] font-bold text-[#16A36A]">12</span>
+                <span class="text-[11px] font-medium text-[#16A36A]">₹9.6L</span>
+              </div>
+              <div class="w-full bg-[#A7F3D0] h-1.5 rounded-full mt-2 overflow-hidden">
+                <div class="bg-[#16A36A] h-full" style="width: 100%"></div>
+              </div>
+              <div class="mt-2 text-[10px] text-[#16A36A] font-medium flex justify-between">
+                <span>Closed Won</span>
+                <span>100% Retained</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 8: Lost Deals -->
+          <div onclick="filterByStage('Lost', 7, '₹3.2L')" class="pipeline-stage cursor-pointer">
+            <div class="stage-card p-3 rounded-md border border-[#FECDD3] bg-[#FFF1F2] transition-all">
+              <div class="flex items-center justify-between text-[11px] text-[#E11D48]">
+                <span class="font-semibold uppercase">8. Lost Deals</span>
+                <span class="w-2 h-2 rounded-full bg-[#E11D48]"></span>
+              </div>
+              <div class="mt-2 flex items-baseline justify-between">
+                <span class="text-[18px] font-bold text-[#E11D48]">7</span>
+                <span class="text-[11px] font-medium text-[#667085]">₹3.2L</span>
+              </div>
+              <div class="w-full bg-[#FECDD3] h-1.5 rounded-full mt-2 overflow-hidden">
+                <div class="bg-[#E11D48] h-full" style="width: 17%"></div>
+              </div>
+              <div class="mt-2 text-[10px] text-[#667085] flex justify-between">
+                <span>Budget: 4 firms</span>
+                <span class="text-[#E11D48]">Root cause logged</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- 2-COLUMN OPERATIONAL SURFACE                                          -->
+      <!-- ===================================================================== -->
+      <div class="grid grid-cols-12 gap-6 items-start">
+        
+        <!-- =================================================================== -->
+        <!-- LEFT COLUMN (7 COLS): FOLLOW-UPS TABLE & ACQUISITION CHARTS        -->
+        <!-- =================================================================== -->
+        <div class="col-span-7 space-y-6">
+
+          <!-- ================================================================= -->
+          <!-- SECTION 4: FOLLOW-UPS SLA WORKLIST TABLE                          -->
+          <!-- ================================================================= -->
+          <div id="followups-section" class="bg-[#FFFFFF] rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.04)] overflow-hidden">
+            <!-- Header & Segmented Tabs -->
+            <div class="p-4 border-b border-[#E5E7EB] flex items-center justify-between bg-[#FFFFFF]">
+              <div>
+                <h3 class="text-[15px] font-bold text-[#202938]">Follow-ups Execution Queue</h3>
+                <p class="text-[12px] text-[#667085]">Daily outreach commitments, demos and contract reviews.</p>
+              </div>
+
+              <!-- Segmented Urgency Tabs -->
+              <div class="flex items-center bg-[#F7F8FA] border border-[#E5E7EB] p-1 rounded-md text-[12px]">
+                <button id="tabToday" onclick="filterFollowUps('today')" class="px-2.5 py-1 rounded bg-[#FFFFFF] shadow-xs text-[#202938] font-semibold transition-all">
+                  Today's (5)
+                </button>
+                <button id="tabOverdue" onclick="filterFollowUps('overdue')" class="px-2.5 py-1 rounded text-[#DC2626] font-semibold hover:bg-white/60 transition-all">
+                  Overdue (7)
+                </button>
+                <button id="tabUpcoming" onclick="filterFollowUps('upcoming')" class="px-2.5 py-1 rounded text-[#667085] hover:text-[#202938] transition-all">
+                  Upcoming (14)
+                </button>
+                <button id="tabAll" onclick="filterFollowUps('all')" class="px-2 py-1 rounded text-[#667085] hover:text-[#202938] transition-all">
+                  All (26)
+                </button>
+              </div>
+            </div>
+
+            <!-- Follow-ups Data Table -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-[13px]">
+                <thead>
+                  <tr class="bg-[#F7F8FA] border-b border-[#E5E7EB] text-[#667085] text-[11.5px] font-semibold uppercase tracking-wider">
+                    <th class="w-8 px-3 py-2.5 text-center">
+                      <input type="checkbox" class="rounded border-[#CBD5E1] text-[#2563EB]">
+                    </th>
+                    <th class="px-3.5 py-2.5">Prospect / Law Firm</th>
+                    <th class="px-3 py-2.5">Phone Number</th>
+                    <th class="px-3 py-2.5">Activity</th>
+                    <th class="px-3 py-2.5">Due Date & Time</th>
+                    <th class="px-3 py-2.5">Rep</th>
+                    <th class="px-3 py-2.5">Status</th>
+                    <th class="px-3 py-2.5 text-right">Quick Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="followupTableBody" class="divide-y divide-[#E5E7EB] bg-[#FFFFFF]">
+                  
+                  <!-- Row 1: Overdue Task -->
+                  <tr class="hover:bg-[#F9FAFB] cursor-pointer transition-colors group bg-[#FEF2F2]/20" onclick="openDrawerWith('Apex Legal Partners', 'Demo Completed', 'Adv. Rajesh Sharma', '+91 98101 23456')">
+                    <td class="px-3 py-3 text-center" onclick="event.stopPropagation()">
+                      <input type="checkbox" onchange="toggleTaskDone(this)" class="rounded border-[#CBD5E1] text-[#2563EB]">
+                    </td>
+                    <td class="px-3.5 py-3">
+                      <div class="font-semibold text-[#202938] group-hover:text-[#2563EB] transition-colors leading-tight">Apex Legal Partners</div>
+                      <div class="text-[11px] text-[#667085]">Adv. Rajesh Sharma • Delhi High Court</div>
+                    </td>
+                    <td class="px-3 py-3" onclick="event.stopPropagation()">
+                      <a href="tel:+919810123456" class="text-[12px] font-mono text-[#2563EB] hover:underline flex items-center gap-1">
+                        📞 +91 98101 23456
+                      </a>
+                    </td>
+                    <td class="px-3 py-3">
+                      <span class="inline-flex items-center gap-1 bg-[#EEF2FF] text-[#4F46E5] px-2 py-0.5 rounded text-[11px] font-medium">
+                        ✉️ Proposal
+                      </span>
+                    </td>
+                    <td class="px-3 py-3">
+                      <span class="text-[#DC2626] font-semibold text-[11.5px] block">Today, 10:00 AM</span>
+                      <span class="text-[10px] text-[#DC2626] uppercase font-bold">2h 58m Overdue</span>
+                    </td>
+                    <td class="px-3 py-3">
+                      <div class="flex items-center gap-1.5">
+                        <div class="w-5 h-5 rounded-full bg-[#2563EB] text-white flex items-center justify-center text-[9px] font-bold">SJ</div>
+                        <span class="text-[12px] text-[#667085]">Sarah J.</span>
+                      </div>
+                    </td>
+                    <td class="px-3 py-3">
+                      <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#DC2626]"></span> Urgent
+                      </span>
+                    </td>
+                    <td class="px-3 py-3 text-right" onclick="event.stopPropagation()">
+                      <div class="flex items-center justify-end gap-1">
+                        <button onclick="triggerToast('Dialing Adv. Rajesh Sharma...')" class="p-1 text-[#667085] hover:text-[#16A36A] rounded hover:bg-[#F0FDF4]" title="1-Click Call">
+                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        </button>
+                        <button onclick="triggerToast('Proposal marked completed!', 'Done')" class="p-1 text-[#667085] hover:text-[#2563EB] rounded hover:bg-[#EFF6FF]" title="Complete Task">
+                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        </button>
+                        <button onclick="triggerToast('Rescheduled to tomorrow 10:00 AM', 'Snooze')" class="p-1 text-[#667085] hover:text-[#E9A23B] rounded hover:bg-[#FFFBEB]" title="Reschedule">
+                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row 2: Today Task -->
+                  <tr class="hover:bg-[#F9FAFB] cursor-pointer transition-colors group" onclick="openDrawerWith('Chitale & Associates', 'Demo Scheduled', 'Adv. Sneha Chitale', '+91 98202 44910')">
+                    <td class="px-3 py-3 text-center" onclick="event.stopPropagation()">
+                      <input type="checkbox" onchange="toggleTaskDone(this)" class="rounded border-[#CBD5E1] text-[#2563EB]">
+                    </td>
+                    <td class="px-3.5 py-3">
+                      <div class="font-semibold text-[#202938] group-hover:text-[#2563EB] transition-colors leading-tight">Chitale & Associates</div>
+                      <div class="text-[11px] text-[#667085]">Adv. Sneha Chitale • Bombay High Court</div>
+                    </td>
+                    <td class="px-3 py-3" onclick="event.stopPropagation()">
+                      <a href="tel:+919820244910" class="text-[12px] font-mono text-[#2563EB] hover:underline flex items-center gap-1">
+                        📞 +91 98202 44910
+                      </a>
+                    </td>
+                    <td class="px-3 py-3">
+                      <span class="inline-flex items-center gap-1 bg-[#F5F3FF] text-[#7C3AED] px-2 py-0.5 rounded text-[11px] font-medium">
+                        🎥 Demo Call
+                      </span>
+                    </td>
+                    <td class="px-3 py-3">
+                      <span class="text-[#202938] font-semibold text-[11.5px] block">Today, 3:00 PM</span>
+                      <span class="text-[10px] text-[#667085]">In 2 hours</span>
+                    </td>
+                    <td class="px-3 py-3">
+                      <div class="flex items-center gap-1.5">
+                        <div class="w-5 h-5 rounded-full bg-[#2563EB] text-white flex items-center justify-center text-[9px] font-bold">SJ</div>
+                        <span class="text-[12px] text-[#667085]">Sarah J.</span>
+                      </div>
+                    </td>
+                    <td class="px-3 py-3">
+                      <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium bg-[#FFFBEB] text-[#D97706] border border-[#FDE68A]">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#D97706]"></span> Due Today
+                      </span>
+                    </td>
+                    <td class="px-3 py-3 text-right" onclick="event.stopPropagation()">
+                      <div class="flex items-center justify-end gap-1">
+                        <button onclick="triggerToast('Launching Zoom Room...', 'Demo Launch')" class="px-2 py-1 bg-[#2563EB] text-white rounded text-[11px] font-medium hover:bg-[#1D4ED8]">
+                          Launch Demo
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row 3: Negotiation Call -->
+                  <tr class="hover:bg-[#F9FAFB] cursor-pointer transition-colors group" onclick="openDrawerWith('LexCor Advocates', 'Negotiation', 'Adv. Meenakshi Iyer', '+91 97110 55823')">
+                    <td class="px-3 py-3 text-center" onclick="event.stopPropagation()">
+                      <input type="checkbox" onchange="toggleTaskDone(this)" class="rounded border-[#CBD5E1] text-[#2563EB]">
+                    </td>
+                    <td class="px-3.5 py-3">
+                      <div class="font-semibold text-[#202938] group-hover:text-[#2563EB] transition-colors leading-tight">LexCor Advocates</div>
+                      <div class="text-[11px] text-[#667085]">Adv. Meenakshi Iyer • 25 Seats Enterprise</div>
+                    </td>
+                    <td class="px-3 py-3" onclick="event.stopPropagation()">
+                      <a href="tel:+919711055823" class="text-[12px] font-mono text-[#2563EB] hover:underline flex items-center gap-1">
+                        📞 +91 97110 55823
+                      </a>
+                    </td>
+                    <td class="px-3 py-3">
+                      <span class="inline-flex items-center gap-1 bg-[#EFF6FF] text-[#2563EB] px-2 py-0.5 rounded text-[11px] font-medium">
+                        🤝 Contract
+                      </span>
+                    </td>
+                    <td class="px-3 py-3">
+                      <span class="text-[#202938] text-[11.5px] block">Today, 5:30 PM</span>
+                      <span class="text-[10px] text-[#667085]">In 4.5 hours</span>
+                    </td>
+                    <td class="px-3 py-3">
+                      <div class="flex items-center gap-1.5">
+                        <div class="w-5 h-5 rounded-full bg-[#16A36A] text-white flex items-center justify-center text-[9px] font-bold">DK</div>
+                        <span class="text-[12px] text-[#667085]">David K.</span>
+                      </div>
+                    </td>
+                    <td class="px-3 py-3">
+                      <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium bg-[#EFF6FF] text-[#2563EB] border border-[#BFDBFE]">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#2563EB]"></span> Scheduled
+                      </span>
+                    </td>
+                    <td class="px-3 py-3 text-right" onclick="event.stopPropagation()">
+                      <div class="flex items-center justify-end gap-1">
+                        <button onclick="triggerToast('Calling Adv. Meenakshi Iyer...')" class="p-1 text-[#667085] hover:text-[#16A36A] rounded hover:bg-[#F0FDF4]"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></button>
+                        <button onclick="openConvertModal()" class="px-2 py-1 bg-[#16A36A] text-white rounded text-[11px] font-medium hover:bg-[#15803D]">Convert</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row 4: Retention Call -->
+                  <tr class="hover:bg-[#F9FAFB] cursor-pointer transition-colors group bg-[#FFF7ED]/20" onclick="openDrawerWith('Singhania & Partners', 'At Risk', 'Adv. Karan Singhania', '+91 99304 88129')">
+                    <td class="px-3 py-3 text-center" onclick="event.stopPropagation()">
+                      <input type="checkbox" onchange="toggleTaskDone(this)" class="rounded border-[#CBD5E1] text-[#2563EB]">
+                    </td>
+                    <td class="px-3.5 py-3">
+                      <div class="font-semibold text-[#202938] group-hover:text-[#2563EB] transition-colors leading-tight">Singhania & Partners</div>
+                      <div class="text-[11px] text-[#EA580C] font-medium">Health Score 32 • Retention Review</div>
+                    </td>
+                    <td class="px-3 py-3" onclick="event.stopPropagation()">
+                      <a href="tel:+919930488129" class="text-[12px] font-mono text-[#2563EB] hover:underline flex items-center gap-1">
+                        📞 +91 99304 88129
+                      </a>
+                    </td>
+                    <td class="px-3 py-3">
+                      <span class="inline-flex items-center gap-1 bg-[#FFF7ED] text-[#EA580C] px-2 py-0.5 rounded text-[11px] font-medium">
+                        🛡️ Retention
+                      </span>
+                    </td>
+                    <td class="px-3 py-3">
+                      <span class="text-[#DC5252] font-semibold text-[11.5px] block">Tomorrow, 11:00 AM</span>
+                      <span class="text-[10px] text-[#EA580C]">Expiring in 14 days</span>
+                    </td>
+                    <td class="px-3 py-3">
+                      <div class="flex items-center gap-1.5">
+                        <div class="w-5 h-5 rounded-full bg-[#2563EB] text-white flex items-center justify-center text-[9px] font-bold">SJ</div>
+                        <span class="text-[12px] text-[#667085]">Sarah J.</span>
+                      </div>
+                    </td>
+                    <td class="px-3 py-3">
+                      <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium bg-[#FFF7ED] text-[#EA580C] border border-[#FED7AA]">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#EA580C]"></span> At Risk
+                      </span>
+                    </td>
+                    <td class="px-3 py-3 text-right" onclick="event.stopPropagation()">
+                      <div class="flex items-center justify-end gap-1">
+                        <button onclick="triggerToast('Opening Health Audit Notes...')" class="p-1 text-[#667085] hover:text-[#2563EB] rounded hover:bg-[#EFF6FF]"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></button>
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Footer Pagination / Full View Link -->
+            <div class="p-3 border-t border-[#E5E7EB] flex items-center justify-between text-[12px] text-[#667085] bg-[#FFFFFF]">
+              <span>Showing <strong>4 urgent tasks</strong> of <strong>26 total follow-ups</strong></span>
+              <a href="#" class="text-[#2563EB] font-semibold hover:underline flex items-center gap-1">
+                <span>Open Full Calendar & Worklist</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- ================================================================= -->
+          <!-- SECTION 6A & 6B: SALES PERFORMANCE CHARTS                         -->
+          <!-- ================================================================= -->
+          <div class="grid grid-cols-2 gap-4">
+            
+            <!-- Chart 1: Monthly Prospect Acquisition Trend -->
+            <div class="bg-[#FFFFFF] p-4 rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.04)]">
+              <div class="flex items-center justify-between mb-3">
+                <div>
+                  <h4 class="text-[13.5px] font-bold text-[#202938]">Monthly Prospect Acquisition</h4>
+                  <p class="text-[11px] text-[#667085]">New legal leads ingested (Past 6 months)</p>
+                </div>
+                <span class="text-[11px] font-bold text-[#16A36A] bg-[#ECFDF5] px-2 py-0.5 rounded border border-[#A7F3D0]">↑ 28% Growth</span>
+              </div>
+
+              <!-- Bar Chart Visualization -->
+              <div class="h-36 flex items-end justify-between gap-3 pt-4 pb-2 border-b border-[#E5E7EB]">
+                <!-- Jun -->
+                <div class="flex-1 flex flex-col items-center gap-1">
+                  <div class="w-full bg-[#E2E8F0] hover:bg-[#2563EB] rounded-t transition-all" style="height: 48px;" title="Jun: 72 Leads"></div>
+                  <span class="text-[10px] text-[#667085]">Jun</span>
+                </div>
+                <!-- Jul -->
+                <div class="flex-1 flex flex-col items-center gap-1">
+                  <div class="w-full bg-[#E2E8F0] hover:bg-[#2563EB] rounded-t transition-all" style="height: 62px;" title="Jul: 88 Leads"></div>
+                  <span class="text-[10px] text-[#667085]">Jul</span>
+                </div>
+                <!-- Aug -->
+                <div class="flex-1 flex flex-col items-center gap-1">
+                  <div class="w-full bg-[#E2E8F0] hover:bg-[#2563EB] rounded-t transition-all" style="height: 78px;" title="Aug: 104 Leads"></div>
+                  <span class="text-[10px] text-[#667085]">Aug</span>
+                </div>
+                <!-- Sep -->
+                <div class="flex-1 flex flex-col items-center gap-1">
+                  <div class="w-full bg-[#E2E8F0] hover:bg-[#2563EB] rounded-t transition-all" style="height: 94px;" title="Sep: 118 Leads"></div>
+                  <span class="text-[10px] text-[#667085]">Sep</span>
+                </div>
+                <!-- Oct -->
+                <div class="flex-1 flex flex-col items-center gap-1">
+                  <div class="w-full bg-[#BFDBFE] hover:bg-[#2563EB] rounded-t transition-all" style="height: 112px;" title="Oct: 132 Leads"></div>
+                  <span class="text-[10px] text-[#667085]">Oct</span>
+                </div>
+                <!-- Nov (Current) -->
+                <div class="flex-1 flex flex-col items-center gap-1">
+                  <div class="w-full bg-[#2563EB] rounded-t shadow-sm" style="height: 130px;" title="Nov (Paced): 148 Leads"></div>
+                  <span class="text-[10px] font-bold text-[#2563EB]">Nov</span>
+                </div>
+              </div>
+              <div class="mt-2.5 flex items-center justify-between text-[11px] text-[#667085]">
+                <span>Total H2 Inflow: <strong>662 Firms</strong></span>
+                <span class="text-[#2563EB] font-medium">Avg: 110/mo</span>
+              </div>
+            </div>
+
+            <!-- Chart 2: Lead Source Breakdown -->
+            <div class="bg-[#FFFFFF] p-4 rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.04)]">
+              <div class="flex items-center justify-between mb-3">
+                <div>
+                  <h4 class="text-[13.5px] font-bold text-[#202938]">Lead Source Performance</h4>
+                  <p class="text-[11px] text-[#667085]">High-converting acquisition channels</p>
+                </div>
+                <span class="text-[11px] font-medium text-[#667085]">Litigation Focus</span>
+              </div>
+
+              <!-- Channel Progress Breakdown -->
+              <div class="space-y-2.5 pt-1">
+                <div>
+                  <div class="flex justify-between text-[11.5px] font-medium mb-1">
+                    <span class="text-[#202938]">Bar Council Rosters & Directories</span>
+                    <span class="font-bold text-[#202938]">38% (56 deals)</span>
+                  </div>
+                  <div class="w-full bg-[#F1F3F6] h-2 rounded-full overflow-hidden">
+                    <div class="bg-[#2563EB] h-full" style="width: 38%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-[11.5px] font-medium mb-1">
+                    <span class="text-[#202938]">Advocate Peer Referrals</span>
+                    <span class="font-bold text-[#16A36A]">26% (38 deals)</span>
+                  </div>
+                  <div class="w-full bg-[#F1F3F6] h-2 rounded-full overflow-hidden">
+                    <div class="bg-[#16A36A] h-full" style="width: 26%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-[11.5px] font-medium mb-1">
+                    <span class="text-[#202938]">Legal Tech Conclaves & Expos</span>
+                    <span class="font-bold text-[#7C3AED]">18% (27 deals)</span>
+                  </div>
+                  <div class="w-full bg-[#F1F3F6] h-2 rounded-full overflow-hidden">
+                    <div class="bg-[#7C3AED] h-full" style="width: 18%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-[11.5px] font-medium mb-1">
+                    <span class="text-[#202938]">Inbound Website & Legal Search</span>
+                    <span class="font-bold text-[#D97706]">12% (18 deals)</span>
+                  </div>
+                  <div class="w-full bg-[#F1F3F6] h-2 rounded-full overflow-hidden">
+                    <div class="bg-[#D97706] h-full" style="width: 12%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- RIGHT COLUMN (5 COLS): RECENT ACTIVITIES & TEAM PERFORMANCE        -->
+        <!-- =================================================================== -->
+        <div class="col-span-5 space-y-6">
+
+          <!-- ================================================================= -->
+          <!-- SECTION 5: RECENT ACTIVITIES AUDIT FEED                           -->
+          <!-- ================================================================= -->
+          <div class="bg-[#FFFFFF] p-4 rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.04)]">
+            <div class="flex items-center justify-between mb-3.5">
+              <div class="flex items-center gap-2">
+                <h3 class="text-[14.5px] font-bold text-[#202938]">Real-Time Sales Activity</h3>
+                <span class="w-2 h-2 rounded-full bg-[#16A36A] animate-ping"></span>
+              </div>
+              <span class="text-[11px] text-[#667085]">Filtered: All Events</span>
+            </div>
+
+            <!-- Chronological Event Stream -->
+            <div class="relative pl-6 space-y-4 before:content-[''] before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-[#E5E7EB]">
+              
+              <!-- Event 1: Prospect Converted -->
+              <div class="relative group">
+                <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#ECFDF5] border-2 border-white flex items-center justify-center text-[10px] text-[#16A36A] shadow-xs">
+                  ✓
+                </div>
+                <div class="text-[11.5px] text-[#667085]">12:40 PM • Closed by <strong class="text-[#202938]">Sarah Jenkins</strong></div>
+                <div class="text-[12.5px] font-semibold text-[#16A36A] mt-0.5">Prospect Converted to Paying Client!</div>
+                <div class="text-[12px] text-[#202938] mt-0.5">
+                  <a href="#" class="font-medium hover:underline text-[#2563EB]">Justice Chambers & Co.</a> activated on <strong>Chamber Pro Plan (5 seats)</strong>.
+                </div>
+                <div class="text-[11px] text-[#667085] mt-1 bg-[#F8FAFC] p-2 rounded border border-[#E5E7EB]">
+                  Preserved all 14 discovery recordings and pricing correspondence. ₹75,000 annual contract.
+                </div>
+              </div>
+
+              <!-- Event 2: Demo Scheduled -->
+              <div class="relative group">
+                <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#EEF2FF] border-2 border-white flex items-center justify-center text-[10px] text-[#4F46E5] shadow-xs">
+                  📅
+                </div>
+                <div class="text-[11.5px] text-[#667085]">11:15 AM • <strong class="text-[#202938]">David Kumar</strong></div>
+                <div class="text-[12.5px] font-semibold text-[#202938] mt-0.5">Product Demo Confirmed</div>
+                <div class="text-[12px] text-[#667085]">
+                  Walkthrough booked with <a href="#" class="text-[#2563EB] font-medium hover:underline">Chitale & Associates</a> for Today at 3:00 PM (IP Suite).
+                </div>
+              </div>
+
+              <!-- Event 3: Stage Advanced to Negotiation -->
+              <div class="relative group">
+                <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#EFF6FF] border-2 border-white flex items-center justify-center text-[10px] text-[#2563EB] shadow-xs">
+                  ➔
+                </div>
+                <div class="text-[11.5px] text-[#667085]">10:05 AM • System Update</div>
+                <div class="text-[12.5px] font-semibold text-[#2563EB] mt-0.5">Stage Advanced: Negotiation</div>
+                <div class="text-[12px] text-[#667085]">
+                  <a href="#" class="text-[#202938] font-medium">LexCor Advocates</a> moved to contract review (25 Seats Enterprise • ₹45,000/mo).
+                </div>
+              </div>
+
+              <!-- Event 4: Call Completed -->
+              <div class="relative group">
+                <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#F5F3FF] border-2 border-white flex items-center justify-center text-[10px] text-[#7C3AED] shadow-xs">
+                  📞
+                </div>
+                <div class="text-[11.5px] text-[#667085]">09:30 AM • <strong class="text-[#202938]">Sarah Jenkins</strong></div>
+                <div class="text-[12.5px] font-semibold text-[#202938] mt-0.5">Discovery Call Completed</div>
+                <div class="text-[12px] text-[#667085]">
+                  Spoke with Senior Partner at Verma Law Chambers. Discussed high-volume citation search.
+                </div>
+              </div>
+
+              <!-- Event 5: Subscription Renewed -->
+              <div class="relative group">
+                <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#F0FDF4] border-2 border-white flex items-center justify-center text-[10px] text-[#16A34A] shadow-xs">
+                  🔄
+                </div>
+                <div class="text-[11.5px] text-[#667085]">Yesterday, 5:45 PM • Automated Billing</div>
+                <div class="text-[12.5px] font-semibold text-[#16A34A] mt-0.5">Annual Subscription Renewed</div>
+                <div class="text-[12px] text-[#667085]">
+                  National Law Associates renewed Enterprise Tier for Year 2 (+2 seat expansion).
+                </div>
+              </div>
+
+              <!-- Event 6: New Prospect Ingested -->
+              <div class="relative group">
+                <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#F1F5F9] border-2 border-white flex items-center justify-center text-[10px] text-[#475569] shadow-xs">
+                  +
+                </div>
+                <div class="text-[11.5px] text-[#667085]">Yesterday, 3:20 PM • Bar Directory Import</div>
+                <div class="text-[12.5px] font-semibold text-[#202938] mt-0.5">New Prospect Added</div>
+                <div class="text-[12px] text-[#667085]">
+                  Singhania & Partners added with Bar ID D/2014/991 (Commercial Tax division).
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ================================================================= -->
+          <!-- SECTION 6C: SALESPERSON PERFORMANCE LEADERBOARD                   -->
+          <!-- ================================================================= -->
+          <div class="bg-[#FFFFFF] p-4 rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.04)]">
+            <div class="flex items-center justify-between mb-3">
+              <div>
+                <h3 class="text-[14.5px] font-bold text-[#202938]">Sales Team Quota Attainment</h3>
+                <p class="text-[11px] text-[#667085]">November quota progress & deal volume</p>
+              </div>
+              <span class="text-[11px] font-semibold bg-[#EFF6FF] text-[#2563EB] px-2 py-0.5 rounded border border-[#BFDBFE]">Team: 85%</span>
+            </div>
+
+            <div class="space-y-3.5">
+              
+              <!-- Rep 1: Sarah Jenkins -->
+              <div>
+                <div class="flex items-center justify-between text-[12.5px] mb-1">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-bold text-[10px]">SJ</div>
+                    <span class="font-semibold text-[#202938]">Sarah Jenkins (You)</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-[11px] text-[#667085]">6 Won • ₹14.2L</span>
+                    <span class="font-bold text-[#16A36A]">109% Quota</span>
+                  </div>
+                </div>
+                <div class="w-full bg-[#F1F3F6] h-2 rounded-full overflow-hidden">
+                  <div class="bg-[#16A36A] h-full" style="width: 100%"></div>
+                </div>
+              </div>
+
+              <!-- Rep 2: David Kumar -->
+              <div>
+                <div class="flex items-center justify-between text-[12.5px] mb-1">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-[#16A36A] text-white flex items-center justify-center font-bold text-[10px]">DK</div>
+                    <span class="font-semibold text-[#202938]">David Kumar</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-[11px] text-[#667085]">4 Won • ₹11.5L</span>
+                    <span class="font-bold text-[#2563EB]">88% Quota</span>
+                  </div>
+                </div>
+                <div class="w-full bg-[#F1F3F6] h-2 rounded-full overflow-hidden">
+                  <div class="bg-[#2563EB] h-full" style="width: 88%"></div>
+                </div>
+              </div>
+
+              <!-- Rep 3: Priya Nair -->
+              <div>
+                <div class="flex items-center justify-between text-[12.5px] mb-1">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-[#7C3AED] text-white flex items-center justify-center font-bold text-[10px]">PN</div>
+                    <span class="font-semibold text-[#202938]">Priya Nair</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-[11px] text-[#667085]">2 Won • ₹8.1L</span>
+                    <span class="font-bold text-[#E9A23B]">65% Quota</span>
+                  </div>
+                </div>
+                <div class="w-full bg-[#F1F3F6] h-2 rounded-full overflow-hidden">
+                  <div class="bg-[#E9A23B] h-full" style="width: 65%"></div>
+                </div>
+              </div>
+
+              <!-- Rep 4: Rohan Mehta -->
+              <div>
+                <div class="flex items-center justify-between text-[12.5px] mb-1">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-[#475569] text-white flex items-center justify-center font-bold text-[10px]">RM</div>
+                    <span class="font-semibold text-[#202938]">Rohan Mehta</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-[11px] text-[#667085]">1 Won • ₹4.6L</span>
+                    <span class="font-bold text-[#667085]">46% Quota</span>
+                  </div>
+                </div>
+                <div class="w-full bg-[#F1F3F6] h-2 rounded-full overflow-hidden">
+                  <div class="bg-[#CBD5E1] h-full" style="width: 46%"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- RIGHT-SIDE PEEK DRAWER (Component #13)                                    -->
+  <!-- ========================================================================= -->
+  <div id="peekDrawer" class="hidden fixed inset-y-0 right-0 w-[600px] bg-[#FFFFFF] shadow-2xl border-l border-[#E5E7EB] z-50 flex flex-col">
+    <!-- Header -->
+    <div class="p-5 border-b border-[#E5E7EB] flex items-center justify-between bg-[#FFFFFF]">
+      <div>
+        <div class="flex items-center gap-2">
+          <h2 id="drawerFirmName" class="text-[17px] font-bold text-[#202938]">Apex Legal Partners</h2>
+          <span id="drawerStatusBadge" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11.5px] font-medium bg-[#F5F3FF] text-[#7C3AED] border border-[#DDD6FE]">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#7C3AED]"></span> Demo Completed
+          </span>
+        </div>
+        <div class="text-[12px] text-[#667085] mt-0.5">Bar Registration: D/1982/2012 • Supreme Court & Delhi High Court</div>
+      </div>
+      <button onclick="toggleDrawer()" class="text-[#667085] hover:text-[#202938] p-1.5 rounded-md hover:bg-[#F7F8FA]">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Quick Action Bar -->
+    <div class="px-5 py-2.5 bg-[#F7F8FA] border-b border-[#E5E7EB] flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <button onclick="triggerToast('Calling partner...')" class="flex items-center gap-1 text-[12px] bg-[#FFFFFF] border border-[#E5E7EB] px-2.5 py-1.5 rounded text-[#202938] font-medium hover:bg-[#F7F8FA]">
+          📞 Call Partner
+        </button>
+        <button onclick="triggerToast('Opening email composer...')" class="flex items-center gap-1 text-[12px] bg-[#FFFFFF] border border-[#E5E7EB] px-2.5 py-1.5 rounded text-[#202938] font-medium hover:bg-[#F7F8FA]">
+          ✉️ Send Proposal
+        </button>
+      </div>
+
+      <!-- THE CONVERT TO CLIENT CTA -->
+      <button onclick="openConvertModal()" class="flex items-center gap-1 text-[12.5px] bg-[#16A36A] hover:bg-[#15803D] text-white px-3 py-1.5 rounded font-medium shadow-sm transition-colors">
+        <span>Convert to Client ➔</span>
+      </button>
+    </div>
+
+    <!-- Drawer Content -->
+    <div class="flex-1 overflow-y-auto p-5 space-y-4 text-[13px]">
+      <div class="bg-[#F7F8FA] p-3.5 rounded-lg border border-[#E5E7EB]">
+        <div class="text-[11.5px] font-semibold text-[#667085] uppercase tracking-wider mb-2">Deal Information</div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <span class="text-[11px] text-[#667085] block">Target Tier</span>
+            <span class="font-semibold text-[#202938]">Chamber Pro (12 Seats)</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-[#667085] block">Contract Value</span>
+            <span class="font-semibold text-[#202938]">₹18,000 / month</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-[#667085] block">Contact Advocate</span>
+            <span id="drawerContactName" class="font-semibold text-[#202938]">Adv. Rajesh Sharma</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-[#667085] block">Direct Phone</span>
+            <span id="drawerPhone" class="font-mono text-[#2563EB] font-medium">+91 98101 23456</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity Timeline within Drawer -->
+      <div>
+        <div class="text-[11.5px] font-semibold text-[#667085] uppercase tracking-wider mb-2">Past Communications (3)</div>
+        <div class="space-y-2 text-[12.5px]">
+          <div class="p-2.5 bg-[#FFFFFF] border border-[#E5E7EB] rounded">
+            <div class="flex justify-between text-[11px] text-[#667085]">
+              <span class="font-semibold text-[#202938]">Demo Conducted (Zoom)</span>
+              <span>Nov 18, 2:30 PM</span>
+            </div>
+            <p class="text-[#667085] mt-1">"Partner reviewed judgment search and citation validator. Requested formal invoice draft."</p>
+          </div>
+          <div class="p-2.5 bg-[#FFFFFF] border border-[#E5E7EB] rounded">
+            <div class="flex justify-between text-[11px] text-[#667085]">
+              <span class="font-semibold text-[#202938]">Phone Discussion</span>
+              <span>Nov 16, 11:00 AM</span>
+            </div>
+            <p class="text-[#667085] mt-1">"Chambers currently uses physical digests. Wants multi-user associate accounts."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Drawer Footer -->
+    <div class="p-4 border-t border-[#E5E7EB] bg-[#FFFFFF] flex items-center justify-between">
+      <button onclick="toggleDrawer()" class="px-3 py-1.5 border border-[#E5E7EB] rounded text-[13px] text-[#202938] hover:bg-[#F7F8FA]">
+        Close Drawer
+      </button>
+      <button onclick="openConvertModal()" class="px-4 py-1.5 bg-[#16A36A] hover:bg-[#15803D] text-white rounded text-[13px] font-medium shadow-sm transition-colors">
+        Convert to Client
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- CONVERT TO CLIENT MODAL (Zero-Loss Logic)                                  -->
+  <!-- ========================================================================= -->
+  <div id="convertModal" class="hidden fixed inset-0 bg-[#202938]/40 backdrop-blur-[2px] z-50 flex items-center justify-center p-4">
+    <div class="bg-[#FFFFFF] rounded-xl max-w-lg w-full p-6 shadow-2xl border border-[#E5E7EB] space-y-4">
+      <div class="flex items-start justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-[#ECFDF5] text-[#16A36A] flex items-center justify-center text-lg font-bold">✓</div>
+          <div>
+            <h3 class="text-[17px] font-bold text-[#202938]">Convert to Paying Client</h3>
+            <p class="text-[12px] text-[#667085]">Zero-loss customer lifecycle provisioning</p>
+          </div>
+        </div>
+        <button onclick="closeConvertModal()" class="text-[#667085] hover:text-[#202938] text-xl font-bold">×</button>
+      </div>
+
+      <div class="bg-[#F8FAFC] p-3 rounded-lg border border-[#E5E7EB] text-[12px] space-y-1">
+        <div class="flex items-center gap-2 text-[#16A36A] font-medium">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span>Retains full interaction history, call notes, and Bar registration.</span>
+        </div>
+      </div>
+
+      <div class="space-y-3 text-[13px]">
+        <div>
+          <label class="block font-medium text-[#202938] mb-1">Purchased Subscription Plan *</label>
+          <select class="w-full border border-[#E5E7EB] rounded-md px-3 py-2 text-[#202938] bg-[#FFFFFF] focus:outline-none focus:border-[#2563EB]">
+            <option>Chamber Pro Tier (₹18,000 / month)</option>
+            <option>Firm Enterprise Tier (₹45,000 / month)</option>
+            <option>Solo Advocate Plan (₹3,500 / month)</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">Billing Frequency</label>
+            <select class="w-full border border-[#E5E7EB] rounded-md px-3 py-2 text-[#202938] bg-[#FFFFFF] focus:outline-none focus:border-[#2563EB]">
+              <option>Annual Prepaid (10% Discount)</option>
+              <option>Quarterly</option>
+              <option>Monthly</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">Advocate Seats</label>
+            <input type="number" value="12" class="w-full border border-[#E5E7EB] rounded-md px-3 py-2 text-[#202938] focus:outline-none focus:border-[#2563EB]">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-medium text-[#202938] mb-1">Payment Reference / Order ID *</label>
+          <input type="text" placeholder="e.g. NEFT-HDFC-99214 or Razorpay Order ID" class="w-full border border-[#E5E7EB] rounded-md px-3 py-2 text-[#202938] focus:outline-none focus:border-[#2563EB]">
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-3 pt-3 border-t border-[#E5E7EB]">
+        <button onclick="closeConvertModal()" class="px-4 py-2 border border-[#E5E7EB] rounded-md text-[13px] text-[#202938] hover:bg-[#F7F8FA]">
+          Cancel
+        </button>
+        <button onclick="executeConversion()" class="px-5 py-2 bg-[#16A36A] hover:bg-[#15803D] text-white rounded-md text-[13px] font-semibold shadow-sm transition-colors">
+          Activate Client & Subscription
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- ADD PROSPECT MODAL                                                        -->
+  <!-- ========================================================================= -->
+  <div id="addProspectModal" class="hidden fixed inset-0 bg-[#202938]/40 backdrop-blur-[2px] z-50 flex items-center justify-center p-4">
+    <div class="bg-[#FFFFFF] rounded-xl max-w-lg w-full p-6 shadow-2xl border border-[#E5E7EB] space-y-4">
+      <div class="flex items-start justify-between">
+        <div>
+          <h3 class="text-[17px] font-bold text-[#202938]">Add New Legal Prospect</h3>
+          <p class="text-[12px] text-[#667085]">Ingest advocate, chamber, or law firm record</p>
+        </div>
+        <button onclick="closeAddProspectModal()" class="text-[#667085] hover:text-[#202938] text-xl font-bold">×</button>
+      </div>
+
+      <div class="space-y-3 text-[13px]">
+        <div>
+          <label class="block font-medium text-[#202938] mb-1">Law Firm / Chamber Name *</label>
+          <input type="text" placeholder="e.g. Vaish Associates or Chamber of Adv. Sharma" class="w-full border border-[#E5E7EB] rounded-md px-3 py-2 text-[#202938] focus:outline-none focus:border-[#2563EB]">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">Primary Advocate Name *</label>
+            <input type="text" placeholder="e.g. Adv. Amit Sibal" class="w-full border border-[#E5E7EB] rounded-md px-3 py-2 text-[#202938] focus:outline-none focus:border-[#2563EB]">
+          </div>
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">Bar Council Reg ID</label>
+            <input type="text" placeholder="e.g. D/1042/2015" class="w-full border border-[#E5E7EB] rounded-md px-3 py-2 text-[#202938] focus:outline-none focus:border-[#2563EB]">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">Phone Number (WhatsApp) *</label>
+            <input type="text" placeholder="+91 98..." class="w-full border border-[#E5E7EB] rounded-md px-3 py-2 text-[#202938] focus:outline-none focus:border-[#2563EB]">
+          </div>
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">Practice Jurisdiction</label>
+            <select class="w-full border border-[#E5E7EB] rounded-md px-3 py-2 text-[#202938] bg-[#FFFFFF] focus:outline-none focus:border-[#2563EB]">
+              <option>Delhi High Court</option>
+              <option>Supreme Court of India</option>
+              <option>Bombay High Court</option>
+              <option>NCLT / Appellate Tribunals</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-medium text-[#202938] mb-1">Initial Discovery Note</label>
+          <textarea rows="2" placeholder="Brief note on firm size, practice area, or current pain points..." class="w-full border border-[#E5E7EB] rounded-md px-3 py-2 text-[#202938] focus:outline-none focus:border-[#2563EB]"></textarea>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-3 pt-3 border-t border-[#E5E7EB]">
+        <button onclick="closeAddProspectModal()" class="px-4 py-2 border border-[#E5E7EB] rounded-md text-[13px] text-[#202938] hover:bg-[#F7F8FA]">
+          Cancel
+        </button>
+        <button onclick="executeAddProspect()" class="px-5 py-2 bg-[#2563EB] hover:bg-[#1D4ED8] text-white rounded-md text-[13px] font-semibold shadow-sm transition-colors">
+          Save & Ingest Lead
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- TOAST NOTIFICATION CONTAINER                                              -->
+  <!-- ========================================================================= -->
+  <div id="toast" class="hidden fixed bottom-6 right-6 bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg shadow-xl p-4 flex items-center gap-3 z-50 transition-all max-w-sm">
+    <div id="toastIcon" class="w-6 h-6 rounded-full bg-[#ECFDF5] text-[#16A36A] flex items-center justify-center font-bold text-xs flex-shrink-0">✓</div>
+    <div>
+      <div id="toastTitle" class="text-[13px] font-semibold text-[#202938]">Action Successful</div>
+      <div id="toastBody" class="text-[11.5px] text-[#667085]">Operation completed without errors.</div>
+    </div>
+  </div>
+
+  <!-- Interactive JavaScript Harness -->
+  <script>
+    function toggleDrawer() {
+      const drawer = document.getElementById('peekDrawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    function openDrawerWith(firmName, status, contact, phone) {
+      document.getElementById('drawerFirmName').innerText = firmName;
+      document.getElementById('drawerContactName').innerText = contact;
+      document.getElementById('drawerPhone').innerText = phone;
+      document.getElementById('peekDrawer').classList.remove('hidden');
+    }
+
+    function openConvertModal() {
+      document.getElementById('convertModal').classList.remove('hidden');
+    }
+
+    function closeConvertModal() {
+      document.getElementById('convertModal').classList.add('hidden');
+    }
+
+    function openAddProspectModal() {
+      document.getElementById('addProspectModal').classList.remove('hidden');
+    }
+
+    function closeAddProspectModal() {
+      document.getElementById('addProspectModal').classList.add('hidden');
+    }
+
+    function executeAddProspect() {
+      closeAddProspectModal();
+      triggerToast('New Legal Prospect added to New Leads stage!', 'Prospect Ingested');
+    }
+
+    function executeConversion() {
+      closeConvertModal();
+      toggleDrawer();
+      triggerToast('Prospect successfully converted to Paying Client! 100% history preserved.', 'Client Activated');
+    }
+
+    function toggleTaskDone(checkbox) {
+      const row = checkbox.closest('tr');
+      if (checkbox.checked) {
+        row.classList.add('opacity-40', 'line-through');
+        triggerToast('Follow-up task marked as complete!', 'Task Completed');
+      } else {
+        row.classList.remove('opacity-40', 'line-through');
+      }
+    }
+
+    function filterByStage(stageName, count, val) {
+      triggerToast(`Filtered ${count} deals in "${stageName}" (${val} Pipeline)`, 'Stage Filter Applied');
+    }
+
+    function filterFollowUps(urgency) {
+      const tabs = ['tabToday', 'tabOverdue', 'tabUpcoming', 'tabAll'];
+      tabs.forEach(t => {
+        const el = document.getElementById(t);
+        if (el) {
+          el.classList.remove('bg-white', 'shadow-xs', 'font-semibold', 'text-[#202938]');
+          el.classList.add('text-[#667085]');
+        }
+      });
+
+      if (urgency === 'today') {
+        const el = document.getElementById('tabToday');
+        el.classList.add('bg-white', 'shadow-xs', 'font-semibold', 'text-[#202938]');
+        triggerToast('Showing 5 follow-ups due today', 'View Switched');
+      } else if (urgency === 'overdue') {
+        const el = document.getElementById('tabOverdue');
+        el.classList.add('bg-white', 'shadow-xs', 'font-semibold', 'text-[#DC2626]');
+        triggerToast('Showing 7 overdue follow-ups requiring immediate SLA action', 'Urgent Tasks');
+      } else if (urgency === 'upcoming') {
+        const el = document.getElementById('tabUpcoming');
+        el.classList.add('bg-white', 'shadow-xs', 'font-semibold', 'text-[#202938]');
+        triggerToast('Showing 14 upcoming scheduled follow-ups', 'Upcoming Schedule');
+      } else {
+        const el = document.getElementById('tabAll');
+        el.classList.add('bg-white', 'shadow-xs', 'font-semibold', 'text-[#202938]');
+        triggerToast('Showing all 26 follow-up tasks', 'All Follow-ups');
+      }
+    }
+
+    function triggerToast(bodyText, titleText = 'Action Completed') {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastTitle').innerText = titleText;
+      document.getElementById('toastBody').innerText = bodyText;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>

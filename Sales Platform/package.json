@@ -1,0 +1,20 @@
+{
+  "name": "modulus-crm",
+  "version": "1.0.0",
+  "description": "Enterprise B2B sales CRM platform built with shadcn/ui design tokens, Geist typography, and modular vanilla JavaScript.",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "serve": "npx serve ."
+  },
+  "keywords": [
+    "crm",
+    "sales-platform",
+    "dashboard",
+    "shadcn-ui",
+    "b2b-saas",
+    "geist-font"
+  ],
+  "author": "Satyajit Mane",
+  "license": "MIT"
+}

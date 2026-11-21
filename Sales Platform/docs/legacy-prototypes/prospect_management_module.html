@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal Sales CRM - Prospect Management Module</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #F7F8FA; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+  </style>
+</head>
+<body class="bg-[#F7F8FA] text-[#202938] antialiased m-0 p-0 flex h-screen overflow-hidden">
+
+  <!-- ========================================================================= -->
+  <!-- SIDEBAR NAVIGATION (240px Fixed)                                          -->
+  <!-- ========================================================================= -->
+  <aside class="w-[240px] bg-[#FFFFFF] border-r border-[#E5E7EB] flex flex-col flex-shrink-0 select-none z-20">
+    <div class="h-16 flex items-center justify-between px-5 border-b border-[#E5E7EB]">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-[#2563EB] flex items-center justify-center text-white font-bold text-base shadow-sm">
+          ⚖️
+        </div>
+        <div>
+          <span class="font-bold text-[15px] tracking-tight text-[#202938]">LexisCRM</span>
+          <span class="block text-[10px] text-[#667085] font-medium leading-none">Legal Tech Sales</span>
+        </div>
+      </div>
+      <button class="text-[#667085] hover:text-[#202938] p-1 rounded hover:bg-[#F7F8FA]">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/></svg>
+      </button>
+    </div>
+
+    <!-- Workspace Switcher -->
+    <div class="p-3 border-b border-[#E5E7EB]">
+      <div class="bg-[#F7F8FA] rounded-md p-2 flex items-center justify-between border border-[#E5E7EB] cursor-pointer hover:border-[#CBD5E1] transition-colors">
+        <div class="flex items-center gap-2 overflow-hidden">
+          <div class="w-2 h-2 rounded-full bg-[#16A36A]"></div>
+          <div class="truncate text-left">
+            <span class="block text-[11px] font-semibold text-[#202938] leading-tight truncate">Delhi High Court & NCR</span>
+            <span class="block text-[10px] text-[#667085]">Litigation Division</span>
+          </div>
+        </div>
+        <svg class="w-3.5 h-3.5 text-[#667085] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </div>
+    </div>
+
+    <!-- Nav Items -->
+    <nav class="flex-1 overflow-y-auto px-3 py-3 space-y-5 text-[13px]">
+      <div>
+        <div class="px-2 text-[10px] font-semibold text-[#667085] uppercase tracking-wider mb-1.5">Overview</div>
+        <a href="#" onclick="showListingScreen(); triggerToast('Switched to Dashboard', 'Navigation')" class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938] transition-colors">
+          <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+          <span>Dashboard</span>
+        </a>
+      </div>
+
+      <div>
+        <div class="px-2 text-[10px] font-semibold text-[#667085] uppercase tracking-wider mb-1.5">Pipeline & Accounts</div>
+        <!-- Active Link: Prospects -->
+        <a href="#" onclick="showListingScreen()" class="flex items-center justify-between px-2.5 py-1.5 rounded-md bg-[#EFF6FF] text-[#2563EB] font-medium transition-colors border-r-2 border-[#2563EB]">
+          <div class="flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-[#2563EB]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            <span>Prospects</span>
+          </div>
+          <span class="text-[11px] font-semibold bg-[#2563EB] text-white px-1.5 py-0.2 rounded-full">148</span>
+        </a>
+
+        <div class="mt-1">
+          <button class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938] transition-colors">
+            <div class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+              <span>Clients</span>
+            </div>
+            <svg class="w-3.5 h-3.5 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <div class="px-2 text-[10px] font-semibold text-[#667085] uppercase tracking-wider mb-1.5">Operations</div>
+        <a href="#" class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938]">
+          <div class="flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Follow-ups</span>
+          </div>
+          <span class="px-1.5 py-0.2 rounded text-[10px] font-semibold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]">7 due</span>
+        </a>
+        <a href="#" class="flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-[#667085] hover:bg-[#F7F8FA] hover:text-[#202938]">
+          <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+          <span>Plans & Subs</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Rep Profile -->
+    <div class="p-3 border-t border-[#E5E7EB] bg-[#FFFFFF]">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-semibold text-xs">
+            SJ
+          </div>
+          <div>
+            <div class="text-[12.5px] font-semibold text-[#202938] leading-tight">Sarah Jenkins</div>
+            <div class="text-[11px] text-[#667085]">Senior Sales Exec</div>
+          </div>
+        </div>
+        <button class="text-[#667085] hover:text-[#DC5252] p-1.5 rounded hover:bg-[#F7F8FA]">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN CONTENT CONTAINER                                                    -->
+  <!-- ========================================================================= -->
+  <div class="flex-1 flex flex-col h-screen overflow-hidden bg-[#F7F8FA]">
+
+    <!-- ======================================================================= -->
+    <!-- TOP NAVIGATION & GLOBAL BREADCRUMBS                                     -->
+    <!-- ======================================================================= -->
+    <header class="h-16 bg-[#FFFFFF] border-b border-[#E5E7EB] px-6 flex items-center justify-between flex-shrink-0 z-10">
+      <div class="flex items-center gap-3">
+        <!-- Breadcrumbs -->
+        <div class="flex items-center gap-2 text-[13px] text-[#667085]">
+          <span class="hover:underline cursor-pointer" onclick="showListingScreen()">Prospects</span>
+          <span>/</span>
+          <span id="topBreadcrumbContext" class="text-[#202938] font-bold text-[15px]">All Prospects Directory</span>
+        </div>
+        <span class="text-[11.5px] font-medium bg-[#F1F5F9] text-[#475569] border border-[#CBD5E1] px-2.5 py-0.5 rounded-full">
+          148 Legal Leads
+        </span>
+      </div>
+
+      <!-- Quick Screen Switcher (For User Testing Prototype) -->
+      <div class="flex items-center gap-2 bg-[#F7F8FA] border border-[#E5E7EB] p-1 rounded-md text-[12px]">
+        <button id="viewBtnTable" onclick="showListingScreen()" class="px-2.5 py-1 rounded bg-white shadow-xs font-semibold text-[#202938]">
+          1. Prospects Table
+        </button>
+        <button id="viewBtnProfile" onclick="showProfileScreen()" class="px-2.5 py-1 rounded text-[#667085] hover:text-[#202938]">
+          3. Prospect 360° Profile
+        </button>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- Omni Search -->
+        <div class="relative w-64">
+          <svg class="w-4 h-4 text-[#667085] absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input type="text" id="globalSearchInput" onkeyup="filterProspectsTable()" placeholder="Search name, phone, email..." 
+                 class="w-full bg-[#F7F8FA] border border-[#E5E7EB] rounded-md pl-9 pr-8 py-1.5 text-[12.5px] text-[#202938] placeholder-[#667085] focus:outline-none focus:border-[#2563EB] focus:bg-[#FFFFFF]">
+        </div>
+
+        <!-- Add Prospect Primary CTA -->
+        <button onclick="openAddProspectModal()" class="flex items-center gap-1.5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white px-3.5 py-1.5 rounded-md text-[13px] font-semibold shadow-sm transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          <span>Add Prospect</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ======================================================================= -->
+    <!-- VIEW CONTAINER: SCREEN 1 (PROSPECTS LISTING TABLE)                      -->
+    <!-- ======================================================================= -->
+    <main id="screenListing" class="flex-1 overflow-y-auto p-6 space-y-4">
+      
+      <!-- Filter Control Deck -->
+      <div class="bg-[#FFFFFF] p-3.5 rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)] space-y-3">
+        <div class="flex items-center justify-between gap-3 flex-wrap text-[13px]">
+          
+          <!-- Left: Filter Dropdowns -->
+          <div class="flex items-center gap-2 flex-wrap">
+            
+            <!-- Filter by Stage -->
+            <select id="filterStage" onchange="filterProspectsTable()" class="bg-[#FFFFFF] border border-[#E5E7EB] hover:border-[#CBD5E1] text-[#202938] font-medium text-[12.5px] rounded px-2.5 py-1.5 focus:outline-none focus:border-[#2563EB]">
+              <option value="">Stage: All Stages (8)</option>
+              <option value="New Lead">New Lead</option>
+              <option value="Contacted">Contacted</option>
+              <option value="Demo Scheduled">Demo Scheduled</option>
+              <option value="Demo Completed">Demo Completed</option>
+              <option value="Interested">Interested</option>
+              <option value="Negotiation">Negotiation</option>
+              <option value="Converted">Converted</option>
+              <option value="Lost">Lost</option>
+            </select>
+
+            <!-- Filter by Lead Source -->
+            <select id="filterSource" onchange="filterProspectsTable()" class="bg-[#FFFFFF] border border-[#E5E7EB] hover:border-[#CBD5E1] text-[#202938] font-medium text-[12.5px] rounded px-2.5 py-1.5 focus:outline-none focus:border-[#2563EB]">
+              <option value="">Source: All Sources</option>
+              <option value="Bar Directory">Bar Council Directory</option>
+              <option value="Referral">Advocate Peer Referral</option>
+              <option value="Legal Tech Expo">Legal Tech Conclave</option>
+              <option value="Website Inbound">Website Inbound</option>
+              <option value="Chamber Drop-in">Chamber Drop-in</option>
+            </select>
+
+            <!-- Filter by Salesperson -->
+            <select id="filterRep" onchange="filterProspectsTable()" class="bg-[#FFFFFF] border border-[#E5E7EB] hover:border-[#CBD5E1] text-[#202938] font-medium text-[12.5px] rounded px-2.5 py-1.5 focus:outline-none focus:border-[#2563EB]">
+              <option value="">Rep: All Sales Team</option>
+              <option value="Sarah Jenkins">Sarah Jenkins (You)</option>
+              <option value="David Kumar">David Kumar</option>
+              <option value="Priya Nair">Priya Nair</option>
+              <option value="Rohan Mehta">Rohan Mehta</option>
+            </select>
+
+            <!-- Filter by City -->
+            <select id="filterCity" onchange="filterProspectsTable()" class="bg-[#FFFFFF] border border-[#E5E7EB] hover:border-[#CBD5E1] text-[#202938] font-medium text-[12.5px] rounded px-2.5 py-1.5 focus:outline-none focus:border-[#2563EB]">
+              <option value="">City: All Jurisdictions</option>
+              <option value="New Delhi">New Delhi / NCR</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Bengaluru">Bengaluru</option>
+              <option value="Chandigarh">Chandigarh</option>
+              <option value="Kolkata">Kolkata</option>
+            </select>
+
+            <!-- Follow-up Date Filter -->
+            <button onclick="triggerToast('Filtering follow-ups due this week', 'Date Filter')" class="flex items-center gap-1.5 bg-[#FFFFFF] border border-[#E5E7EB] hover:border-[#CBD5E1] px-2.5 py-1.5 rounded text-[12.5px] text-[#667085]">
+              <svg class="w-3.5 h-3.5 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <span>Follow-up: This Month</span>
+            </button>
+
+            <!-- Clear All -->
+            <button onclick="clearAllFilters()" class="text-[12px] text-[#667085] hover:text-[#DC5252] font-medium px-2 py-1">
+              Clear All
+            </button>
+          </div>
+
+          <!-- Right: Save View & Export -->
+          <div class="flex items-center gap-2">
+            <button onclick="triggerToast('Custom Filter View Saved to your profile', 'View Saved')" class="flex items-center gap-1.5 bg-[#FFFFFF] border border-[#E5E7EB] hover:bg-[#F7F8FA] px-2.5 py-1.5 rounded text-[12.5px] font-medium text-[#202938]">
+              <svg class="w-3.5 h-3.5 text-[#2563EB]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+              <span>Save View</span>
+            </button>
+            <button onclick="triggerToast('Exporting 148 prospects as CSV...', 'Export Started')" class="flex items-center gap-1.5 bg-[#FFFFFF] border border-[#E5E7EB] hover:bg-[#F7F8FA] px-2.5 py-1.5 rounded text-[12.5px] font-medium text-[#202938]">
+              <svg class="w-3.5 h-3.5 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              <span>Export</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prospects Data Table (Screen 1) -->
+      <div class="bg-[#FFFFFF] rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)] overflow-hidden">
+        <div class="overflow-x-auto">
+          <table id="prospectsTable" class="w-full text-left border-collapse text-[13px]">
+            <thead>
+              <tr class="bg-[#F7F8FA] border-b border-[#E5E7EB] text-[#667085] text-[11.5px] font-semibold uppercase tracking-wider">
+                <th class="w-8 px-3 py-2.5 text-center">
+                  <input type="checkbox" id="selectAllMaster" onchange="toggleSelectAll(this)" class="rounded border-[#CBD5E1] text-[#2563EB]">
+                </th>
+                <th class="px-3.5 py-2.5">Prospect Name</th>
+                <th class="px-3 py-2.5">Phone Number</th>
+                <th class="px-3 py-2.5">Email Address</th>
+                <th class="px-3 py-2.5">Profession</th>
+                <th class="px-3.5 py-2.5">Firm / Chamber Name</th>
+                <th class="px-3 py-2.5">City</th>
+                <th class="px-3 py-2.5">Lead Source</th>
+                <th class="px-3 py-2.5">Sales Stage</th>
+                <th class="px-3 py-2.5">Last Contact</th>
+                <th class="px-3 py-2.5">Next Follow-up</th>
+                <th class="px-3 py-2.5">Assigned Rep</th>
+                <th class="px-3 py-2.5 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="prospectsTbody" class="divide-y divide-[#E5E7EB] bg-[#FFFFFF]">
+
+              <!-- Prospect 1 -->
+              <tr class="hover:bg-[#F9FAFB] cursor-pointer transition-colors group" onclick="showProfileScreen('Adv. Rajesh Sharma')">
+                <td class="px-3 py-3 text-center" onclick="event.stopPropagation()">
+                  <input type="checkbox" class="row-cb rounded border-[#CBD5E1] text-[#2563EB]" onchange="updateBulkBar()">
+                </td>
+                <td class="px-3.5 py-3">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-[#EFF6FF] text-[#2563EB] flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                      RS
+                    </div>
+                    <div>
+                      <div class="font-bold text-[#202938] group-hover:text-[#2563EB] transition-colors leading-tight">Adv. Rajesh Sharma</div>
+                      <div class="text-[10.5px] text-[#667085]">Bar ID: D/1982/2012</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-3 py-3" onclick="event.stopPropagation()">
+                  <a href="tel:+919810123456" class="font-mono text-[12px] text-[#2563EB] hover:underline">📞 +91 98101 23456</a>
+                </td>
+                <td class="px-3 py-3 text-[#667085] text-[12px]">sharma@apexlegal.in</td>
+                <td class="px-3 py-3 font-medium text-[#202938]">Senior Advocate</td>
+                <td class="px-3.5 py-3 font-semibold text-[#202938]">Apex Legal Partners</td>
+                <td class="px-3 py-3 text-[#667085]">New Delhi</td>
+                <td class="px-3 py-3 text-[12px] text-[#475569]">Bar Directory</td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#F5F3FF] text-[#7C3AED] border border-[#DDD6FE]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#7C3AED]"></span> Demo Completed
+                  </span>
+                </td>
+                <td class="px-3 py-3 text-[12px] text-[#667085]">Yesterday</td>
+                <td class="px-3 py-3">
+                  <span class="text-[#DC2626] font-semibold text-[11.5px] block">Today, 2:30 PM</span>
+                  <span class="text-[10px] text-[#667085]">Proposal Call</span>
+                </td>
+                <td class="px-3 py-3">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded-full bg-[#2563EB] text-white flex items-center justify-center text-[9px] font-bold">SJ</div>
+                    <span class="text-[12px] text-[#667085]">Sarah J.</span>
+                  </div>
+                </td>
+                <td class="px-3 py-3 text-right" onclick="event.stopPropagation()">
+                  <div class="flex items-center justify-end gap-1">
+                    <button onclick="openDrawerWith('Adv. Rajesh Sharma', 'Apex Legal Partners', 'Senior Advocate', 'Demo Completed', '+91 98101 23456')" class="p-1 text-[#667085] hover:text-[#2563EB] rounded hover:bg-[#EFF6FF]" title="Quick View Drawer">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    </button>
+                    <!-- 3-Dot Kebab Menu -->
+                    <div class="relative inline-block text-left">
+                      <button onclick="toggleActionMenu(event, 'menu1')" class="p-1 text-[#667085] hover:text-[#202938] rounded hover:bg-[#F7F8FA]">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/></svg>
+                      </button>
+                      <div id="menu1" class="action-dropdown hidden absolute right-0 mt-1 w-44 bg-[#FFFFFF] rounded-md shadow-xl border border-[#E5E7EB] py-1 z-30 text-[12.5px]">
+                        <a href="#" onclick="showProfileScreen('Adv. Rajesh Sharma')" class="block px-3 py-1.5 text-[#202938] hover:bg-[#F7F8FA]">View Details</a>
+                        <a href="#" onclick="openEditModal('Adv. Rajesh Sharma', '+91 98101 23456', 'sharma@apexlegal.in', 'Senior Advocate', 'Apex Legal Partners')" class="block px-3 py-1.5 text-[#202938] hover:bg-[#F7F8FA]">Edit Prospect</a>
+                        <a href="#" onclick="triggerToast('Add Follow-up task modal')" class="block px-3 py-1.5 text-[#202938] hover:bg-[#F7F8FA]">Add Follow-up</a>
+                        <a href="#" onclick="triggerToast('Add Comment drawer')" class="block px-3 py-1.5 text-[#202938] hover:bg-[#F7F8FA]">Add Comment</a>
+                        <a href="#" onclick="triggerToast('Stage change picker')" class="block px-3 py-1.5 text-[#202938] hover:bg-[#F7F8FA]">Change Stage</a>
+                        <div class="border-t border-[#E5E7EB] my-1"></div>
+                        <a href="#" onclick="openConvertModal()" class="block px-3 py-1.5 text-[#16A36A] font-semibold hover:bg-[#F0FDF4]">Convert to Client</a>
+                        <a href="#" onclick="triggerToast('Marked as Lost dialog')" class="block px-3 py-1.5 text-[#E9A23B] hover:bg-[#FFFBEB]">Mark as Lost</a>
+                        <a href="#" onclick="openDeleteDialog('Adv. Rajesh Sharma', 'Apex Legal Partners')" class="block px-3 py-1.5 text-[#DC5252] font-medium hover:bg-[#FEF2F2]">Delete Prospect</a>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Prospect 2 -->
+              <tr class="hover:bg-[#F9FAFB] cursor-pointer transition-colors group" onclick="showProfileScreen('Adv. Meenakshi Iyer')">
+                <td class="px-3 py-3 text-center" onclick="event.stopPropagation()">
+                  <input type="checkbox" class="row-cb rounded border-[#CBD5E1] text-[#2563EB]" onchange="updateBulkBar()">
+                </td>
+                <td class="px-3.5 py-3">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-[#F5F3FF] text-[#7C3AED] flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                      MI
+                    </div>
+                    <div>
+                      <div class="font-bold text-[#202938] group-hover:text-[#2563EB] transition-colors leading-tight">Adv. Meenakshi Iyer</div>
+                      <div class="text-[10.5px] text-[#667085]">Bar ID: MAH/3401/2008</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-3 py-3" onclick="event.stopPropagation()">
+                  <a href="tel:+919711055823" class="font-mono text-[12px] text-[#2563EB] hover:underline">📞 +91 97110 55823</a>
+                </td>
+                <td class="px-3 py-3 text-[#667085] text-[12px]">meenakshi@lexcor.in</td>
+                <td class="px-3 py-3 font-medium text-[#202938]">Managing Partner</td>
+                <td class="px-3.5 py-3 font-semibold text-[#202938]">LexCor Advocates</td>
+                <td class="px-3 py-3 text-[#667085]">Mumbai</td>
+                <td class="px-3 py-3 text-[12px] text-[#475569]">Referral</td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#EFF6FF] text-[#2563EB] border border-[#BFDBFE]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#2563EB]"></span> Negotiation
+                  </span>
+                </td>
+                <td class="px-3 py-3 text-[12px] text-[#667085]">Nov 17</td>
+                <td class="px-3 py-3">
+                  <span class="text-[#202938] text-[11.5px] block">Tomorrow, 11:00 AM</span>
+                  <span class="text-[10px] text-[#667085]">Contract Call</span>
+                </td>
+                <td class="px-3 py-3">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded-full bg-[#16A36A] text-white flex items-center justify-center text-[9px] font-bold">DK</div>
+                    <span class="text-[12px] text-[#667085]">David K.</span>
+                  </div>
+                </td>
+                <td class="px-3 py-3 text-right" onclick="event.stopPropagation()">
+                  <div class="flex items-center justify-end gap-1">
+                    <button onclick="openDrawerWith('Adv. Meenakshi Iyer', 'LexCor Advocates', 'Managing Partner', 'Negotiation', '+91 97110 55823')" class="p-1 text-[#667085] hover:text-[#2563EB] rounded hover:bg-[#EFF6FF]"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></button>
+                    <button onclick="openDeleteDialog('Adv. Meenakshi Iyer', 'LexCor Advocates')" class="p-1 text-[#667085] hover:text-[#DC5252] rounded hover:bg-[#FEF2F2]"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Prospect 3 -->
+              <tr class="hover:bg-[#F9FAFB] cursor-pointer transition-colors group" onclick="showProfileScreen('Adv. Sneha Chitale')">
+                <td class="px-3 py-3 text-center" onclick="event.stopPropagation()">
+                  <input type="checkbox" class="row-cb rounded border-[#CBD5E1] text-[#2563EB]" onchange="updateBulkBar()">
+                </td>
+                <td class="px-3.5 py-3">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-[#ECFDF5] text-[#16A36A] flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                      SC
+                    </div>
+                    <div>
+                      <div class="font-bold text-[#202938] group-hover:text-[#2563EB] transition-colors leading-tight">Adv. Sneha Chitale</div>
+                      <div class="text-[10.5px] text-[#667085]">Bar ID: MAH/1920/2017</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-3 py-3" onclick="event.stopPropagation()">
+                  <a href="tel:+919820244910" class="font-mono text-[12px] text-[#2563EB] hover:underline">📞 +91 98202 44910</a>
+                </td>
+                <td class="px-3 py-3 text-[#667085] text-[12px]">sneha@chitalelaw.com</td>
+                <td class="px-3 py-3 font-medium text-[#202938]">Partner - IP & Tech</td>
+                <td class="px-3.5 py-3 font-semibold text-[#202938]">Chitale & Associates</td>
+                <td class="px-3 py-3 text-[#667085]">Mumbai</td>
+                <td class="px-3 py-3 text-[12px] text-[#475569]">Legal Tech Expo</td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#EEF2FF] text-[#4F46E5] border border-[#C7D2FE]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#4F46E5]"></span> Demo Scheduled
+                  </span>
+                </td>
+                <td class="px-3 py-3 text-[12px] text-[#667085]">Nov 18</td>
+                <td class="px-3 py-3">
+                  <span class="text-[#E9A23B] font-semibold text-[11.5px] block">Today, 3:00 PM</span>
+                  <span class="text-[10px] text-[#667085]">Zoom Demo</span>
+                </td>
+                <td class="px-3 py-3">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded-full bg-[#2563EB] text-white flex items-center justify-center text-[9px] font-bold">SJ</div>
+                    <span class="text-[12px] text-[#667085]">Sarah J.</span>
+                  </div>
+                </td>
+                <td class="px-3 py-3 text-right" onclick="event.stopPropagation()">
+                  <div class="flex items-center justify-end gap-1">
+                    <button onclick="openDrawerWith('Adv. Sneha Chitale', 'Chitale & Associates', 'Partner - IP', 'Demo Scheduled', '+91 98202 44910')" class="p-1 text-[#667085] hover:text-[#2563EB] rounded hover:bg-[#EFF6FF]"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Prospect 4 -->
+              <tr class="hover:bg-[#F9FAFB] cursor-pointer transition-colors group" onclick="showProfileScreen('Adv. Amit Sibal')">
+                <td class="px-3 py-3 text-center" onclick="event.stopPropagation()">
+                  <input type="checkbox" class="row-cb rounded border-[#CBD5E1] text-[#2563EB]" onchange="updateBulkBar()">
+                </td>
+                <td class="px-3.5 py-3">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-[#FFFBEB] text-[#D97706] flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                      AS
+                    </div>
+                    <div>
+                      <div class="font-bold text-[#202938] group-hover:text-[#2563EB] transition-colors leading-tight">Adv. Amit Sibal</div>
+                      <div class="text-[10.5px] text-[#667085]">Bar ID: D/2104/2015</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-3 py-3" onclick="event.stopPropagation()">
+                  <a href="tel:+919811230491" class="font-mono text-[12px] text-[#2563EB] hover:underline">📞 +91 98112 30491</a>
+                </td>
+                <td class="px-3 py-3 text-[#667085] text-[12px]">amit@sibalchambers.in</td>
+                <td class="px-3 py-3 font-medium text-[#202938]">Chamber Counsel</td>
+                <td class="px-3.5 py-3 font-semibold text-[#202938]">Chambers of Amit Sibal</td>
+                <td class="px-3 py-3 text-[#667085]">New Delhi</td>
+                <td class="px-3 py-3 text-[12px] text-[#475569]">Website Inbound</td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#F0F9FF] text-[#0284C7] border border-[#BAE6FD]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#0284C7]"></span> Contacted
+                  </span>
+                </td>
+                <td class="px-3 py-3 text-[12px] text-[#667085]">3 days ago</td>
+                <td class="px-3 py-3">
+                  <span class="text-[#202938] text-[11.5px] block">Nov 22, 2026</span>
+                  <span class="text-[10px] text-[#667085]">Demo Booking</span>
+                </td>
+                <td class="px-3 py-3">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded-full bg-[#7C3AED] text-white flex items-center justify-center text-[9px] font-bold">PN</div>
+                    <span class="text-[12px] text-[#667085]">Priya N.</span>
+                  </div>
+                </td>
+                <td class="px-3 py-3 text-right" onclick="event.stopPropagation()">
+                  <div class="flex items-center justify-end gap-1">
+                    <button onclick="openDrawerWith('Adv. Amit Sibal', 'Chambers of Amit Sibal', 'Chamber Counsel', 'Contacted', '+91 98112 30491')" class="p-1 text-[#667085] hover:text-[#2563EB] rounded hover:bg-[#EFF6FF]"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Prospect 5: Converted State -->
+              <tr class="hover:bg-[#F9FAFB] cursor-pointer transition-colors group bg-[#ECFDF5]/20" onclick="showProfileScreen('Adv. Vikramaditya Sen')">
+                <td class="px-3 py-3 text-center" onclick="event.stopPropagation()">
+                  <input type="checkbox" class="row-cb rounded border-[#CBD5E1] text-[#2563EB]" onchange="updateBulkBar()">
+                </td>
+                <td class="px-3.5 py-3">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-[#ECFDF5] text-[#16A36A] flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                      ✓
+                    </div>
+                    <div>
+                      <div class="font-bold text-[#202938] group-hover:text-[#2563EB] transition-colors leading-tight">Adv. Vikramaditya Sen</div>
+                      <div class="text-[10.5px] text-[#16A36A]">Converted Nov 14 • Bar ID: WB/891/2003</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-3 py-3" onclick="event.stopPropagation()">
+                  <a href="tel:+919830077215" class="font-mono text-[12px] text-[#2563EB] hover:underline">📞 +91 98300 77215</a>
+                </td>
+                <td class="px-3 py-3 text-[#667085] text-[12px]">sen@justicechambers.com</td>
+                <td class="px-3 py-3 font-medium text-[#202938]">Senior Counsel</td>
+                <td class="px-3.5 py-3 font-semibold text-[#202938]">Justice Chambers & Co.</td>
+                <td class="px-3 py-3 text-[#667085]">Kolkata / NCR</td>
+                <td class="px-3 py-3 text-[12px] text-[#475569]">Chamber Drop-in</td>
+                <td class="px-3 py-3">
+                  <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#ECFDF5] text-[#16A36A] border border-[#A7F3D0]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#16A36A]"></span> Converted
+                  </span>
+                </td>
+                <td class="px-3 py-3 text-[12px] text-[#667085]">Nov 14</td>
+                <td class="px-3 py-3">
+                  <span class="text-[#16A36A] text-[11.5px] block font-medium">Nov 28, 2026</span>
+                  <span class="text-[10px] text-[#667085]">CS Handover</span>
+                </td>
+                <td class="px-3 py-3">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded-full bg-[#2563EB] text-white flex items-center justify-center text-[9px] font-bold">SJ</div>
+                    <span class="text-[12px] text-[#667085]">Sarah J.</span>
+                  </div>
+                </td>
+                <td class="px-3 py-3 text-right" onclick="event.stopPropagation()">
+                  <button class="px-2 py-1 bg-[#F0FDF4] text-[#16A36A] border border-[#BBF7D0] rounded text-[11px] font-semibold">Active Client</button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Table Footer Pagination -->
+        <div class="p-3 border-t border-[#E5E7EB] flex items-center justify-between text-[12.5px] text-[#667085] bg-[#FFFFFF]">
+          <div class="flex items-center gap-3">
+            <span>Viewing <strong>1–25</strong> of <strong>148</strong> legal prospects</span>
+            <span class="text-[#E5E7EB]">|</span>
+            <div class="flex items-center gap-1.5">
+              <span>Rows per page:</span>
+              <select class="border border-[#E5E7EB] rounded px-1.5 py-0.5 text-[#202938] bg-[#FFFFFF] text-xs focus:outline-none">
+                <option>25</option>
+                <option>50</option>
+                <option>100</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-1">
+            <button class="px-2 py-1 rounded border border-[#E5E7EB] text-[#667085] hover:bg-[#F7F8FA] disabled:opacity-40" disabled>‹ Previous</button>
+            <button class="px-2.5 py-1 rounded bg-[#2563EB] text-white font-medium">1</button>
+            <button class="px-2.5 py-1 rounded border border-[#E5E7EB] text-[#202938] hover:bg-[#F7F8FA]">2</button>
+            <button class="px-2.5 py-1 rounded border border-[#E5E7EB] text-[#202938] hover:bg-[#F7F8FA]">3</button>
+            <span class="px-1 text-[#667085]">...</span>
+            <button class="px-2.5 py-1 rounded border border-[#E5E7EB] text-[#202938] hover:bg-[#F7F8FA]">6</button>
+            <button class="px-2 py-1 rounded border border-[#E5E7EB] text-[#202938] hover:bg-[#F7F8FA]">Next ›</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ======================================================================= -->
+    <!-- VIEW CONTAINER: SCREEN 3 (PROSPECT 360° PROFILE)                        -->
+    <!-- ======================================================================= -->
+    <main id="screenProfile" class="hidden flex-1 overflow-y-auto p-6 space-y-6">
+      
+      <!-- Profile Header Bar -->
+      <section class="bg-[#FFFFFF] p-6 rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.04)]">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-4">
+            <div class="w-14 h-14 rounded-xl bg-[#EFF6FF] border border-[#BFDBFE] text-[#2563EB] flex items-center justify-center text-2xl font-bold flex-shrink-0 shadow-xs">
+              ⚖️
+            </div>
+            <div>
+              <div class="flex items-center gap-3">
+                <h1 id="profileAdvocateName" class="text-[22px] font-bold text-[#202938] tracking-tight">Adv. Rajesh Sharma</h1>
+                <span id="profileStageBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[12px] font-semibold bg-[#F5F3FF] text-[#7C3AED] border border-[#DDD6FE]">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#7C3AED]"></span> Demo Completed
+                </span>
+                <span class="text-[11px] font-semibold bg-[#FFFBEB] text-[#D97706] border border-[#FDE68A] px-2.5 py-0.5 rounded-full uppercase">
+                  HIGH PRIORITY
+                </span>
+              </div>
+              <div class="text-[13px] text-[#667085] mt-1 font-medium">
+                Senior Advocate & Managing Partner at <strong class="text-[#202938]">Apex Legal Partners</strong> • Enrollment: <strong class="text-[#202938] font-mono">D/1982/2012</strong> (Bar Council of Delhi)
+              </div>
+              
+              <!-- Contact metadata row -->
+              <div class="flex items-center gap-5 mt-3 text-[12.5px] text-[#667085]">
+                <a href="tel:+919810123456" class="flex items-center gap-1.5 text-[#2563EB] hover:underline font-mono">
+                  📞 +91 98101 23456
+                </a>
+                <a href="mailto:sharma@apexlegal.in" class="flex items-center gap-1.5 text-[#2563EB] hover:underline">
+                  ✉️ sharma@apexlegal.in
+                </a>
+                <span class="flex items-center gap-1.5">
+                  📍 New Delhi • Supreme Court & Delhi High Court
+                </span>
+                <span class="flex items-center gap-1.5">
+                  👤 Rep: <strong class="text-[#202938]">Sarah Jenkins</strong>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex items-center gap-2.5">
+            <button onclick="openEditModal('Adv. Rajesh Sharma', '+91 98101 23456', 'sharma@apexlegal.in', 'Senior Advocate', 'Apex Legal Partners')" class="flex items-center gap-1.5 bg-[#FFFFFF] border border-[#E5E7EB] hover:bg-[#F7F8FA] px-3.5 py-2 rounded-md text-[13px] font-medium text-[#202938]">
+              <svg class="w-4 h-4 text-[#667085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+              <span>Edit Prospect</span>
+            </button>
+            <button onclick="openConvertModal()" class="flex items-center gap-1.5 bg-[#16A36A] hover:bg-[#15803D] text-white px-4 py-2 rounded-md text-[13px] font-semibold shadow-sm transition-colors">
+              <span>Convert to Client ➔</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Visual Stage Progression Stepper -->
+        <div class="mt-6 pt-5 border-t border-[#E5E7EB]">
+          <div class="text-[11.5px] font-semibold text-[#667085] uppercase tracking-wider mb-2">Deal Velocity Stepper (Stage 4 of 7)</div>
+          <div class="grid grid-cols-7 gap-2 text-center text-[11px] font-semibold">
+            <div class="p-1.5 bg-[#F1F5F9] text-[#16A36A] rounded border border-[#A7F3D0]">1. New Lead ✓</div>
+            <div class="p-1.5 bg-[#F1F5F9] text-[#16A36A] rounded border border-[#A7F3D0]">2. Contacted ✓</div>
+            <div class="p-1.5 bg-[#F1F5F9] text-[#16A36A] rounded border border-[#A7F3D0]">3. Demo Sched ✓</div>
+            <div class="p-1.5 bg-[#F5F3FF] text-[#7C3AED] rounded border-2 border-[#7C3AED]">4. Demo Done ●</div>
+            <div class="p-1.5 bg-[#F7F8FA] text-[#667085] rounded border border-[#E5E7EB]">5. Interested</div>
+            <div class="p-1.5 bg-[#F7F8FA] text-[#667085] rounded border border-[#E5E7EB]">6. Negotiation</div>
+            <div class="p-1.5 bg-[#F7F8FA] text-[#667085] rounded border border-[#E5E7EB]">7. Converted Won</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 Main Sections (2-Column Split) -->
+      <div class="grid grid-cols-12 gap-6 items-start">
+        
+        <!-- Left (7 Cols): Sections 1, 2, 3 -->
+        <div class="col-span-7 space-y-6">
+
+          <!-- SECTION 1: OVERVIEW -->
+          <div class="bg-[#FFFFFF] p-5 rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
+            <h3 class="text-[14px] font-bold text-[#202938] mb-3 pb-2 border-b border-[#E5E7EB]">1. Practice & Organization Overview</h3>
+            <div class="grid grid-cols-2 gap-4 text-[13px]">
+              <div>
+                <span class="text-[11.5px] text-[#667085] block">Law Firm / Chamber</span>
+                <span class="font-semibold text-[#202938]">Apex Legal Partners</span>
+              </div>
+              <div>
+                <span class="text-[11.5px] text-[#667085] block">Practice Specialization</span>
+                <span class="font-semibold text-[#202938]">Commercial Litigation, Arbitration & NCLT</span>
+              </div>
+              <div>
+                <span class="text-[11.5px] text-[#667085] block">Chamber Size</span>
+                <span class="font-semibold text-[#202938]">12 Advocates, 3 Paralegals, 2 Clerks</span>
+              </div>
+              <div>
+                <span class="text-[11.5px] text-[#667085] block">Current Technology Stack</span>
+                <span class="font-semibold text-[#202938]">Physical Law Digests + Offline Word Docs</span>
+              </div>
+              <div class="col-span-2">
+                <span class="text-[11.5px] text-[#667085] block">Core Pain Point / Requirement</span>
+                <p class="text-[12.5px] text-[#202938] mt-0.5 bg-[#F7F8FA] p-2.5 rounded border border-[#E5E7EB]">
+                  Managing partner needs automated cause-list tracking for Supreme Court and Delhi High Court, plus AI judgment citation search for junior associates.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 2: ACTIVITY TIMELINE -->
+          <div class="bg-[#FFFFFF] p-5 rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
+            <div class="flex items-center justify-between mb-4 pb-2 border-b border-[#E5E7EB]">
+              <h3 class="text-[14px] font-bold text-[#202938]">2. Chronological Activity Timeline</h3>
+              <div class="flex items-center gap-1.5 text-[11.5px]">
+                <button onclick="triggerToast('Logging call...')" class="px-2 py-1 bg-[#EFF6FF] text-[#2563EB] rounded hover:bg-[#DBEAFE] font-medium">+ Log Call</button>
+                <button onclick="triggerToast('Scheduling meeting...')" class="px-2 py-1 bg-[#F7F8FA] text-[#202938] rounded border border-[#E5E7EB] hover:bg-[#E5E7EB] font-medium">+ Meeting</button>
+              </div>
+            </div>
+
+            <!-- Timeline nodes -->
+            <div class="relative pl-6 space-y-4 before:content-[''] before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-[#E5E7EB]">
+              
+              <!-- Event 1: Demo Completed -->
+              <div class="relative">
+                <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#F5F3FF] border-2 border-white flex items-center justify-center text-[10px] text-[#7C3AED]">🎥</div>
+                <div class="text-[11.5px] text-[#667085]">Nov 18, 2026 at 2:30 PM • Conducted by <strong class="text-[#202938]">Sarah Jenkins</strong></div>
+                <div class="text-[13px] font-semibold text-[#7C3AED] mt-0.5">Product Demonstration (45 min Zoom Session)</div>
+                <p class="text-[12px] text-[#667085] mt-1 bg-[#F7F8FA] p-2.5 rounded border border-[#E5E7EB]">
+                  Demonstrated e-Courts synchronization and case diary. Partner Adv. Rajesh Sharma and 3 senior associates attended. Partner was impressed with the judgment headnote search. Requested formal quotation for 12 seats on Chamber Pro tier.
+                </p>
+              </div>
+
+              <!-- Event 2: Stage Promoted -->
+              <div class="relative">
+                <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#EFF6FF] border-2 border-white flex items-center justify-center text-[10px] text-[#2563EB]">➔</div>
+                <div class="text-[11.5px] text-[#667085]">Nov 16, 2026 at 11:30 AM • System Automation</div>
+                <div class="text-[13px] font-semibold text-[#2563EB] mt-0.5">Stage Advanced: Demo Scheduled</div>
+                <div class="text-[12px] text-[#667085]">Demo booked for Nov 18 via Google Calendar integration.</div>
+              </div>
+
+              <!-- Event 3: Outbound Discovery Call -->
+              <div class="relative">
+                <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#EFF6FF] border-2 border-white flex items-center justify-center text-[10px] text-[#2563EB]">📞</div>
+                <div class="text-[11.5px] text-[#667085]">Nov 15, 2026 at 4:15 PM • Logged by <strong class="text-[#202938]">Sarah Jenkins</strong></div>
+                <div class="text-[13px] font-semibold text-[#202938] mt-0.5">Discovery Phone Discussion (18 mins)</div>
+                <p class="text-[12px] text-[#667085] mt-1 bg-[#F7F8FA] p-2.5 rounded border border-[#E5E7EB]">
+                  Reached Adv. Sharma on mobile. Confirmed firm has 12 litigators practicing before Delhi High Court. Currently facing delays when court cause-lists are published late evening.
+                </p>
+              </div>
+
+              <!-- Event 4: Ingestion -->
+              <div class="relative">
+                <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#F1F5F9] border-2 border-white flex items-center justify-center text-[10px] text-[#475569]">+</div>
+                <div class="text-[11.5px] text-[#667085]">Nov 14, 2026 at 10:00 AM • Bar Roster Ingestion</div>
+                <div class="text-[13px] font-semibold text-[#202938] mt-0.5">Prospect Ingested into Pipeline</div>
+                <div class="text-[12px] text-[#667085]">Lead source: Bar Council of Delhi verified directory.</div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- SECTION 3: FOLLOW-UP HISTORY -->
+          <div class="bg-[#FFFFFF] p-5 rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
+            <h3 class="text-[14px] font-bold text-[#202938] mb-3 pb-2 border-b border-[#E5E7EB]">3. Follow-up History & Next Actions</h3>
+            
+            <!-- Pending Task -->
+            <div class="p-3 bg-[#FFF7ED] border border-[#FED7AA] rounded-md flex items-start justify-between mb-3">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[10.5px] font-bold bg-[#EA580C] text-white px-2 py-0.2 rounded uppercase">Next Action</span>
+                  <span class="text-[12px] font-semibold text-[#EA580C]">Today, 2:30 PM (In 1 hour)</span>
+                </div>
+                <div class="text-[13px] font-bold text-[#202938] mt-1">Send Chamber Pro Proposal & GST Invoice Draft</div>
+                <div class="text-[11.5px] text-[#667085]">Assigned to Sarah Jenkins • Follow-up phone call to review pricing with managing partner</div>
+              </div>
+              <button onclick="triggerToast('Proposal marked as complete', 'Completed')" class="px-2.5 py-1 bg-[#16A36A] text-white text-[12px] rounded font-medium hover:bg-[#15803D]">
+                Mark Done ✓
+              </button>
+            </div>
+
+            <!-- Past Completed Tasks -->
+            <div class="text-[12px] text-[#667085] space-y-1.5">
+              <div class="flex justify-between py-1 border-b border-[#E5E7EB]">
+                <span>✓ Product Demo Walkthrough (45 mins)</span>
+                <span class="text-[#16A36A] font-medium">Completed Nov 18</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-[#E5E7EB]">
+                <span>✓ Pre-demo discovery & feature questionnaire</span>
+                <span class="text-[#16A36A] font-medium">Completed Nov 16</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right (5 Cols): Sections 4 & 5 -->
+        <div class="col-span-5 space-y-6">
+
+          <!-- SECTION 5: SALES INFORMATION -->
+          <div class="bg-[#FFFFFF] p-5 rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
+            <h3 class="text-[14px] font-bold text-[#202938] mb-3 pb-2 border-b border-[#E5E7EB]">5. Sales & Deal Information</h3>
+            <div class="space-y-3 text-[13px]">
+              <div class="flex justify-between py-1 border-b border-[#E5E7EB]">
+                <span class="text-[#667085]">Estimated Deal Value:</span>
+                <span class="font-bold text-[#202938]">₹2,16,000 / year (₹18,000/mo)</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-[#E5E7EB]">
+                <span class="text-[#667085]">Target Subscription Plan:</span>
+                <span class="font-bold text-[#2563EB]">Chamber Pro (12 Seats)</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-[#E5E7EB]">
+                <span class="text-[#667085]">Win Probability:</span>
+                <span class="font-bold text-[#16A36A]">80% High Confidence</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-[#E5E7EB]">
+                <span class="text-[#667085]">Target Closing Date:</span>
+                <span class="font-semibold text-[#202938]">Nov 30, 2026</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-[#E5E7EB]">
+                <span class="text-[#667085]">Competitors Evaluated:</span>
+                <span class="font-medium text-[#667085]">SCC Online, Manupatra</span>
+              </div>
+              <div>
+                <span class="text-[11.5px] text-[#667085] block mb-1">Our Key Winning Factor:</span>
+                <p class="text-[12px] text-[#202938] bg-[#EFF6FF] p-2.5 rounded border border-[#BFDBFE]">
+                  "Client is switching due to our real-time WhatsApp cause-list alerts and live e-Courts filing status sync."
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 4: INTERNAL NOTES -->
+          <div class="bg-[#FFFFFF] p-5 rounded-lg border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
+            <div class="flex items-center justify-between mb-3 pb-2 border-b border-[#E5E7EB]">
+              <h3 class="text-[14px] font-bold text-[#202938]">4. Internal Team Notes</h3>
+              <span class="text-[11px] text-[#667085]">2 Notes Pinned</span>
+            </div>
+
+            <!-- Notes List -->
+            <div class="space-y-2.5">
+              <div class="p-3 bg-[#FFFBEB] rounded border border-[#FDE68A] text-[12.5px]">
+                <div class="flex justify-between text-[11px] text-[#D97706] font-semibold">
+                  <span>📌 PINNED • Sarah Jenkins</span>
+                  <span>Nov 18, 4:00 PM</span>
+                </div>
+                <p class="text-[#202938] mt-1 font-medium">
+                  "Senior Partner has check-signing authority. Mentioned that if we can onboard them before Supreme Court winter vacation starts, they will pay annual prepaid."
+                </p>
+              </div>
+
+              <div class="p-3 bg-[#F7F8FA] rounded border border-[#E5E7EB] text-[12.5px]">
+                <div class="flex justify-between text-[11px] text-[#667085]">
+                  <span class="font-semibold text-[#202938]">David Kumar (Sales Mgr)</span>
+                  <span>Nov 16, 12:10 PM</span>
+                </div>
+                <p class="text-[#667085] mt-1">
+                  "@sarah Approved up to 10% discount on the annual contract if they commit to 12 advocate seats."
+                </p>
+              </div>
+
+              <!-- Add note input -->
+              <div class="pt-2">
+                <textarea rows="2" placeholder="Write internal comment or tag @rep..." class="w-full border border-[#E5E7EB] rounded p-2 text-[12.5px] focus:outline-none focus:border-[#2563EB]"></textarea>
+                <div class="flex justify-end mt-1.5">
+                  <button onclick="triggerToast('Comment posted and team notified', 'Note Added')" class="px-3 py-1 bg-[#202938] text-white rounded text-[12px] font-semibold hover:bg-black">
+                    Post Note
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- FLOATING BULK ACTIONS TOOLBAR                                             -->
+  <!-- ========================================================================= -->
+  <div id="bulkActionBar" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#202938] text-white px-5 py-3 rounded-lg shadow-2xl flex items-center gap-4 z-40 text-[13px] border border-gray-700">
+    <div class="flex items-center gap-2 font-medium">
+      <span id="bulkCount" class="bg-[#2563EB] text-white px-2 py-0.5 rounded text-xs font-bold">2</span>
+      <span>Prospects Selected</span>
+    </div>
+    <div class="h-4 w-px bg-gray-600"></div>
+    <div class="flex items-center gap-2">
+      <button onclick="triggerToast('Bulk reassign dialog opened')" class="px-2.5 py-1 rounded hover:bg-gray-700">Reassign Salesperson</button>
+      <button onclick="triggerToast('Mass email sequence scheduled')" class="px-2.5 py-1 rounded hover:bg-gray-700">Schedule Email</button>
+      <button onclick="triggerToast('Exporting selected CSV...')" class="px-2.5 py-1 rounded hover:bg-gray-700">Export CSV</button>
+    </div>
+    <button onclick="clearSelection()" class="text-gray-400 hover:text-white ml-2 text-base font-bold">×</button>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- RIGHT-SIDE QUICK-VIEW PEEK DRAWER                                         -->
+  <!-- ========================================================================= -->
+  <div id="quickViewDrawer" class="hidden fixed inset-y-0 right-0 w-[600px] bg-[#FFFFFF] shadow-2xl border-l border-[#E5E7EB] z-50 flex flex-col">
+    <div class="p-5 border-b border-[#E5E7EB] flex items-center justify-between bg-[#FFFFFF]">
+      <div>
+        <div class="flex items-center gap-2">
+          <h2 id="qvProspectName" class="text-[17px] font-bold text-[#202938]">Adv. Rajesh Sharma</h2>
+          <span id="qvStageBadge" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11.5px] font-medium bg-[#F5F3FF] text-[#7C3AED] border border-[#DDD6FE]">
+            Demo Completed
+          </span>
+        </div>
+        <div id="qvFirmName" class="text-[12px] text-[#667085] mt-0.5">Apex Legal Partners • Delhi High Court</div>
+      </div>
+      <button onclick="toggleDrawer()" class="text-[#667085] hover:text-[#202938] p-1.5 rounded-md hover:bg-[#F7F8FA]">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Quick action ribbon -->
+    <div class="px-5 py-2.5 bg-[#F7F8FA] border-b border-[#E5E7EB] flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <button onclick="triggerToast('Calling advocate...')" class="text-[12px] bg-[#FFFFFF] border border-[#E5E7EB] px-2.5 py-1.5 rounded font-medium hover:bg-[#F7F8FA]">
+          📞 1-Click Dial
+        </button>
+        <button onclick="triggerToast('Email composer opened')" class="text-[12px] bg-[#FFFFFF] border border-[#E5E7EB] px-2.5 py-1.5 rounded font-medium hover:bg-[#F7F8FA]">
+          ✉️ Send Email
+        </button>
+      </div>
+      <button onclick="openConvertModal()" class="text-[12.5px] bg-[#16A36A] hover:bg-[#15803D] text-white px-3 py-1.5 rounded font-medium shadow-xs">
+        Convert to Client ➔
+      </button>
+    </div>
+
+    <!-- Drawer Body -->
+    <div class="flex-1 overflow-y-auto p-5 space-y-4 text-[13px]">
+      <div class="bg-[#F7F8FA] p-3.5 rounded-lg border border-[#E5E7EB]">
+        <div class="text-[11.5px] font-semibold text-[#667085] uppercase tracking-wider mb-2">Essential Details</div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <span class="text-[11px] text-[#667085] block">Direct Phone</span>
+            <span id="qvPhone" class="font-mono text-[#2563EB] font-medium">+91 98101 23456</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-[#667085] block">Email</span>
+            <span class="text-[#202938]">sharma@apexlegal.in</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-[#667085] block">Target Plan</span>
+            <span class="font-semibold text-[#202938]">Chamber Pro (12 seats)</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-[#667085] block">Assigned Rep</span>
+            <span class="font-semibold text-[#202938]">Sarah Jenkins</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent interactions snippet -->
+      <div>
+        <div class="text-[11.5px] font-semibold text-[#667085] uppercase tracking-wider mb-2">Recent Touchpoints</div>
+        <div class="space-y-2 text-[12.5px]">
+          <div class="p-2.5 bg-[#FFFFFF] border border-[#E5E7EB] rounded">
+            <div class="flex justify-between text-[11px] text-[#667085]">
+              <span class="font-semibold text-[#7C3AED]">Demo Completed</span>
+              <span>Nov 18, 2:30 PM</span>
+            </div>
+            <p class="text-[#667085] mt-1">"Demonstrated judgment citation validator. Partner requested formal invoice draft."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-4 border-t border-[#E5E7EB] bg-[#FFFFFF] flex items-center justify-between">
+      <button onclick="toggleDrawer()" class="px-3.5 py-1.5 border border-[#E5E7EB] rounded text-[13px] text-[#202938] hover:bg-[#F7F8FA]">
+        Close Drawer
+      </button>
+      <button onclick="showProfileScreen(); toggleDrawer();" class="px-4 py-1.5 bg-[#2563EB] text-white rounded text-[13px] font-medium hover:bg-[#1D4ED8]">
+        Open Full 360° Profile
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- SCREEN 2 / 4: ADD & EDIT PROSPECT MODAL (With Duplicate Detection)         -->
+  <!-- ========================================================================= -->
+  <div id="prospectFormModal" class="hidden fixed inset-0 bg-[#202938]/40 backdrop-blur-[2px] z-50 flex items-center justify-center p-4">
+    <div class="bg-[#FFFFFF] rounded-xl max-w-2xl w-full p-6 shadow-2xl border border-[#E5E7EB] space-y-4 max-h-[92vh] overflow-y-auto">
+      <div class="flex items-start justify-between">
+        <div>
+          <h3 id="formModalTitle" class="text-[18px] font-bold text-[#202938]">Add New Legal Prospect</h3>
+          <p class="text-[12px] text-[#667085]">Ingest advocate, chamber, or firm details into the CRM pipeline.</p>
+        </div>
+        <button onclick="closeFormModal()" class="text-[#667085] hover:text-[#202938] text-xl font-bold">×</button>
+      </div>
+
+      <!-- Real-time Duplicate Contact Warning Banner -->
+      <div id="duplicateWarningBanner" class="p-3 bg-[#FFF7ED] border border-[#FED7AA] rounded-lg text-[12px] flex items-start gap-2.5">
+        <span class="text-base">⚠️</span>
+        <div class="flex-1">
+          <div class="font-bold text-[#EA580C]">Duplicate Contact Check System</div>
+          <div class="text-[#667085] mt-0.5">
+            If an advocate with the same phone or Bar ID exists, an alert banner will appear here automatically to prevent duplicate lead outreach.
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Grid -->
+      <div class="space-y-4 text-[13px]">
+        
+        <!-- Fieldset 1: Personal Information -->
+        <div>
+          <div class="text-[12px] font-bold text-[#2563EB] uppercase tracking-wider mb-2 pb-1 border-b border-[#E5E7EB]">
+            1. Personal & Contact Information
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block font-medium text-[#202938] mb-1">Full Legal Name *</label>
+              <input type="text" id="inputFullName" placeholder="e.g. Adv. Amit Sibal" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 focus:outline-none focus:border-[#2563EB]">
+            </div>
+            <div>
+              <label class="block font-medium text-[#202938] mb-1">Phone Number (WhatsApp) *</label>
+              <input type="text" id="inputPhone" oninput="checkDuplicatePhone(this.value)" placeholder="+91 98..." class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 focus:outline-none focus:border-[#2563EB]">
+            </div>
+            <div>
+              <label class="block font-medium text-[#202938] mb-1">Email Address *</label>
+              <input type="email" id="inputEmail" placeholder="advocate@firm.in" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 focus:outline-none focus:border-[#2563EB]">
+            </div>
+            <div>
+              <label class="block font-medium text-[#202938] mb-1">Profession / Role *</label>
+              <select id="inputProfession" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 bg-[#FFFFFF] focus:outline-none focus:border-[#2563EB]">
+                <option>Senior Advocate</option>
+                <option>Advocate / Litigator</option>
+                <option>Managing Partner</option>
+                <option>Partner - Practice Head</option>
+                <option>Independent Legal Practitioner</option>
+                <option>Chamber Counsel</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-medium text-[#202938] mb-1">Bar Council Enrollment ID</label>
+              <input type="text" id="inputBarID" placeholder="e.g. D/1982/2012" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 focus:outline-none focus:border-[#2563EB]">
+            </div>
+            <div>
+              <label class="block font-medium text-[#202938] mb-1">Firm / Chamber Name *</label>
+              <input type="text" id="inputFirmName" placeholder="e.g. Apex Legal Partners" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 focus:outline-none focus:border-[#2563EB]">
+            </div>
+            <div>
+              <label class="block font-medium text-[#202938] mb-1">City *</label>
+              <input type="text" id="inputCity" value="New Delhi" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 focus:outline-none focus:border-[#2563EB]">
+            </div>
+            <div>
+              <label class="block font-medium text-[#202938] mb-1">State Jurisdiction *</label>
+              <select class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 bg-[#FFFFFF] focus:outline-none focus:border-[#2563EB]">
+                <option>Delhi (Delhi High Court / Supreme Court)</option>
+                <option>Maharashtra (Bombay High Court)</option>
+                <option>Karnataka (Bengaluru)</option>
+                <option>Punjab & Haryana (Chandigarh)</option>
+                <option>West Bengal (Calcutta High Court)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fieldset 2: Lead & Sales Information -->
+        <div>
+          <div class="text-[12px] font-bold text-[#2563EB] uppercase tracking-wider mb-2 pb-1 border-b border-[#E5E7EB]">
+            2. Lead & Sales Pipeline Information
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block font-medium text-[#202938] mb-1">Lead Source *</label>
+              <select id="inputSource" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 bg-[#FFFFFF] focus:outline-none focus:border-[#2563EB]">
+                <option>Bar Council Directory</option>
+                <option>Advocate Peer Referral</option>
+                <option>Legal Tech Expo / Conference</option>
+                <option>Website Inbound</option>
+                <option>Chamber Drop-in</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-medium text-[#202938] mb-1">Interest / Solution Requirement</label>
+              <select class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 bg-[#FFFFFF] focus:outline-none focus:border-[#2563EB]">
+                <option>Judgment & AI Citation Search Engine</option>
+                <option>e-Courts Automated Cause-List Alerts</option>
+                <option>Chambers Billing & Time Tracking</option>
+                <option>Firm Enterprise Full Suite</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-medium text-[#202938] mb-1">Sales Stage *</label>
+              <select id="inputStage" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 bg-[#FFFFFF] focus:outline-none focus:border-[#2563EB]">
+                <option>New Lead</option>
+                <option>Contacted</option>
+                <option>Demo Scheduled</option>
+                <option>Demo Completed</option>
+                <option>Interested</option>
+                <option>Negotiation</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-medium text-[#202938] mb-1">Assigned Salesperson *</label>
+              <select id="inputRep" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 bg-[#FFFFFF] focus:outline-none focus:border-[#2563EB]">
+                <option>Sarah Jenkins (You)</option>
+                <option>David Kumar</option>
+                <option>Priya Nair</option>
+                <option>Rohan Mehta</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-medium text-[#202938] mb-1">Priority</label>
+              <select class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 bg-[#FFFFFF] focus:outline-none focus:border-[#2563EB]">
+                <option>High Priority</option>
+                <option>Medium Priority</option>
+                <option>Urgent</option>
+                <option>Low Priority</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-medium text-[#202938] mb-1">Next Follow-up Date *</label>
+              <input type="date" value="2026-11-20" class="w-full border border-[#E5E7EB] rounded px-3 py-1.5 focus:outline-none focus:border-[#2563EB]">
+            </div>
+            <div class="col-span-2">
+              <label class="block font-medium text-[#202938] mb-1">Initial Discovery Notes</label>
+              <textarea rows="2" placeholder="Record practice focus, current challenges or meeting notes..." class="w-full border border-[#E5E7EB] rounded p-2 text-[12.5px] focus:outline-none focus:border-[#2563EB]"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="flex items-center justify-end gap-3 pt-4 border-t border-[#E5E7EB]">
+        <button onclick="closeFormModal()" class="px-4 py-2 border border-[#E5E7EB] rounded-md text-[13px] text-[#202938] hover:bg-[#F7F8FA]">
+          Cancel
+        </button>
+        <button onclick="submitProspectForm()" class="px-5 py-2 bg-[#2563EB] hover:bg-[#1D4ED8] text-white rounded-md text-[13px] font-semibold shadow-sm transition-colors">
+          Save Prospect
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- DELETE CONFIRMATION MODAL                                                 -->
+  <!-- ========================================================================= -->
+  <div id="deleteModal" class="hidden fixed inset-0 bg-[#202938]/40 backdrop-blur-[2px] z-50 flex items-center justify-center p-4">
+    <div class="bg-[#FFFFFF] rounded-xl max-w-md w-full p-6 shadow-2xl border border-[#E5E7EB] space-y-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-[#FEF2F2] text-[#DC2626] flex items-center justify-center text-lg font-bold">
+          ⚠️
+        </div>
+        <div>
+          <h3 class="text-[17px] font-bold text-[#DC2626]">Delete Prospect Record?</h3>
+          <p class="text-[12px] text-[#667085]">Destructive operation warning</p>
+        </div>
+      </div>
+
+      <p class="text-[13px] text-[#202938]">
+        Are you sure you want to delete <strong id="deleteTargetName">Adv. Rajesh Sharma</strong> (<span id="deleteTargetFirm">Apex Legal Partners</span>)? This will permanently remove their contact information, 14 recorded interaction logs, and pending follow-ups.
+      </p>
+
+      <div class="p-3 bg-[#F8FAFC] rounded border border-[#E5E7EB] text-[11.5px] text-[#667085]">
+        💡 <strong>Product Tip</strong>: If the prospect did not purchase, consider marking them as <strong>Lost</strong> or <strong>Inactive</strong> instead of deleting to preserve legal sales history for future retention.
+      </div>
+
+      <div class="flex items-center justify-end gap-3 pt-2 border-t border-[#E5E7EB]">
+        <button onclick="closeDeleteDialog()" class="px-4 py-2 border border-[#E5E7EB] rounded text-[13px] text-[#202938] hover:bg-[#F7F8FA]">
+          Cancel
+        </button>
+        <button onclick="executeDelete()" class="px-4 py-2 bg-[#DC5252] hover:bg-[#B91C1C] text-white rounded text-[13px] font-semibold">
+          Permanently Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- CONVERT TO CLIENT MODAL                                                   -->
+  <!-- ========================================================================= -->
+  <div id="convertModal" class="hidden fixed inset-0 bg-[#202938]/40 backdrop-blur-[2px] z-50 flex items-center justify-center p-4">
+    <div class="bg-[#FFFFFF] rounded-xl max-w-lg w-full p-6 shadow-2xl border border-[#E5E7EB] space-y-4">
+      <div class="flex items-start justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-[#ECFDF5] text-[#16A36A] flex items-center justify-center text-lg font-bold">✓</div>
+          <div>
+            <h3 class="text-[17px] font-bold text-[#202938]">Convert to Paying Client</h3>
+            <p class="text-[12px] text-[#667085]">Zero-loss customer lifecycle provisioning</p>
+          </div>
+        </div>
+        <button onclick="closeConvertModal()" class="text-[#667085] hover:text-[#202938] text-xl font-bold">×</button>
+      </div>
+
+      <div class="space-y-3 text-[13px]">
+        <div>
+          <label class="block font-medium text-[#202938] mb-1">Purchased Subscription Plan *</label>
+          <select class="w-full border border-[#E5E7EB] rounded-md px-3 py-2 text-[#202938] bg-[#FFFFFF] focus:outline-none focus:border-[#2563EB]">
+            <option>Chambers Pro Tier (₹18,000 / month)</option>
+            <option>Firm Enterprise Tier (₹45,000 / month)</option>
+            <option>Solo Advocate Plan (₹3,500 / month)</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">Billing Frequency</label>
+            <select class="w-full border border-[#E5E7EB] rounded-md px-3 py-2 text-[#202938] bg-[#FFFFFF] focus:outline-none focus:border-[#2563EB]">
+              <option>Annual Prepaid (10% Discount)</option>
+              <option>Quarterly</option>
+              <option>Monthly</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-medium text-[#202938] mb-1">Advocate Seats</label>
+            <input type="number" value="12" class="w-full border border-[#E5E7EB] rounded-md px-3 py-2 text-[#202938] focus:outline-none focus:border-[#2563EB]">
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-3 pt-3 border-t border-[#E5E7EB]">
+        <button onclick="closeConvertModal()" class="px-4 py-2 border border-[#E5E7EB] rounded-md text-[13px] text-[#202938] hover:bg-[#F7F8FA]">
+          Cancel
+        </button>
+        <button onclick="executeConversion()" class="px-5 py-2 bg-[#16A36A] hover:bg-[#15803D] text-white rounded-md text-[13px] font-semibold shadow-sm transition-colors">
+          Activate Client & Subscription
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast" class="hidden fixed bottom-6 right-6 bg-[#FFFFFF] border border-[#E5E7EB] rounded-lg shadow-xl p-4 flex items-center gap-3 z-50 transition-all max-w-sm">
+    <div id="toastIcon" class="w-6 h-6 rounded-full bg-[#ECFDF5] text-[#16A36A] flex items-center justify-center font-bold text-xs flex-shrink-0">✓</div>
+    <div>
+      <div id="toastTitle" class="text-[13px] font-semibold text-[#202938]">Action Successful</div>
+      <div id="toastBody" class="text-[11.5px] text-[#667085]">Operation completed without errors.</div>
+    </div>
+  </div>
+
+  <!-- Interactive JavaScript Controller -->
+  <script>
+    // View Switcher: Table Listing vs 360 Profile
+    function showListingScreen() {
+      document.getElementById('screenListing').classList.remove('hidden');
+      document.getElementById('screenProfile').classList.add('hidden');
+      document.getElementById('topBreadcrumbContext').innerText = 'All Prospects Directory';
+      document.getElementById('viewBtnTable').classList.add('bg-white', 'shadow-xs', 'font-semibold', 'text-[#202938]');
+      document.getElementById('viewBtnTable').classList.remove('text-[#667085]');
+      document.getElementById('viewBtnProfile').classList.remove('bg-white', 'shadow-xs', 'font-semibold', 'text-[#202938]');
+      document.getElementById('viewBtnProfile').classList.add('text-[#667085]');
+    }
+
+    function showProfileScreen(advocateName = 'Adv. Rajesh Sharma') {
+      document.getElementById('screenListing').classList.add('hidden');
+      document.getElementById('screenProfile').classList.remove('hidden');
+      document.getElementById('profileAdvocateName').innerText = advocateName;
+      document.getElementById('topBreadcrumbContext').innerText = `${advocateName} (Profile 360°)`;
+      document.getElementById('viewBtnProfile').classList.add('bg-white', 'shadow-xs', 'font-semibold', 'text-[#202938]');
+      document.getElementById('viewBtnProfile').classList.remove('text-[#667085]');
+      document.getElementById('viewBtnTable').classList.remove('bg-white', 'shadow-xs', 'font-semibold', 'text-[#202938]');
+      document.getElementById('viewBtnTable').classList.add('text-[#667085]');
+    }
+
+    // Right-Side Peek Drawer
+    function toggleDrawer() {
+      const drawer = document.getElementById('quickViewDrawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    function openDrawerWith(name, firm, profession, stage, phone) {
+      document.getElementById('qvProspectName').innerText = name;
+      document.getElementById('qvFirmName').innerText = `${firm} • Delhi High Court`;
+      document.getElementById('qvPhone').innerText = phone;
+      document.getElementById('qvStageBadge').innerText = stage;
+      document.getElementById('quickViewDrawer').classList.remove('hidden');
+    }
+
+    // Add / Edit Modal Controller
+    function openAddProspectModal() {
+      document.getElementById('formModalTitle').innerText = 'Add New Legal Prospect';
+      document.getElementById('inputFullName').value = '';
+      document.getElementById('inputPhone').value = '';
+      document.getElementById('inputEmail').value = '';
+      document.getElementById('inputFirmName').value = '';
+      document.getElementById('duplicateWarningBanner').classList.remove('bg-[#FEF2F2]', 'border-[#FECACA]');
+      document.getElementById('duplicateWarningBanner').classList.add('bg-[#FFF7ED]', 'border-[#FED7AA]');
+      document.getElementById('prospectFormModal').classList.remove('hidden');
+    }
+
+    function openEditModal(name, phone, email, profession, firm) {
+      document.getElementById('formModalTitle').innerText = 'Edit Legal Prospect';
+      document.getElementById('inputFullName').value = name;
+      document.getElementById('inputPhone').value = phone;
+      document.getElementById('inputEmail').value = email;
+      document.getElementById('inputFirmName').value = firm;
+      document.getElementById('prospectFormModal').classList.remove('hidden');
+    }
+
+    function closeFormModal() {
+      document.getElementById('prospectFormModal').classList.add('hidden');
+    }
+
+    function submitProspectForm() {
+      const name = document.getElementById('inputFullName').value || 'New Legal Prospect';
+      closeFormModal();
+      triggerToast(`${name} successfully saved to pipeline!`, 'Prospect Saved');
+    }
+
+    // Duplicate Check Simulation
+    function checkDuplicatePhone(val) {
+      const banner = document.getElementById('duplicateWarningBanner');
+      if (val.includes('98101') || val.includes('97110')) {
+        banner.className = 'p-3 bg-[#FEF2F2] border border-[#FECACA] rounded-lg text-[12px] flex items-start gap-2.5';
+        banner.innerHTML = `<span class="text-base">🚨</span><div class="flex-1"><div class="font-bold text-[#DC2626]">Potential Duplicate Contact Detected!</div><div class="text-[#202938] mt-0.5">An advocate with this phone number is already registered under <strong>Apex Legal Partners</strong> assigned to <strong>Sarah Jenkins</strong> (Stage: Demo Completed).</div></div>`;
+      }
+    }
+
+    // Delete Modal
+    function openDeleteDialog(name, firm) {
+      document.getElementById('deleteTargetName').innerText = name;
+      document.getElementById('deleteTargetFirm').innerText = firm;
+      document.getElementById('deleteModal').classList.remove('hidden');
+    }
+
+    function closeDeleteDialog() {
+      document.getElementById('deleteModal').classList.add('hidden');
+    }
+
+    function executeDelete() {
+      closeDeleteDialog();
+      triggerToast('Prospect record deleted successfully.', 'Deleted');
+    }
+
+    // Conversion Modal
+    function openConvertModal() {
+      document.getElementById('convertModal').classList.remove('hidden');
+    }
+
+    function closeConvertModal() {
+      document.getElementById('convertModal').classList.add('hidden');
+    }
+
+    function executeConversion() {
+      closeConvertModal();
+      triggerToast('Prospect converted to Paying Client! 100% data and conversation logs preserved.', 'Client Activated');
+    }
+
+    // 3-Dot Action Menu Toggle
+    function toggleActionMenu(event, menuId) {
+      event.stopPropagation();
+      document.querySelectorAll('.action-dropdown').forEach(m => {
+        if (m.id !== menuId) m.classList.add('hidden');
+      });
+      const menu = document.getElementById(menuId);
+      if (menu) menu.classList.toggle('hidden');
+    }
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.action-dropdown').forEach(m => m.classList.add('hidden'));
+    });
+
+    // Multi-Select Bulk Action Toolbar
+    function toggleSelectAll(masterCb) {
+      document.querySelectorAll('.row-cb').forEach(cb => cb.checked = masterCb.checked);
+      updateBulkBar();
+    }
+
+    function updateBulkBar() {
+      const selected = document.querySelectorAll('.row-cb:checked');
+      const bar = document.getElementById('bulkActionBar');
+      const count = document.getElementById('bulkCount');
+      if (selected.length > 0) {
+        bar.classList.remove('hidden');
+        count.innerText = selected.length;
+      } else {
+        bar.classList.add('hidden');
+      }
+    }
+
+    function clearSelection() {
+      document.getElementById('selectAllMaster').checked = false;
+      document.querySelectorAll('.row-cb').forEach(cb => cb.checked = false);
+      document.getElementById('bulkActionBar').classList.add('hidden');
+    }
+
+    // Table Filtering
+    function filterProspectsTable() {
+      const q = document.getElementById('globalSearchInput').value.toLowerCase();
+      const stage = document.getElementById('filterStage').value;
+      const rows = document.querySelectorAll('#prospectsTbody tr');
+      rows.forEach(r => {
+        const text = r.innerText.toLowerCase();
+        const matchesQuery = !q || text.includes(q);
+        const matchesStage = !stage || text.includes(stage.toLowerCase());
+        r.style.display = (matchesQuery && matchesStage) ? '' : 'none';
+      });
+    }
+
+    function clearAllFilters() {
+      document.getElementById('globalSearchInput').value = '';
+      document.getElementById('filterStage').value = '';
+      document.getElementById('filterSource').value = '';
+      document.getElementById('filterRep').value = '';
+      document.getElementById('filterCity').value = '';
+      filterProspectsTable();
+      triggerToast('All filter criteria cleared', 'Filters Reset');
+    }
+
+    // Toast Notification System
+    function triggerToast(bodyText, titleText = 'Action Completed') {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastTitle').innerText = titleText;
+      document.getElementById('toastBody').innerText = bodyText;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
