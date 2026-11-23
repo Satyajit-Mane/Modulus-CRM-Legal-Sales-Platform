@@ -9,7 +9,6 @@
 
 ## Live Deployment
 - **GitHub Repository**: [https://github.com/Satyajit-Mane/Modulus-CRM-Legal-Sales-Platform](https://github.com/Satyajit-Mane/Modulus-CRM-Legal-Sales-Platform)
-- **Live Application (GitHub Pages)**: [https://satyajit-mane.github.io/Modulus-CRM-Legal-Sales-Platform/](https://satyajit-mane.github.io/Modulus-CRM-Legal-Sales-Platform/)
 
 ## Overview
 
