@@ -1,6 +1,6 @@
 # Modulus CRM
 
-> High-performance, production-ready enterprise B2B sales platform designed with **shadcn/ui** design tokens, **Geist** typography, and a modular vanilla JavaScript architecture.
+> High-performance, production-ready enterprise B2B Legal sales platform
 
 [![Live Demo](https://img.shields.io/badge/demo-live-0284c7?style=flat-square)](https://satyajit-mane.github.io/Modulus-CRM-Legal-Sales-Platform/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-gray?style=flat-square)](LICENSE)
