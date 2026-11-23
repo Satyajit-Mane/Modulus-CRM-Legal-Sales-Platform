@@ -2,7 +2,14 @@
 
 > High-performance, production-ready enterprise B2B sales platform designed with **shadcn/ui** design tokens, **Geist** typography, and a modular vanilla JavaScript architecture.
 
+[![Live Demo](https://img.shields.io/badge/demo-live-0284c7?style=flat-square)](https://satyajit-mane.github.io/Modulus-CRM-Legal-Sales-Platform/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-gray?style=flat-square)](LICENSE)
+
 ---
+
+## Live Deployment
+- **GitHub Repository**: [https://github.com/Satyajit-Mane/Modulus-CRM-Legal-Sales-Platform](https://github.com/Satyajit-Mane/Modulus-CRM-Legal-Sales-Platform)
+- **Live Application (GitHub Pages)**: [https://satyajit-mane.github.io/Modulus-CRM-Legal-Sales-Platform/](https://satyajit-mane.github.io/Modulus-CRM-Legal-Sales-Platform/)
 
 ## Overview
 
@@ -85,8 +92,8 @@ Any standard modern web browser (Chrome, Edge, Safari, Firefox). No build step, 
 #### Option 1: Python HTTP Server (Recommended)
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/modulus-crm.git
-cd modulus-crm
+git clone https://github.com/Satyajit-Mane/Modulus-CRM-Legal-Sales-Platform.git
+cd Modulus-CRM-Legal-Sales-Platform
 
 # Start local server
 python3 -m http.server 8080

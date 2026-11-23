@@ -64,7 +64,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-mono/style.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=20261123d">
 </head>
 <body class="bg-[#F8F9FB] text-[#111827] flex h-screen overflow-hidden antialiased select-none">
 
@@ -210,7 +210,7 @@
         <!-- Universal Search Bar (Exact Reference Match: Rounded Pill, Magnifier, Placeholder) -->
         <div class="relative flex-1 min-w-0 max-w-xs sm:max-w-sm">
           <div 
-            class="flex items-center gap-2.5 h-9 px-3.5 bg-white border border-[#E5E7EB] rounded-full hover:border-gray-300 focus-within:border-[#0284C7] focus-within:ring-2 focus-within:ring-[#0284C7]/10 transition-all cursor-text shadow-2xs group"
+            class="flex items-center gap-2.5 h-9 px-3.5 bg-white border border-[#E5E7EB] rounded-full hover:border-gray-300 focus-within:border-gray-300 transition-all cursor-text shadow-2xs group"
             onclick="document.getElementById('topUniversalSearchInput').focus()"
           >
             <svg class="w-3.5 h-3.5 text-gray-400 group-hover:text-gray-500 shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -458,7 +458,7 @@
             <div class="flex items-end justify-between pt-3">
               <div>
                 <div class="flex items-baseline gap-2">
-                  <span id="stat-outreach-val" class="text-3xl font-bold tracking-tight text-slate-900">86</span>
+                  <span id="stat-outreach-val" class="text-3xl font-bold tracking-tight text-slate-900 tabular-nums">86</span>
                   <span id="stat-outreach-trend" class="inline-flex items-center text-xs font-semibold text-sky-700 bg-sky-50 px-2 py-0.5 rounded-full border border-sky-200/80">
                     <svg class="size-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg> 17%
                   </span>
@@ -480,7 +480,7 @@
             <div class="flex items-end justify-between pt-3">
               <div>
                 <div class="flex items-baseline gap-2">
-                  <span id="stat-activities-val" class="text-3xl font-bold tracking-tight text-slate-900">25</span>
+                  <span id="stat-activities-val" class="text-3xl font-bold tracking-tight text-slate-900 tabular-nums">25</span>
                   <span id="stat-activities-trend" class="inline-flex items-center text-xs font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-300">
                     <svg class="size-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg> 5%
                   </span>
@@ -502,7 +502,7 @@
             <div class="flex items-end justify-between pt-3">
               <div>
                 <div class="flex items-baseline gap-2">
-                  <span id="stat-conversations-val" class="text-3xl font-bold tracking-tight text-slate-900">7</span>
+                  <span id="stat-conversations-val" class="text-3xl font-bold tracking-tight text-slate-900 tabular-nums">7</span>
                   <span id="stat-conversations-trend" class="inline-flex items-center text-xs font-semibold text-cyan-800 bg-cyan-50 px-2 py-0.5 rounded-full border border-cyan-200/80">
                     <svg class="size-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg> 1%
                   </span>
@@ -580,7 +580,7 @@
                 id="prospectSearchInput" 
                 placeholder="Search prospects..." 
                 oninput="applyProspectFilters()" 
-                class="w-full pl-8 pr-7 py-1.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-xs focus:outline-none focus:border-[#0284C7] focus:bg-white h-9"
+                class="w-full pl-8 pr-7 py-1.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-xs focus:outline-none focus:border-gray-300 focus:bg-white h-9"
               >
               <button 
                 id="prospectSearchClearBtn" 
@@ -696,7 +696,7 @@
                 id="clientSearchInput" 
                 placeholder="Search clients..." 
                 oninput="applyClientFilters()" 
-                class="w-full pl-8 pr-7 py-1.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-xs focus:outline-none focus:border-[#0284C7] focus:bg-white h-9"
+                class="w-full pl-8 pr-7 py-1.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-xs focus:outline-none focus:border-gray-300 focus:bg-white h-9"
               >
               <button 
                 id="clientSearchClearBtn" 
@@ -2813,13 +2813,14 @@
   <div id="toastContainer" class="fixed bottom-16 md:bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
   <!-- JAVASCRIPT: UNIFIED STATE & ENGINE                                        -->
   <!-- Modular Application Architecture -->
-  <script src="js/data.js"></script>
-  <script src="js/utils.js"></script>
-  <script src="js/state.js"></script>
-  <script src="js/filters.js"></script>
-  <script src="js/tables.js"></script>
-  <script src="js/drawers.js"></script>
-  <script src="js/modals.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/data.js?v=20261123d"></script>
+  <script src="js/utils.js?v=20261123d"></script>
+  <script src="js/custom-select.js?v=20261123d"></script>
+  <script src="js/state.js?v=20261123d"></script>
+  <script src="js/filters.js?v=20261123d"></script>
+  <script src="js/tables.js?v=20261123d"></script>
+  <script src="js/drawers.js?v=20261123d"></script>
+  <script src="js/modals.js?v=20261123d"></script>
+  <script src="js/app.js?v=20261123d"></script>
 </body>
 </html>

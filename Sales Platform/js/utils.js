@@ -19,6 +19,21 @@ function escapeHTML(str) {
 }
 
 /**
+ * Standard debounce utility for high-frequency input events
+ * @param {Function} func 
+ * @param {number} wait 
+ * @returns {Function}
+ */
+function debounce(func, wait = 150) {
+  let timeout;
+  return function(...args) {
+    const context = this;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, args), wait);
+  };
+}
+
+/**
  * Safe DOM element value getter
  * @param {string} id 
  * @returns {string}
@@ -35,7 +50,12 @@ function getVal(id) {
  */
 function setVal(id, val) {
   const el = document.getElementById(id);
-  if (el) el.value = (val !== null && val !== undefined) ? val : '';
+  if (el) {
+    el.value = (val !== null && val !== undefined) ? val : '';
+    if (typeof syncCustomSelect === 'function') {
+      syncCustomSelect(id);
+    }
+  }
 }
 
 /**
@@ -305,4 +325,31 @@ function triggerToast(body, title = 'Notice') {
     toast.classList.add('motion-toast-exit');
     setTimeout(() => toast.remove(), 220);
   }, 2600);
+}
+
+/**
+ * Standardized Empty State Row Renderer for Tables
+ * @param {number} colSpan 
+ * @param {string} message 
+ * @param {string} [subtext] 
+ * @param {string} [resetFn] 
+ * @returns {string}
+ */
+function renderTableEmptyState(colSpan, message, subtext, resetFn) {
+  return `
+    <tr>
+      <td colspan="${colSpan}" class="py-12 px-4 text-center">
+        <div class="flex flex-col items-center justify-center max-w-sm mx-auto">
+          <div class="w-10 h-10 rounded-full bg-gray-100/90 flex items-center justify-center text-gray-400 mb-2.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </div>
+          <p class="text-xs font-semibold text-gray-900">${escapeHTML(message)}</p>
+          <p class="text-[11px] text-gray-500 mt-0.5 leading-normal">${escapeHTML(subtext || 'Try adjusting your search query or filter criteria.')}</p>
+          ${resetFn ? `<button onclick="${resetFn}" class="mt-3 px-3 py-1 bg-white border border-gray-200 hover:border-gray-300 text-xs font-medium text-gray-700 rounded-lg shadow-2xs hover:bg-gray-50 transition-colors cursor-pointer">Reset Filters</button>` : ''}
+        </div>
+      </td>
+    </tr>
+  `;
 }

@@ -14,6 +14,7 @@ function openAddProspectModal() {
     tom.setDate(tom.getDate() + 1);
     inpDate.value = tom.toISOString().split('T')[0];
   }
+  if (typeof syncAllCustomSelects === 'function') syncAllCustomSelects();
 }
 
 function closeAddProspectModal() {
@@ -121,7 +122,10 @@ function saveProspectDraft() {
 // ADD CLIENT MODAL
 function openAddClientModal() {
   const modal = document.getElementById('modalAddClient');
-  if (modal) modal.classList.remove('hidden');
+  if (modal) {
+    modal.classList.remove('hidden');
+    if (typeof syncAllCustomSelects === 'function') syncAllCustomSelects();
+  }
 }
 
 function closeAddClientModal() {
@@ -177,6 +181,7 @@ function openAddFollowupModal(preContactName = '', preContactType = 'Prospect') 
   const normalizedType = (preContactType === 'Active' || preContactType === 'Active Client' || preContactType === 'Client') ? 'Client' : 'Prospect';
   setVal('inpFuContactType', normalizedType);
   populateFollowupContactDropdown(preContactName);
+  if (typeof syncAllCustomSelects === 'function') syncAllCustomSelects();
 }
 
 function closeAddFollowupModal() {
@@ -193,6 +198,10 @@ function populateFollowupContactDropdown(selectTargetName = '') {
   sel.innerHTML = list.map(item => `
     <option value="${escapeHTML(item.name)}" ${item.name === selectTargetName ? 'selected' : ''}>${escapeHTML(item.name)} (${escapeHTML(item.firm || item.name)})</option>
   `).join('');
+
+  if (typeof syncCustomSelect === 'function') {
+    syncCustomSelect('inpFuContactSelect');
+  }
 
   onFollowupContactSelected();
 }
@@ -247,7 +256,10 @@ function openCompleteFollowupModal(id) {
   setTxt('compFuContactName', `${f.contactName} (${f.contactType}) · ${f.phone}`);
   setVal('compFuSummary', '');
   const modal = document.getElementById('modalCompleteFollowup');
-  if (modal) modal.classList.remove('hidden');
+  if (modal) {
+    modal.classList.remove('hidden');
+    if (typeof syncAllCustomSelects === 'function') syncAllCustomSelects();
+  }
 }
 
 function closeCompleteFollowupModal() {
@@ -328,6 +340,7 @@ function openAddMeetingModal(preContactName = '', preContactType = 'Prospect', p
     setVal('inpMtDate', preDate);
   }
   populateMeetingContactDropdown(preContactName);
+  if (typeof syncAllCustomSelects === 'function') syncAllCustomSelects();
 }
 
 function closeAddMeetingModal() {
@@ -344,6 +357,10 @@ function populateMeetingContactDropdown(selectTargetName = '') {
   sel.innerHTML = list.map(item => `
     <option value="${escapeHTML(item.name)}" ${item.name === selectTargetName ? 'selected' : ''}>${escapeHTML(item.name)} (${escapeHTML(item.firm || item.name)})</option>
   `).join('');
+
+  if (typeof syncCustomSelect === 'function') {
+    syncCustomSelect('inpMtContactSelect');
+  }
 
   onMeetingContactSelected();
 }
@@ -406,7 +423,10 @@ function openConvertModal(id) {
   if (!p) return;
   setTxt('convProspectTitle', `${p.name} (${p.firm})`);
   const modal = document.getElementById('modalConvertProspect');
-  if (modal) modal.classList.remove('hidden');
+  if (modal) {
+    modal.classList.remove('hidden');
+    if (typeof syncAllCustomSelects === 'function') syncAllCustomSelects();
+  }
 }
 
 function closeConvertModal() {
@@ -621,7 +641,10 @@ function openEditProspect(id) {
   setVal('editProsNotes', p.notes || '');
 
   const modal = document.getElementById('modalEditProspect');
-  if (modal) modal.classList.remove('hidden');
+  if (modal) {
+    modal.classList.remove('hidden');
+    if (typeof syncAllCustomSelects === 'function') syncAllCustomSelects();
+  }
 }
 
 function closeEditProspectModal() {
@@ -799,7 +822,10 @@ function openEditClient(id) {
   setVal('editCliAM', c.am || 'Satyajit Mane');
 
   const modal = document.getElementById('modalEditClient');
-  if (modal) modal.classList.remove('hidden');
+  if (modal) {
+    modal.classList.remove('hidden');
+    if (typeof syncAllCustomSelects === 'function') syncAllCustomSelects();
+  }
 }
 
 function closeEditClientModal() {
@@ -898,7 +924,10 @@ function openEditFollowup(id) {
   setVal('editFuSummary', f.prevSummary);
 
   const modal = document.getElementById('modalEditFollowup');
-  if (modal) modal.classList.remove('hidden');
+  if (modal) {
+    modal.classList.remove('hidden');
+    if (typeof syncAllCustomSelects === 'function') syncAllCustomSelects();
+  }
 }
 
 function closeEditFollowupModal() {
@@ -977,7 +1006,10 @@ function openEditMeeting(id) {
   setVal('editMtStatus', m.status);
 
   const modal = document.getElementById('modalEditMeeting');
-  if (modal) modal.classList.remove('hidden');
+  if (modal) {
+    modal.classList.remove('hidden');
+    if (typeof syncAllCustomSelects === 'function') syncAllCustomSelects();
+  }
 }
 
 function closeEditMeetingModal() {

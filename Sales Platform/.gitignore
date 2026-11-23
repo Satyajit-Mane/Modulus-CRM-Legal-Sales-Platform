@@ -1,0 +1,19 @@
+# OS Metadata
+.DS_Store
+Thumbs.db
+
+# Editor & Agent configurations
+.vscode/
+.idea/
+.agents/
+
+# Backups & Temporary files
+*.bak
+*.bak*
+*.tmp
+*.log
+
+# Dependencies (if used in future)
+node_modules/
+dist/
+build/

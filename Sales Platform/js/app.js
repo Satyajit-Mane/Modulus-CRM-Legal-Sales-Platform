@@ -319,7 +319,7 @@
         container.innerHTML = `
           <div class="py-6 text-center text-gray-400">
             <svg class="w-6 h-6 mx-auto mb-2 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            <p class="text-xs font-medium">No results found for "${query}"</p>
+            <p class="text-xs font-medium">No results found for "${escapeHTML(query)}"</p>
             <p class="text-[10px] text-gray-400 mt-0.5">Try searching by contact name, company, phone, or email</p>
           </div>
         `;
@@ -338,11 +338,11 @@
                   ${getInitials(p.name)}
                 </div>
                 <div class="truncate">
-                  <div class="font-semibold text-gray-900 truncate">${p.name}</div>
-                  <div class="text-[10px] text-gray-400 truncate">${p.firm} · ${p.city}</div>
+                  <div class="font-semibold text-gray-900 truncate">${escapeHTML(p.name)}</div>
+                  <div class="text-[10px] text-gray-400 truncate">${escapeHTML(p.firm)} · ${escapeHTML(p.city)}</div>
                 </div>
               </div>
-              <span class="inline-flex items-center whitespace-nowrap text-[10px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 shrink-0 ml-2">${p.stage}</span>
+              <span class="inline-flex items-center whitespace-nowrap text-[10px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 shrink-0 ml-2">${escapeHTML(p.stage)}</span>
             </div>
           `;
         });
@@ -358,11 +358,11 @@
                   ${getInitials(c.name)}
                 </div>
                 <div class="truncate">
-                  <div class="font-semibold text-gray-900 truncate">${c.name}</div>
-                  <div class="text-[10px] text-gray-400 truncate">${c.firm} · ${c.city}</div>
+                  <div class="font-semibold text-gray-900 truncate">${escapeHTML(c.name)}</div>
+                  <div class="text-[10px] text-gray-400 truncate">${escapeHTML(c.firm)} · ${escapeHTML(c.city)}</div>
                 </div>
               </div>
-              <span class="inline-flex items-center whitespace-nowrap text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[#F0F9FF] text-[#0284C7] shrink-0 ml-2">${c.plan}</span>
+              <span class="inline-flex items-center whitespace-nowrap text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[#F0F9FF] text-[#0284C7] shrink-0 ml-2">${escapeHTML(c.plan)}</span>
             </div>
           `;
         });
@@ -378,11 +378,11 @@
                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                 </span>
                 <div class="truncate">
-                  <div class="font-semibold text-gray-900 truncate">${m.title}</div>
-                  <div class="text-[10px] text-gray-400 truncate">${m.contactName} · ${m.date}</div>
+                  <div class="font-semibold text-gray-900 truncate">${escapeHTML(m.title)}</div>
+                  <div class="text-[10px] text-gray-400 truncate">${escapeHTML(m.contactName)} · ${escapeHTML(m.date)}</div>
                 </div>
               </div>
-              <span class="text-[10px] text-gray-500 shrink-0 ml-2">${m.time}</span>
+              <span class="text-[10px] text-gray-500 shrink-0 ml-2">${escapeHTML(m.time)}</span>
             </div>
           `;
         });
@@ -398,11 +398,11 @@
                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 </span>
                 <div class="truncate">
-                  <div class="font-semibold text-gray-900 truncate">${f.contactName}</div>
-                  <div class="text-[10px] text-gray-400 truncate">${f.prevSummary || f.channel}</div>
+                  <div class="font-semibold text-gray-900 truncate">${escapeHTML(f.contactName)}</div>
+                  <div class="text-[10px] text-gray-400 truncate">${escapeHTML(f.prevSummary || f.channel)}</div>
                 </div>
               </div>
-              <span class="text-[10px] font-medium text-amber-700 shrink-0 ml-2">${f.status}</span>
+              <span class="text-[10px] font-medium text-amber-700 shrink-0 ml-2">${escapeHTML(f.status)}</span>
             </div>
           `;
         });
@@ -580,6 +580,7 @@ function setupModalBackdropDismiss() {
 function initApp() {
   setupModalBackdropDismiss();
   renderCustomDropdowns();
+  if (typeof initCustomSelects === 'function') initCustomSelects();
   renderHomeTable();
   renderProspectsTable();
   renderClientsTable();

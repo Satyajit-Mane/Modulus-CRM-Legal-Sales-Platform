@@ -62,6 +62,27 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+    /* Custom Dropdown Sleek Scrollbar */
+    .custom-dropdown-scroll {
+      overflow-y: auto !important;
+      overscroll-behavior: contain !important;
+      scrollbar-width: thin !important;
+      scrollbar-color: #CBD5E1 transparent !important;
+    }
+    .custom-dropdown-scroll::-webkit-scrollbar {
+      width: 5px !important;
+    }
+    .custom-dropdown-scroll::-webkit-scrollbar-track {
+      background: transparent !important;
+    }
+    .custom-dropdown-scroll::-webkit-scrollbar-thumb {
+      background: #CBD5E1 !important;
+      border-radius: 9999px !important;
+    }
+    .custom-dropdown-scroll::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8 !important;
+    }
+
     /* Safe Area for Mobile */
     .pb-safe { padding-bottom: env(safe-area-inset-bottom, 1rem); }
 
@@ -292,9 +313,36 @@
 
     /* Suppress browser native focus ring on mouse click globally */
     button:focus:not(:focus-visible),
-    a:focus:not(:focus-visible) {
+    a:focus:not(:focus-visible),
+    input:focus,
+    input:focus-visible,
+    select:focus,
+    select:focus-visible,
+    textarea:focus,
+    textarea:focus-visible {
       outline: none !important;
       box-shadow: none !important;
+    }
+
+    /* Clean Search Inputs - Strictly Zero Blue Box or Focus Ring */
+    #topUniversalSearchInput,
+    #topUniversalSearchInput:focus,
+    #topUniversalSearchInput:focus-visible,
+    #prospectSearchInput,
+    #prospectSearchInput:focus,
+    #prospectSearchInput:focus-visible,
+    #clientSearchInput,
+    #clientSearchInput:focus,
+    #clientSearchInput:focus-visible {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    button:focus-visible,
+    [role="button"]:focus-visible,
+    a:focus-visible {
+      outline: none !important;
+      box-shadow: 0 0 0 2px #ffffff, 0 0 0 3px rgba(2, 132, 199, 0.25) !important;
     }
 
     /* Consistent Circular Navigation Badges */
@@ -733,8 +781,8 @@
       min-height: 420px;
       background-color: #ffffff;
       border-radius: 0.75rem;
-      border: 1px solid #E5E7EB;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.03), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
       overflow: hidden;
     }
     .table-grounded-card.hidden {
@@ -757,18 +805,25 @@
       z-index: 10;
     }
     .table-scroll-area table thead th {
-      background-color: #F9FAFB;
-      border-bottom: 1px solid #E5E7EB;
+      background-color: #F8FAFC;
+      border-bottom: 1px solid #E2E8F0;
+      font-size: 11px;
       font-weight: 600;
-      color: #374151;
+      letter-spacing: 0.02em;
+      color: #475569;
       white-space: nowrap;
+      padding-top: 0.625rem;
+      padding-bottom: 0.625rem;
     }
     .table-scroll-area table tbody td {
-      border-bottom: 1px solid #E5E7EB;
+      border-bottom: 1px solid #F1F5F9;
       vertical-align: middle;
       background-color: #ffffff;
-      transition: background-color 120ms ease;
+      transition: background-color 100ms cubic-bezier(0.4, 0, 0.2, 1);
     }
     .table-scroll-area table tbody tr:hover td {
-      background-color: rgba(249, 250, 251, 0.85);
+      background-color: #F8FAFC;
+    }
+    .table-scroll-area table tbody tr:last-child td {
+      border-bottom: none;
     }

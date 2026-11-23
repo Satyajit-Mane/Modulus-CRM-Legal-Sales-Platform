@@ -15,6 +15,11 @@
 
       updateDynamicMetricCards();
 
+      if (recent8.length === 0) {
+        tbody.innerHTML = renderTableEmptyState(8, 'No prospects found', 'No prospects match your search query.', 'crmState.searchQuery=""; const inp = document.getElementById("topUniversalSearchInput"); if(inp) inp.value=""; renderHomeTable();');
+        return;
+      }
+
       tbody.innerHTML = recent8.map((p, idx) => `
         <tr style="--row-index: ${idx};" class="motion-row-enter h-12 hover:bg-gray-50/80 transition-colors cursor-pointer" onclick="openProspectDrawer('${p.id}')">
           <td class="w-10 px-4 text-center" onclick="event.stopPropagation()">
@@ -31,10 +36,10 @@
               </div>
             </div>
           </td>
-          <td class="py-2 px-3 text-xs text-gray-600 max-w-[220px] truncate">${p.notes}</td>
-          <td class="py-2 px-3 text-xs text-gray-500 whitespace-nowrap">${p.createdDate}</td>
+          <td class="py-2 px-3 text-xs text-gray-600 max-w-[220px] truncate">${escapeHTML(p.notes)}</td>
+          <td class="py-2 px-3 font-mono tabular-nums text-xs text-gray-500 whitespace-nowrap">${escapeHTML(p.createdDate)}</td>
           <td class="py-2 px-3 whitespace-nowrap">${renderStagePill(p.stage)}</td>
-          <td class="py-2 px-3 text-gray-900 font-medium text-xs whitespace-nowrap">${p.firm}</td>
+          <td class="py-2 px-3 text-gray-900 font-medium text-xs whitespace-nowrap">${escapeHTML(p.firm)}</td>
           <td class="py-2 px-3 whitespace-nowrap">${renderInterestPill(p.interest)}</td>
           <td class="py-2 px-4 text-right whitespace-nowrap" onclick="event.stopPropagation()">
             <div class="inline-flex items-center justify-end gap-1 text-gray-400">
@@ -73,6 +78,11 @@
 
       document.getElementById('prospectPaginationInfo').innerText = `Showing 1 to ${filtered.length} of ${filtered.length} prospects`;
 
+      if (filtered.length === 0) {
+        tbody.innerHTML = renderTableEmptyState(15, 'No prospects match your criteria', 'Try adjusting your search terms or clearing active filters.', 'clearProspectFilters()');
+        return;
+      }
+
       tbody.innerHTML = filtered.map((p, idx) => {
         const isChecked = crmState.selectedProspectIds.has(p.id);
         return `
@@ -91,20 +101,20 @@
                 </div>
               </div>
             </td>
-            <td class="py-2 px-3 font-mono text-[11px] text-gray-600 whitespace-nowrap">${p.phone}</td>
-            <td class="py-2 px-3 text-gray-600 text-xs truncate max-w-[140px]" title="${p.email}">${p.email}</td>
-            <td class="py-2 px-3 text-gray-600 text-xs whitespace-nowrap">${p.profession}</td>
-            <td class="py-2 px-3 text-gray-900 font-medium text-xs whitespace-nowrap">${p.firm}</td>
-            <td class="py-2 px-3 text-gray-600 text-xs whitespace-nowrap">${p.city}</td>
-            <td class="py-2 px-3 text-gray-500 text-xs whitespace-nowrap">${p.source}</td>
+            <td class="py-2 px-3 font-mono tabular-nums text-[11px] text-gray-600 whitespace-nowrap">${escapeHTML(p.phone)}</td>
+            <td class="py-2 px-3 text-gray-600 text-xs truncate max-w-[140px]" title="${escapeHTML(p.email)}">${escapeHTML(p.email)}</td>
+            <td class="py-2 px-3 text-gray-600 text-xs whitespace-nowrap">${escapeHTML(p.profession)}</td>
+            <td class="py-2 px-3 text-gray-900 font-medium text-xs whitespace-nowrap">${escapeHTML(p.firm)}</td>
+            <td class="py-2 px-3 text-gray-600 text-xs whitespace-nowrap">${escapeHTML(p.city)}</td>
+            <td class="py-2 px-3 text-gray-500 text-xs whitespace-nowrap">${escapeHTML(p.source)}</td>
             <td class="py-2 px-3 whitespace-nowrap">${renderInterestPill(p.interest)}</td>
             <td class="py-2 px-3 whitespace-nowrap">${renderStagePill(p.stage)}</td>
-            <td class="py-2 px-3 text-gray-400 text-xs whitespace-nowrap">${p.lastContacted}</td>
+            <td class="py-2 px-3 font-mono tabular-nums text-gray-400 text-xs whitespace-nowrap">${escapeHTML(p.lastContacted)}</td>
             <td class="py-2 px-3 text-xs whitespace-nowrap">
-              <span class="font-medium text-gray-800">${p.nextFollowupDate}</span> <span class="text-[10px] text-gray-400 font-mono">· ${p.nextFollowupTime}</span>
+              <span class="font-mono tabular-nums font-medium text-gray-800">${escapeHTML(p.nextFollowupDate)}</span> <span class="text-[10px] text-gray-400 font-mono tabular-nums">· ${escapeHTML(p.nextFollowupTime)}</span>
             </td>
-            <td class="py-2 px-3 text-gray-700 text-xs whitespace-nowrap">${p.salesperson}</td>
-            <td class="py-2 px-3 text-gray-400 text-xs whitespace-nowrap">${p.createdDate}</td>
+            <td class="py-2 px-3 text-gray-700 text-xs whitespace-nowrap">${escapeHTML(p.salesperson)}</td>
+            <td class="py-2 px-3 font-mono tabular-nums text-gray-400 text-xs whitespace-nowrap">${escapeHTML(p.createdDate)}</td>
             <td class="py-2 px-4 text-right whitespace-nowrap" onclick="event.stopPropagation()">
               <div class="inline-flex items-center justify-end gap-1 text-gray-400">
                 <button onclick="openEditProspect('${p.id}')" class="action-icon-btn btn-action-neutral" title="Edit Prospect">
@@ -269,6 +279,11 @@ function exportClientsCSV() {
 
       document.getElementById('clientPaginationInfo').innerText = `Showing 1 to ${filtered.length} of ${filtered.length} active accounts`;
 
+      if (filtered.length === 0) {
+        tbody.innerHTML = renderTableEmptyState(16, 'No clients match your criteria', 'Try adjusting your search terms or clearing active filters.', 'clearClientFilters()');
+        return;
+      }
+
       tbody.innerHTML = filtered.map((c, idx) => `
         <tr style="--row-index: ${idx};" class="motion-row-enter h-12 hover:bg-gray-50/80 transition-colors cursor-pointer" onclick="openClientDrawer('${c.id}')">
           <td class="w-10 px-4 text-center" onclick="event.stopPropagation()"><input type="checkbox" class="rounded text-[#0284C7] table-checkbox cursor-pointer"></td>
@@ -283,19 +298,19 @@ function exportClientsCSV() {
               </div>
             </div>
           </td>
-          <td class="py-2 px-3 font-mono text-[11px] text-gray-600 whitespace-nowrap">${c.phone}</td>
-          <td class="py-2 px-3 text-gray-600 text-xs truncate max-w-[140px]" title="${c.email}">${c.email}</td>
-          <td class="py-2 px-3 text-gray-600 text-xs whitespace-nowrap">${c.profession}</td>
-          <td class="py-2 px-3 font-semibold text-xs text-gray-900 whitespace-nowrap">${c.firm}</td>
-          <td class="py-2 px-3 text-gray-600 text-xs whitespace-nowrap">${c.city}</td>
-          <td class="py-2 px-3 whitespace-nowrap"><span class="inline-flex items-center whitespace-nowrap px-2.5 py-0.5 text-[11px] font-semibold bg-[#F0F9FF] text-[#0284C7] rounded-full border border-[#0284C7]/20 shadow-2xs">${c.plan}</span></td>
-          <td class="py-2 px-3 text-gray-600 text-xs whitespace-nowrap">${c.subType}</td>
-          <td class="py-2 px-3 font-bold text-xs text-gray-900 whitespace-nowrap">${c.amount}</td>
-          <td class="py-2 px-3 text-gray-400 text-xs whitespace-nowrap">${c.startDate}</td>
-          <td class="py-2 px-3 font-medium text-xs text-gray-800 whitespace-nowrap">${c.renewalDate}</td>
+          <td class="py-2 px-3 font-mono tabular-nums text-[11px] text-gray-600 whitespace-nowrap">${escapeHTML(c.phone)}</td>
+          <td class="py-2 px-3 text-gray-600 text-xs truncate max-w-[140px]" title="${escapeHTML(c.email)}">${escapeHTML(c.email)}</td>
+          <td class="py-2 px-3 text-gray-600 text-xs whitespace-nowrap">${escapeHTML(c.profession)}</td>
+          <td class="py-2 px-3 font-semibold text-xs text-gray-900 whitespace-nowrap">${escapeHTML(c.firm)}</td>
+          <td class="py-2 px-3 text-gray-600 text-xs whitespace-nowrap">${escapeHTML(c.city)}</td>
+          <td class="py-2 px-3 whitespace-nowrap"><span class="inline-flex items-center whitespace-nowrap px-2.5 py-0.5 text-[11px] font-semibold bg-[#F0F9FF] text-[#0284C7] rounded-full border border-[#0284C7]/20 shadow-2xs">${escapeHTML(c.plan)}</span></td>
+          <td class="py-2 px-3 text-gray-600 text-xs whitespace-nowrap">${escapeHTML(c.subType)}</td>
+          <td class="py-2 px-3 font-mono tabular-nums font-semibold text-xs text-gray-900 whitespace-nowrap">${escapeHTML(c.amount)}</td>
+          <td class="py-2 px-3 font-mono tabular-nums text-gray-400 text-xs whitespace-nowrap">${escapeHTML(c.startDate)}</td>
+          <td class="py-2 px-3 font-mono tabular-nums font-medium text-xs text-gray-800 whitespace-nowrap">${escapeHTML(c.renewalDate)}</td>
           <td class="py-2 px-3">${renderPaymentStatusBadge(c.paymentStatus)}</td>
-          <td class="py-2 px-3"><span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[11px] font-semibold ${c.clientStatus === 'Active' ? 'bg-emerald-50 text-emerald-700 border-emerald-200/70' : 'bg-rose-50 text-rose-700 border-rose-200/70'} rounded-full border shadow-2xs"><span class="w-1.5 h-1.5 rounded-full ${c.clientStatus === 'Active' ? 'bg-emerald-500' : 'bg-rose-500'}"></span>${c.clientStatus}</span></td>
-          <td class="py-2 px-3 text-gray-700 text-xs whitespace-nowrap">${c.am}</td>
+          <td class="py-2 px-3"><span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[11px] font-semibold ${c.clientStatus === 'Active' ? 'bg-emerald-50 text-emerald-700 border-emerald-200/70' : 'bg-rose-50 text-rose-700 border-rose-200/70'} rounded-full border shadow-2xs"><span class="w-1.5 h-1.5 rounded-full ${c.clientStatus === 'Active' ? 'bg-emerald-500' : 'bg-rose-500'}"></span>${escapeHTML(c.clientStatus)}</span></td>
+          <td class="py-2 px-3 text-gray-700 text-xs whitespace-nowrap">${escapeHTML(c.am)}</td>
           <td class="py-2 px-4 text-right whitespace-nowrap" onclick="event.stopPropagation()">
             <div class="inline-flex items-center justify-end gap-1 text-gray-400">
               <button onclick="openEditClient('${c.id}')" class="action-icon-btn btn-action-neutral" title="Edit Client">
@@ -375,6 +390,11 @@ function exportClientsCSV() {
         pInfo.innerText = `Showing 1 to ${list.length} of ${list.length} scheduled follow-ups`;
       }
 
+      if (list.length === 0) {
+        tbody.innerHTML = renderTableEmptyState(12, 'No follow-ups found', 'No follow-up tasks match this view.', 'switchFollowupTab("all")');
+        return;
+      }
+
       tbody.innerHTML = list.map((f, idx) => `
         <tr style="--row-index: ${idx};" class="motion-row-enter h-12 hover:bg-gray-50/80 transition-colors">
           <td class="w-10 px-4 text-center" onclick="event.stopPropagation()"><input type="checkbox" class="rounded text-[#0284C7] table-checkbox cursor-pointer"></td>
@@ -390,18 +410,18 @@ function exportClientsCSV() {
             </div>
           </td>
           <td class="py-2 px-3 whitespace-nowrap"><span class="px-2.5 py-0.5 text-[11px] font-semibold rounded-full border shadow-2xs whitespace-nowrap inline-flex items-center ${f.contactType === 'Prospect' ? 'bg-blue-50 text-blue-700 border-blue-200/70' : 'bg-emerald-50 text-emerald-700 border-emerald-200/70'}"><span class="w-1.5 h-1.5 rounded-full ${f.contactType === 'Prospect' ? 'bg-blue-500' : 'bg-emerald-500'} mr-1.5 shrink-0"></span>${(f.contactType === 'Active Client' || f.contactType === 'Active' || f.contactType === 'Client') ? 'Client' : f.contactType}</span></td>
-          <td class="py-2 px-3 font-mono text-[11px] text-gray-600 whitespace-nowrap">${f.phone}</td>
+          <td class="py-2 px-3 font-mono tabular-nums text-[11px] text-gray-600 whitespace-nowrap">${escapeHTML(f.phone)}</td>
           <td class="py-2 px-3 text-xs text-gray-700 whitespace-nowrap">
             <span class="inline-flex items-center gap-1.5">
               ${getChannelIcon(f.channel)}
-              <span>${f.channel}</span>
+              <span>${escapeHTML(f.channel)}</span>
             </span>
           </td>
-          <td class="py-2 px-3 text-xs text-gray-600 max-w-[240px] truncate" title="${f.prevSummary}">${f.prevSummary}</td>
-          <td class="py-2 px-3 text-xs font-medium text-gray-900 whitespace-nowrap">${f.date}</td>
-          <td class="py-2 px-3 text-xs text-gray-500 whitespace-nowrap">${f.time}</td>
-          <td class="py-2 px-3"><span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[11px] font-semibold rounded-full border shadow-2xs ${f.priority === 'Urgent' ? 'bg-rose-50 text-rose-700 border-rose-200/70' : (f.priority === 'High' ? 'bg-amber-50 text-amber-800 border-amber-200/70' : 'bg-slate-50 text-slate-700 border-slate-200/80')}"><span class="w-1.5 h-1.5 rounded-full ${f.priority === 'Urgent' ? 'bg-rose-500' : (f.priority === 'High' ? 'bg-amber-500' : 'bg-slate-400')}"></span>${f.priority}</span></td>
-          <td class="py-2 px-3 text-xs text-gray-700 whitespace-nowrap">${f.salesperson}</td>
+          <td class="py-2 px-3 text-xs text-gray-600 max-w-[240px] truncate" title="${escapeHTML(f.prevSummary)}">${escapeHTML(f.prevSummary)}</td>
+          <td class="py-2 px-3 font-mono tabular-nums text-xs font-medium text-gray-900 whitespace-nowrap">${escapeHTML(f.date)}</td>
+          <td class="py-2 px-3 font-mono tabular-nums text-[11px] text-gray-500 whitespace-nowrap">${escapeHTML(f.time)}</td>
+          <td class="py-2 px-3"><span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[11px] font-semibold rounded-full border shadow-2xs ${f.priority === 'Urgent' ? 'bg-rose-50 text-rose-700 border-rose-200/70' : (f.priority === 'High' ? 'bg-amber-50 text-amber-800 border-amber-200/70' : 'bg-slate-50 text-slate-700 border-slate-200/80')}"><span class="w-1.5 h-1.5 rounded-full ${f.priority === 'Urgent' ? 'bg-rose-500' : (f.priority === 'High' ? 'bg-amber-500' : 'bg-slate-400')}"></span>${escapeHTML(f.priority)}</span></td>
+          <td class="py-2 px-3 text-xs text-gray-700 whitespace-nowrap">${escapeHTML(f.salesperson)}</td>
           <td class="py-2 px-3">${renderFollowupStatusBadge(f.status)}</td>
           <td class="py-2 px-4 text-right whitespace-nowrap" onclick="event.stopPropagation()">
             <div class="inline-flex items-center justify-end gap-1 text-gray-400">
@@ -448,10 +468,16 @@ function exportClientsCSV() {
         pInfo.innerText = `Showing 1 to ${list.length} of ${list.length} meetings and demos`;
       }
 
+      if (list.length === 0) {
+        tbody.innerHTML = renderTableEmptyState(14, 'No meetings scheduled', 'No client demos or meetings match this view.', 'switchMeetingTab("all")');
+        renderMeetingsCalendar();
+        return;
+      }
+
       tbody.innerHTML = list.map((m, idx) => `
         <tr style="--row-index: ${idx};" class="motion-row-enter h-12 hover:bg-gray-50/80 transition-colors">
           <td class="w-10 px-4 text-center" onclick="event.stopPropagation()"><input type="checkbox" class="rounded text-[#0284C7] table-checkbox cursor-pointer"></td>
-          <td class="py-2 px-3 font-semibold text-xs text-[#111827] max-w-[200px] truncate">${m.title}</td>
+          <td class="py-2 px-3 font-semibold text-xs text-[#111827] max-w-[200px] truncate">${escapeHTML(m.title)}</td>
           <td class="py-2 px-3 whitespace-nowrap">
             <div class="flex items-center gap-2.5">
               <div class="w-7 h-7 rounded-full ${m.contactType === 'Prospect' ? 'bg-[#F0F9FF] text-[#0284C7] border border-[#BAE6FD]/80' : 'bg-emerald-50 text-emerald-700 border border-emerald-200/80'} flex items-center justify-center font-bold text-[10px] shrink-0 select-none shadow-2xs">
@@ -463,15 +489,15 @@ function exportClientsCSV() {
               </div>
             </div>
           </td>
-          <td class="py-2 px-3 whitespace-nowrap"><span class="px-2.5 py-0.5 text-[11px] font-semibold rounded-full border shadow-2xs whitespace-nowrap inline-flex items-center ${m.contactType === 'Prospect' ? 'bg-blue-50 text-blue-700 border-blue-200/70' : 'bg-emerald-50 text-emerald-700 border-emerald-200/70'}"><span class="w-1.5 h-1.5 rounded-full ${m.contactType === 'Prospect' ? 'bg-blue-500' : 'bg-emerald-500'} mr-1.5 shrink-0"></span>${(m.contactType === 'Active Client' || m.contactType === 'Active' || m.contactType === 'Client') ? 'Client' : m.contactType}</span></td>
-          <td class="py-2 px-3 font-mono text-[11px] text-gray-600 whitespace-nowrap">${m.phone}</td>
-          <td class="py-2 px-3 text-gray-600 text-xs truncate max-w-[130px]" title="${m.email}">${m.email}</td>
-          <td class="py-2 px-3 text-gray-700 text-xs">${m.meetingType}</td>
-          <td class="py-2 px-3 font-medium text-xs text-gray-900 whitespace-nowrap">${m.date}</td>
-          <td class="py-2 px-3 text-gray-600 text-xs whitespace-nowrap">${m.startTime} – ${m.endTime}</td>
-          <td class="py-2 px-3"><span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[11px] font-semibold rounded-full border shadow-2xs ${m.mode === 'Online' ? 'bg-sky-50 text-sky-700 border-sky-200/70' : 'bg-amber-50 text-amber-800 border-amber-200/70'}"><span class="w-1.5 h-1.5 rounded-full ${m.mode === 'Online' ? 'bg-sky-500' : 'bg-amber-500'}"></span>${m.mode}</span></td>
-          <td class="py-2 px-3 text-xs text-gray-500 truncate max-w-[150px]" title="${m.link}">${m.link}</td>
-          <td class="py-2 px-3 text-gray-700 text-xs whitespace-nowrap">${m.salesperson}</td>
+          <td class="py-2 px-3 whitespace-nowrap"><span class="px-2.5 py-0.5 text-[11px] font-semibold rounded-full border shadow-2xs whitespace-nowrap inline-flex items-center ${m.contactType === 'Prospect' ? 'bg-blue-50 text-blue-700 border-blue-200/70' : 'bg-emerald-50 text-emerald-700 border-emerald-200/70'}"><span class="w-1.5 h-1.5 rounded-full ${m.contactType === 'Prospect' ? 'bg-blue-500' : 'bg-emerald-500'} mr-1.5 shrink-0"></span>${(m.contactType === 'Active Client' || m.contactType === 'Active' || m.contactType === 'Client') ? 'Client' : escapeHTML(m.contactType)}</span></td>
+          <td class="py-2 px-3 font-mono tabular-nums text-[11px] text-gray-600 whitespace-nowrap">${escapeHTML(m.phone)}</td>
+          <td class="py-2 px-3 text-gray-600 text-xs truncate max-w-[130px]" title="${escapeHTML(m.email)}">${escapeHTML(m.email)}</td>
+          <td class="py-2 px-3 text-gray-700 text-xs">${escapeHTML(m.meetingType)}</td>
+          <td class="py-2 px-3 font-mono tabular-nums font-medium text-xs text-gray-900 whitespace-nowrap">${escapeHTML(m.date)}</td>
+          <td class="py-2 px-3 font-mono tabular-nums text-gray-600 text-xs whitespace-nowrap">${escapeHTML(m.startTime)} – ${escapeHTML(m.endTime)}</td>
+          <td class="py-2 px-3"><span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[11px] font-semibold rounded-full border shadow-2xs ${m.mode === 'Online' ? 'bg-sky-50 text-sky-700 border-sky-200/70' : 'bg-amber-50 text-amber-800 border-amber-200/70'}"><span class="w-1.5 h-1.5 rounded-full ${m.mode === 'Online' ? 'bg-sky-500' : 'bg-amber-500'}"></span>${escapeHTML(m.mode)}</span></td>
+          <td class="py-2 px-3 text-xs text-gray-500 truncate max-w-[150px]" title="${escapeHTML(m.link)}">${escapeHTML(m.link)}</td>
+          <td class="py-2 px-3 text-gray-700 text-xs whitespace-nowrap">${escapeHTML(m.salesperson)}</td>
           <td class="py-2 px-3"><span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[11px] font-semibold rounded-full border shadow-2xs ${m.status === 'Completed' ? 'bg-slate-100 text-slate-600 border-slate-200/80' : (m.status === 'Today' ? 'bg-amber-50 text-amber-800 border-amber-200/70' : 'bg-indigo-50 text-indigo-700 border-indigo-200/80')}"><span class="w-1.5 h-1.5 rounded-full ${m.status === 'Completed' ? 'bg-slate-400' : (m.status === 'Today' ? 'bg-amber-500' : 'bg-indigo-500')}"></span>${m.status === 'Completed' ? 'Done' : m.status}</span></td>
           <td class="py-2 px-4 text-right whitespace-nowrap" onclick="event.stopPropagation()">
             <div class="inline-flex items-center justify-end gap-1 text-gray-400">
@@ -633,21 +659,21 @@ function exportClientsCSV() {
                 
                 <!-- Line 2: Meeting Type in a single line at the bottom of Status -->
                 <div class="flex items-center justify-start">
-                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium whitespace-nowrap border shadow-2xs ${m.meetingType === 'Product Demo' ? 'bg-sky-50 text-[#0284C7] border-sky-200/70' : 'bg-violet-50 text-violet-700 border-violet-200/70'}">${m.meetingType}</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium whitespace-nowrap border shadow-2xs ${m.meetingType === 'Product Demo' ? 'bg-sky-50 text-[#0284C7] border-sky-200/70' : 'bg-violet-50 text-violet-700 border-violet-200/70'}">${escapeHTML(m.meetingType)}</span>
                 </div>
                 
                 <!-- Line 3: Title in a single line -->
-                <div class="font-bold text-xs text-[#111827] truncate whitespace-nowrap group-hover:text-[#0284C7] transition-colors leading-normal" title="${m.title}">${m.title}</div>
+                <div class="font-bold text-xs text-[#111827] truncate whitespace-nowrap group-hover:text-[#0284C7] transition-colors leading-normal" title="${escapeHTML(m.title)}">${escapeHTML(m.title)}</div>
                 
                 <!-- Line 4: Contact Name in a single line -->
-                <div class="text-[11px] text-gray-600 truncate whitespace-nowrap" title="${m.contactName}">${m.contactName}</div>
+                <div class="text-[11px] text-gray-600 truncate whitespace-nowrap" title="${escapeHTML(m.contactName)}">${escapeHTML(m.contactName)}</div>
                 
                 <!-- Line 5: Time & Mode in a single line -->
                 <div class="flex items-center justify-between pt-1.5 border-t border-gray-100 text-[10px] text-gray-500 whitespace-nowrap">
-                  <span class="font-mono font-semibold text-gray-800">${m.startTime}</span>
+                  <span class="font-mono font-semibold text-gray-800">${escapeHTML(m.startTime)}</span>
                   <span class="inline-flex items-center gap-1 font-medium text-gray-500">
                     ${m.mode === 'Online' ? '<svg class="w-3 h-3 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>' : '<svg class="w-3 h-3 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>'}
-                    <span>${m.mode}</span>
+                    <span>${escapeHTML(m.mode)}</span>
                   </span>
                 </div>
               </div>
@@ -712,8 +738,8 @@ function exportClientsCSV() {
                 </div>
                 <div class="space-y-1 flex-1 overflow-y-auto" onclick="event.stopPropagation()">
                   ${c.meetings.map(m => `
-                    <div onclick="openEditMeeting('${m.id}')" class="px-1.5 py-1 rounded-md text-[10.5px] truncate font-medium cursor-pointer shadow-2xs border ${m.meetingType === 'Product Demo' ? 'bg-sky-50 text-[#0284C7] border-sky-200 hover:border-[#0284C7]' : 'bg-violet-50 text-violet-700 border-violet-200 hover:border-violet-600'} transition-all" title="${m.title} (${m.startTime})">
-                      <span class="font-mono text-[9.5px] font-semibold">${m.startTime.split(' ')[0]}</span> · ${m.contactName}
+                    <div onclick="openEditMeeting('${m.id}')" class="px-1.5 py-1 rounded-md text-[10.5px] truncate font-medium cursor-pointer shadow-2xs border ${m.meetingType === 'Product Demo' ? 'bg-sky-50 text-[#0284C7] border-sky-200 hover:border-[#0284C7]' : 'bg-violet-50 text-violet-700 border-violet-200 hover:border-violet-600'} transition-all" title="${escapeHTML(m.title)} (${escapeHTML(m.startTime)})">
+                      <span class="font-mono text-[9.5px] font-semibold">${escapeHTML(m.startTime.split(' ')[0])}</span> · ${escapeHTML(m.contactName)}
                     </div>
                   `).join('')}
                 </div>

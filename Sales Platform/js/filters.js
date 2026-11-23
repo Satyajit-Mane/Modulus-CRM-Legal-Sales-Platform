@@ -417,7 +417,7 @@ function renderCustomDropdowns() {
             <span>${def.title}</span>
             ${count > 0 ? `<button onclick="clearSingleFilter('${id}')" class="text-[#0284C7] hover:underline normal-case font-medium cursor-pointer">Reset</button>` : ''}
           </div>
-          <div class="max-h-56 overflow-y-auto no-scrollbar py-1">
+          <div class="max-h-56 overflow-y-auto custom-dropdown-scroll py-1">
             ${def.options.map(opt => {
               const isSelected = selectedSet.has(opt);
               return `
